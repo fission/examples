@@ -25,7 +25,8 @@ Validation Successful
 1 function updated: chrome
 ```
 
-The test:
+The test gives out google homepage content as a response:
+
 ```
 $ fission fn test --name chrome
 
@@ -50,10 +51,10 @@ Initialize the specs
 $ fission spec init
 ```
 
-Creating the env and function specs & apply:
+Creating the env and function specs & apply. Note that we are using a custom image `--image vishalbiyani/node-chrome:1` for headless chromium.
 
 ```
-$ fission env create --name node-chrome --image fission/node-env --builder fission/node-builder --spec
+$ fission env create --name node-chrome --image --image vishalbiyani/node-chrome:1 --builder fission/node-builder --spec
 
 $ fission fn create --name chrome --env node-chrome --src hello.js --src package.json --entrypoint hello --spec
 
