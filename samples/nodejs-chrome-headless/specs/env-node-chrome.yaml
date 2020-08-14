@@ -1,0 +1,17 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: node-chrome
+  namespace: default
+spec:
+  builder:
+    command: build
+    image: fission/node-builder
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    image: vishalbiyani/node-chrome:1
+  version: 2

@@ -1,0 +1,56 @@
+include:
+- hello.js
+- package.json
+kind: ArchiveUploadSpec
+name: hello-js-tSys
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: chrome-76a831d5-107c-4d09-a4fa-a1d2fab770e8
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: node-chrome
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://hello-js-tSys
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2020-08-14T09:44:16Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: chrome
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  configmaps: null
+  environment:
+    name: node-chrome
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: hello
+    packageref:
+      name: chrome-76a831d5-107c-4d09-a4fa-a1d2fab770e8
+      namespace: default
+  resources: {}
+  secrets: null

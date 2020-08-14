@@ -1,0 +1,10 @@
+{
+  "name": "puppeteer-headless",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node puppeteer"
+  },
+  "dependencies": {
+    "puppeteer": "^2.0.0"
+  }
+}
