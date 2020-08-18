@@ -37,10 +37,36 @@ $ fission fn test --name chrome
 
 ### Building a custom image
 
-The stock Fission image does not have Chromium built in and we use a modified base image:
+The stock Fission image does not have Chromium built in and we use a modified base image. You will need to copy this modified Dockerfile in fission's main repo at environments/nodejs as it needs rest of code of environment.
 
 ```
  $ docker build -t vishalbiyani/node-chrome:1 .
+ 
+```
+Or simply add this section to Dockerfile of NodeJS environment, build a new image and keep it ready. We will use this custom image to create environments later.
+
+```
+# Needed for chromium
+RUN apk add --no-cache \
+      chromium \
+      nss \
+      freetype \
+      freetype-dev \
+      harfbuzz \
+      ca-certificates \
+      ttf-freefont \
+      nodejs \
+      yarn
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+RUN yarn add puppeteer@1.19.0
+RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
+    && mkdir -p /home/pptruser/Downloads /app \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /app
+
+USER pptruser
 ```
 
 ### Creating env & function with source code
