@@ -1,0 +1,55 @@
+include:
+- namaste.py
+kind: ArchiveUploadSpec
+name: namaste-py-AHf3
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: namaste-d65c8cde-a032-4b58-89c5-37a05efbf8d7
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://namaste-py-AHf3
+  environment:
+    name: py
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2020-09-10T09:50:51Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: namaste
+  namespace: default
+spec:
+  Concurrency: 20
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  configmaps: null
+  environment:
+    name: py
+    namespace: default
+  functionTimeout: 240
+  idletimeout: 60
+  package:
+    packageref:
+      name: namaste-d65c8cde-a032-4b58-89c5-37a05efbf8d7
+      namespace: default
+  resources: {}
+  secrets: null
