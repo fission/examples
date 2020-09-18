@@ -1,0 +1,55 @@
+include:
+- hello/*
+kind: ArchiveUploadSpec
+name: hello-ptFE
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hello-py-spec-acc5a7b9-c961-46f9-a7f4-7c6f1ab15b0e
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python-spec-example
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://hello-ptFE
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2020-08-04T07:51:25Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hello-py-spec
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 600
+      TargetCPUPercent: 0
+    StrategyType: execution
+  configmaps: null
+  environment:
+    name: python-spec-example
+    namespace: default
+  functionTimeout: 6000
+  idletimeout: 120
+  package:
+    functionName: hello.main
+    packageref:
+      name: hello-py-spec-acc5a7b9-c961-46f9-a7f4-7c6f1ab15b0e
+      namespace: default
+  resources: {}
+  secrets: null

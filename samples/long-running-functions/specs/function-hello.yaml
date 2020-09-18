@@ -1,0 +1,55 @@
+include:
+- hello.py
+kind: ArchiveUploadSpec
+name: hello-py-DK4m
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hello-b314df33-a15b-4fb9-bb9f-942d058586a2
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-py-DK4m
+  environment:
+    name: py
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2020-08-30T06:40:18Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hello
+  namespace: default
+spec:
+  Concurrency: 50
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 10
+      TargetCPUPercent: 0
+    StrategyType: execution
+  configmaps: null
+  environment:
+    name: py
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 60
+  package:
+    packageref:
+      name: hello-b314df33-a15b-4fb9-bb9f-942d058586a2
+      namespace: default
+  resources: {}
+  secrets: null
