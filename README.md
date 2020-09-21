@@ -21,6 +21,10 @@ https://github.com/fission/action
 
 https://github.com/fission/fission-restapi-sample
 
+#### Dashboards
+
+Example dashboards using Fission metrics and logs can be found under `dashboards`.
+
 ##### Fission Community benchmarks
 
 Still a lot of WIP but compares different frameworks and benchmarks them.
