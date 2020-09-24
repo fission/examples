@@ -1,0 +1,55 @@
+include:
+- hello-4-120.py
+kind: ArchiveUploadSpec
+name: hello-4-120-py-daf1
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hello-4-120-2f7a516c-cb88-4e5b-ae5b-dd82e7325e33
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-4-120-py-daf1
+  environment:
+    name: python-4
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2020-09-24T12:31:33Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hello-4-120
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps: null
+  environment:
+    name: python-4
+    namespace: default
+  functionTimeout: 150
+  idletimeout: 240
+  package:
+    packageref:
+      name: hello-4-120-2f7a516c-cb88-4e5b-ae5b-dd82e7325e33
+      namespace: default
+  resources: {}
+  secrets: null
