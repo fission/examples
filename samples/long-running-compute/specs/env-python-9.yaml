@@ -1,0 +1,22 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: python-9
+  namespace: default
+spec:
+  builder: {}
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 20
+  resources:
+    limits:
+      cpu: 75m
+      memory: 96Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+  runtime:
+    image: fission/python-env
+  terminationGracePeriod: 1
+  version: 3

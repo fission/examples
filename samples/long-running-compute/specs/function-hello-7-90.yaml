@@ -1,0 +1,55 @@
+include:
+- hello-2-90.py
+kind: ArchiveUploadSpec
+name: hello-2-90-py-JfN7
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hello-7-90-862c2c73-3368-4daa-9daf-9fc9f6dbb5b1
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-2-90-py-JfN7
+  environment:
+    name: python-7
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2020-09-24T12:32:44Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hello-7-90
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps: null
+  environment:
+    name: python-7
+    namespace: default
+  functionTimeout: 120
+  idletimeout: 180
+  package:
+    packageref:
+      name: hello-7-90-862c2c73-3368-4daa-9daf-9fc9f6dbb5b1
+      namespace: default
+  resources: {}
+  secrets: null

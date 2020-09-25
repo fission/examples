@@ -1,0 +1,55 @@
+include:
+- hello-3-60.py
+kind: ArchiveUploadSpec
+name: hello-3-60-py-74eR
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hello-8-60-8b733b10-ecf9-4801-9b18-6c54b76fce3d
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-3-60-py-74eR
+  environment:
+    name: python-8
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2020-09-24T12:33:03Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hello-8-60
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps: null
+  environment:
+    name: python-8
+    namespace: default
+  functionTimeout: 90
+  idletimeout: 120
+  package:
+    packageref:
+      name: hello-8-60-8b733b10-ecf9-4801-9b18-6c54b76fce3d
+      namespace: default
+  resources: {}
+  secrets: null
