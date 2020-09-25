@@ -3,5 +3,5 @@
 # Do not edit the UID below: that will break 'fission spec apply'
 apiVersion: fission.io/v1
 kind: DeploymentConfig
-name: large-scale-example
+name: long-running-compute
 uid: f9161cbf-544a-4fb0-b2dd-8217d3e0d568
