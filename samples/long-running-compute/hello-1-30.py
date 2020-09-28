@@ -6,6 +6,7 @@ def main():
     start = datetime.now()
     i = 10
     while (datetime.now() - start).seconds <= 30:
-        print(math.factorial(i), datetime.now())
+        fac = math.factorial(i)
         time.sleep(0.5)
         i += 10
+    return "Success"
