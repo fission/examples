@@ -10,6 +10,17 @@ To run, first compile Go program to Linux OS:
 $ GOOS=linux go build -o goprog
 ```
 
+## With CLI
+
+We can provide multiple files with --deploy flag and the files are accessible in directory /userfunc/deployarchive - so you can use that path from within main source file.
+
+```
+$ fission env create --name binary --image vishalbiyani/binary-buster-env:1 --poolsize 1
+$ fission fn create --env binary --deploy run.sh --deploy gobuster --deploy list_small.txt --name scanner --entrypoint run.sh
+```
+
+## With Specs
+
 And then `fission spec apply` to push environment and function to Kubernetes and test it:
 
 ```

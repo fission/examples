@@ -2,4 +2,4 @@
 
 echo "Inside Shell"
 
-goprog hello
+/userfunc/deployarchive/goprog hello
