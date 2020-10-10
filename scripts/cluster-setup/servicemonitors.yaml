@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: executor-service-app
+spec:
+  selector:
+    matchLabels:
+      svc: executor
+  endpoints:
+  - targetPort: 8080
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: router-service-app
+spec:
+  selector:
+    matchLabels:
+      svc: router
+  endpoints:
+  - targetPort: 8080

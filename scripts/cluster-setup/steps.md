@@ -1,6 +1,17 @@
-1. ```eksctl create cluster --name scale-test --version 1.17 --managed --asg-access --region ap-south-1 --node-type=c5.xlarge --ssh-access```
+1. ```eksctl create cluster --name scale-test --version 1.17 --managed --asg-access --region ap-south-1 --node-type=c5.4xlarge --ssh-access --nodes-min 2 --nodes-max 8 --nodes 5```
+
+If plan to use Calico:
+
+```
+eksctl create cluster --name fission-calico --without-nodegroup --ssh-access
+kubectl delete daemonset -n kube-system aws-node
+kubectl apply -f https://docs.projectcalico.org/manifests/calico-vxlan.yaml
+eksctl create nodegroup --cluster fission-calico --node-type c5.xlarge --node-ami auto --max-pods-per-node 300 --ssh-access --managed --asg-access
+```
 
 2. ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml```
+
+
 
 3. ```kubectl -n kube-system annotate deployment.apps/cluster-autoscaler cluster-autoscaler.kubernetes.io/safe-to-evict="false"```
 
@@ -16,9 +27,9 @@ Edit the cluster-autoscaler container command to replace <YOUR CLUSTER NAME> wit
 
 6. ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml```
 
-
 ###In Load balancer:
-service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "900"
 
 
 vegeta attack -duration=300s -timeout=300s -rate=360/m -max-workers=2000 -targets=vegeta.conf > Iter-n.txt
+
+kubectl set env daemonset -n kube-system aws-node WARM_ENI_TARGET=3 WARM_IP_TARGET=40 MINIMUM_IP_TARGET=15 AWS_VPC_K8S_CNI_LOGLEVEL=DEBUG AWS_VPC_K8S_PLUGIN_LOG_LEVEL=DEBUG
