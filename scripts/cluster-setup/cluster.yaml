@@ -16,19 +16,20 @@ nodeGroups:
     maxSize: 3
     instancePrefix: fission
     volumeSize: 80
-    tags:
-      k8s.io/cluster-autoscaler/node-template/label/fission: fissioninfra
     ssh:
       allow: true
   - name: fission-functions
     labels:
-        role: functions
+      role: functions
     desiredCapacity: 2
+    instanceType: c4.4xlarge
     minSize: 2
     maxSize: 25
     instancePrefix: functions
     volumeSize: 100
     tags:
-        k8s.io/cluster-autoscaler/node-template/label/fission: functions  
+        k8s.io/cluster-autoscaler/node-template/label/role: functions  
+        k8s.io/cluster-autoscaler/fission-scale-test: owned
+        k8s.io/cluster-autoscaler/enabled: "true"
     ssh:
       allow: true
