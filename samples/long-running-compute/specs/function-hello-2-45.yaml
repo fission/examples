@@ -1,35 +1,35 @@
 include:
-- hello-4-120.py
+- hello-2-45.py
 kind: ArchiveUploadSpec
-name: hello-4-120-py-MLYn
+name: hello-2-45-py-ZGxz
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: hello-9-120-583ad282-ef53-4fc6-89cb-5fbd400f473d
+  name: hello-2-45-9a02823b-8f6b-4af0-a86a-d12521621a1f
   namespace: default
 spec:
   deployment:
     checksum: {}
     type: url
-    url: archive://hello-4-120-py-MLYn
+    url: archive://hello-2-45-py-ZGxz
   environment:
-    name: python-9
+    name: python-2
     namespace: default
   source:
     checksum: {}
 status:
   buildstatus: none
-  lastUpdateTimestamp: "2020-09-24T12:33:18Z"
+  lastUpdateTimestamp: "2020-09-24T12:30:06Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: hello-9-120
+  name: hello-2-45
   namespace: default
 spec:
   InvokeStrategy:
@@ -37,19 +37,19 @@ spec:
       ExecutorType: poolmgr
       MaxScale: 0
       MinScale: 0
-      SpecializationTimeout: 120
+      SpecializationTimeout: 1800
       TargetCPUPercent: 0
     StrategyType: execution
   concurrency: 500
   configmaps: null
   environment:
-    name: python-9
+    name: python-2
     namespace: default
-  functionTimeout: 150
-  idletimeout: 240
+  functionTimeout: 9000
+  idletimeout: 900
   package:
     packageref:
-      name: hello-9-120-583ad282-ef53-4fc6-89cb-5fbd400f473d
+      name: hello-2-45-9a02823b-8f6b-4af0-a86a-d12521621a1f
       namespace: default
   resources: {}
   secrets: null

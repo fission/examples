@@ -1,35 +1,35 @@
 include:
-- hello-1-30.py
+- hello-4-90.py
 kind: ArchiveUploadSpec
-name: hello-1-30-py-PhGa
+name: hello-4-90-py-daf1
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: hello-6-30-db270786-b209-410b-983e-ae91f5342f4f
+  name: hello-4-90-2f7a516c-cb88-4e5b-ae5b-dd82e7325e33
   namespace: default
 spec:
   deployment:
     checksum: {}
     type: url
-    url: archive://hello-1-30-py-PhGa
+    url: archive://hello-4-90-py-daf1
   environment:
-    name: python-6
+    name: python-4
     namespace: default
   source:
     checksum: {}
 status:
   buildstatus: none
-  lastUpdateTimestamp: "2020-09-24T12:32:33Z"
+  lastUpdateTimestamp: "2020-09-24T12:31:33Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: hello-6-30
+  name: hello-4-90
   namespace: default
 spec:
   InvokeStrategy:
@@ -37,19 +37,19 @@ spec:
       ExecutorType: poolmgr
       MaxScale: 0
       MinScale: 0
-      SpecializationTimeout: 120
+      SpecializationTimeout: 1800
       TargetCPUPercent: 0
     StrategyType: execution
   concurrency: 500
   configmaps: null
   environment:
-    name: python-6
+    name: python-4
     namespace: default
-  functionTimeout: 60
-  idletimeout: 120
+  functionTimeout: 9000
+  idletimeout: 900
   package:
     packageref:
-      name: hello-6-30-db270786-b209-410b-983e-ae91f5342f4f
+      name: hello-4-90-2f7a516c-cb88-4e5b-ae5b-dd82e7325e33
       namespace: default
   resources: {}
   secrets: null
