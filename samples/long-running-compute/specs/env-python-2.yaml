@@ -8,7 +8,7 @@ spec:
   builder: {}
   imagepullsecret: ""
   keeparchive: false
-  poolsize: 20
+  poolsize: 150
   resources:
     limits:
       cpu: 100m
