@@ -37,10 +37,10 @@ spec:
       ExecutorType: poolmgr
       MaxScale: 0
       MinScale: 0
-      SpecializationTimeout: 1800
+      SpecializationTimeout: 3600
       TargetCPUPercent: 0
     StrategyType: execution
-  concurrency: 200
+  concurrency: 800
   configmaps: null
   environment:
     name: python-4
