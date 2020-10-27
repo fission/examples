@@ -8,7 +8,7 @@ spec:
   builder: {}
   imagepullsecret: ""
   keeparchive: false
-  poolsize: 150
+  poolsize: 15
   resources:
     limits:
       cpu: 75m
@@ -17,6 +17,6 @@ spec:
       cpu: 50m
       memory: 64Mi
   runtime:
-    image: fission/python-env
+    image: fission/python-env:1.11.0
   terminationGracePeriod: 1
   version: 3
