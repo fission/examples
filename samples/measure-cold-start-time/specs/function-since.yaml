@@ -1,0 +1,56 @@
+include:
+- hw.go
+kind: ArchiveUploadSpec
+name: hw-go-zlD6
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: since-ac76923a-7aa1-4063-a483-ce28bf32fe44
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://hw-go-zlD6
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2020-11-21T17:30:09Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: since
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 1000
+  configmaps: null
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 10
+  package:
+    functionName: Handler
+    packageref:
+      name: since-ac76923a-7aa1-4063-a483-ce28bf32fe44
+      namespace: default
+  resources: {}
+  secrets: null

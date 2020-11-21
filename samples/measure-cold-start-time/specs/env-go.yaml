@@ -1,0 +1,17 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: go
+  namespace: default
+spec:
+  builder:
+    command: build
+    image: fission/go-builder-1.13
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 100
+  resources: {}
+  runtime:
+    image: fission/go-env-1.13
+  version: 3
