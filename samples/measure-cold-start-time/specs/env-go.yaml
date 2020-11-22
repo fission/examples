@@ -10,7 +10,7 @@ spec:
     image: fission/go-builder-1.13
   imagepullsecret: ""
   keeparchive: false
-  poolsize: 100
+  poolsize: 10
   resources: {}
   runtime:
     image: fission/go-env-1.13

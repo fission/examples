@@ -9,9 +9,8 @@ import (
 )
 
 func makeRequest(reqChan chan string, respChan chan float64) {
-
 	for url := range reqChan {
-		resp, err := http.Get(url)
+		resp, err := http.Get(url + fmt.Sprint(time.Now().Unix()))
 		if err != nil {
 			panic(err)
 		}
@@ -32,21 +31,21 @@ func makeRequest(reqChan chan string, respChan chan float64) {
 }
 
 func main() {
-	respChan := make(chan float64, 100)
-	reqChan := make(chan string, 100)
+	respChan := make(chan float64, 10)
+	reqChan := make(chan string, 10)
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10; i++ {
 		go makeRequest(reqChan, respChan)
 	}
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		time.Sleep(4 * time.Second)
-		reqChan <- fmt.Sprintf("http://xyz.com/fission-function/since?start-time=%v", time.Now().Unix())
+		reqChan <- "http://localhost:8888/fission-function/since?start-time="
 	}
 	close(reqChan)
 	var avg float64
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		avg += <-respChan
 	}
-	fmt.Println(avg / 100)
+	fmt.Println(avg / 10)
 }
