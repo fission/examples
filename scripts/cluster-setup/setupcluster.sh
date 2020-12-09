@@ -4,7 +4,7 @@ set -euo pipefail
 
 echo "Starting Eksctl cluster setup"
 # eksctl create cluster -f cluster.yaml # Till --asg-access is supported in YAML file, we need to use CLI
-eksctl create cluster --name fission-scale --version 1.17 --managed --asg-access --region ap-south-1 --node-type=c4.4xlarge --nodes-min 1 --nodes-max 20 --ssh-access 
+eksctl create cluster --name fission-scale --version 1.17 --managed --asg-access --region ap-south-1 --node-type=c5.4xlarge --nodes-min 1 --nodes-max 20 --ssh-access 
 
 echo "Getting nodes"
 kubectl get nodes
