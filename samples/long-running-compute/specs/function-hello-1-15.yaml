@@ -40,7 +40,7 @@ spec:
       SpecializationTimeout: 3600
       TargetCPUPercent: 0
     StrategyType: execution
-  concurrency: 2000
+  concurrency: 200
   configmaps: null
   environment:
     name: python-1

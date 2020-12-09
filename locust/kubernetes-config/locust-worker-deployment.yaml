@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: "Deployment"
+metadata:
+  name: locust-worker
+  labels:
+    name: locust-worker
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      containers:
+        - name: locust-worker
+          image: rahulbhati/fission-locust:4
+          env:
+            - name: LOCUST_MODE
+              value: worker
+            - name: LOCUST_MASTER
+              value: locust-master
+            - name: TARGET_HOST
+              value: http://router.fission/
+            - name: NET_TIMEOUT
+              value: "3600"
+            - name: CON_TIMEOUT
+              value: "3600"
+            - name: TASK_1
+              value: hello-1-15
+            - name: TASK_2
+              value: hello-2-45
+            - name: TASK_3
+              value: hello-3-75
+            - name: TASK_4
+              value: hello-4-90
+            - name: TASK_5
+              value: hello-5-120            
