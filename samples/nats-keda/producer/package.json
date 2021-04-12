@@ -1,0 +1,12 @@
+{
+  "name": "nats-producer",
+  "version": "0.1.0",
+  "author": "Vishal Biyani",
+  "description": "Nodejs example working with NATS",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "node-nats-streaming": "0.3.2"
+  }
+}
