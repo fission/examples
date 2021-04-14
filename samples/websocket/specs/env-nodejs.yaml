@@ -9,7 +9,21 @@ spec:
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
-  resources: {}
+  resources: 
+    # limits:
+    #   cpu: 80m
+    #   memory: 100Mi
+    requests:
+      cpu: 10m
+      memory: 80Mi
   runtime:
-    image: harshthakur/node-websocket:1
+    image: harshthakur/node-websocket:1    
+    podspec:
+      containers:
+        - name: nodejs
+          imagepullpolicy: Always
+          env:
+            - name: TIMEOUT
+              value: 1000
+          
   version: 1
