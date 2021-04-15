@@ -11,5 +11,5 @@ spec:
   poolsize: 1
   resources: {}
   runtime:
-    image: vishalbiyani/binary-env-pr:2
+    image: vishalbiyani/binary-buster-env:2
   version: 3

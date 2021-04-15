@@ -1,0 +1,59 @@
+include:
+- gobuster
+- list_small.txt
+- run.sh
+- list.txt
+kind: ArchiveUploadSpec
+name: gobuster-BFoT
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: gobuster-053465b6-c014-4409-8bfb-cc1d4321ab40
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://gobuster-BFoT
+  environment:
+    name: binary
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2021-04-15T06:16:24Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: gobuster
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 5
+  configmaps: null
+  environment:
+    name: binary
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: run.sh
+    packageref:
+      name: gobuster-053465b6-c014-4409-8bfb-cc1d4321ab40
+      namespace: default
+  resources: {}
+  secrets: null
