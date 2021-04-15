@@ -45,6 +45,7 @@ type (
 )
 
 func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting Specialize request")
 	if specialized {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Not a generic container"))
@@ -55,6 +56,10 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 
 	codePath := bs.fetchedCodePath
 	err := json.NewDecoder(r.Body).Decode(&request)
+	if err != nil {
+		fmt.Println("Decoded function load request: ", request)
+	}
+
 	switch {
 	case err == io.EOF:
 	case err != nil:
@@ -76,6 +81,7 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 
 	_, err = os.Stat(codePath)
 	if err != nil {
+		fmt.Println("Error in parsing codePath:", err)
 		if os.IsNotExist(err) {
 			w.WriteHeader(http.StatusNotFound)
 			w.Write([]byte(codePath + ": not found"))
@@ -90,6 +96,7 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 	// Copy the executable to ensure that file is executable and immutable.
 	userFunc, err := ioutil.ReadFile(codePath)
 	if err != nil {
+		fmt.Println("Error reading code", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Failed to read executable."))
 		return
@@ -100,7 +107,8 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 		w.Write([]byte("Failed to write executable to target location."))
 		return
 	}
-
+	bs.internalCodePath = codePath
+	fmt.Println("BinaryServer:", bs)
 	fmt.Println("Specializing ...")
 	specialized = true
 	fmt.Println("Done")
@@ -112,19 +120,21 @@ func (bs *BinaryServer) InvocationHandler(w http.ResponseWriter, r *http.Request
 		w.Write([]byte("Generic container: no requests supported"))
 		return
 	}
+	fmt.Println("Starting binary function execution")
 
 	// CGI-like passing of environment variables
 	execEnv := NewEnv(nil)
 	execEnv.SetEnv(&EnvVar{"REQUEST_METHOD", r.Method})
 	execEnv.SetEnv(&EnvVar{"REQUEST_URI", r.RequestURI})
 	execEnv.SetEnv(&EnvVar{"CONTENT_LENGTH", fmt.Sprintf("%d", r.ContentLength)})
+	execEnv.SetEnv(&EnvVar{"PATH", "$PATH:/userfunc/deployarchive:/userfunc"})
 
 	for header, val := range r.Header {
 		execEnv.SetEnv(&EnvVar{fmt.Sprintf("HTTP_%s", strings.ToUpper(header)), val[0]})
 	}
 
 	// Future: could be improved by keeping subprocess open while environment is specialized
-	cmd := exec.Command(bs.internalCodePath)
+	cmd := exec.Command("/bin/sh", bs.internalCodePath)
 	cmd.Env = execEnv.ToStringEnv()
 
 	if r.ContentLength != 0 {
@@ -146,7 +156,8 @@ func (bs *BinaryServer) InvocationHandler(w http.ResponseWriter, r *http.Request
 	out, err := cmd.Output()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf("Function error: %s", err)))
+		w.Write([]byte(fmt.Sprintf("\nFunction error log: %s", err)))
+		w.Write([]byte(fmt.Sprintf("\nFunction out log: %s \n", out)))
 		return
 	}
 
