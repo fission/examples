@@ -29,7 +29,8 @@ window.onload = function () {
     };
 
     if (window["WebSocket"]) {
-        conn = new WebSocket(""); # URL of function
+        // replace the node-internal-ip and router-svc-node-port
+	    conn = new WebSocket("ws://<node-internal-ip>:<router-svc-node-port>/fission-function/broadcast"); 
         conn.onclose = function (evt) {
             var item = document.createElement("div");
             item.innerHTML = "<b>Connection closed.</b>";
