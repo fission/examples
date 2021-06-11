@@ -1,0 +1,25 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: k2r
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 30
+  errorTopic: error-topic
+  functionref:
+    functionweights: null
+    name: rabbit-p
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 3
+  messageQueueType: kafka
+  metadata:
+    bootstrapServers: my-cluster-kafka-brokers.my-kafka-project.svc:9092
+    consumerGroup: my-group
+    topic: response-topic
+  minReplicaCount: 0
+  mqtkind: keda
+  pollingInterval: 5
+  topic: response-topic

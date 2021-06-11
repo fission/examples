@@ -22,7 +22,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	for msg := 1; msg <= 1000; msg++ {
+	for msg := 1; msg <= 10; msg++ {
 		ts := time.Now().Format(time.RFC3339)
 		message := fmt.Sprintf("{\"message_number\": %d, \"time_stamp\": \"%s\"}", msg, ts)
 		_, _, err = producer.SendMessage(&sarama.ProducerMessage{
