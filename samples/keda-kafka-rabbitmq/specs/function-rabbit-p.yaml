@@ -1,0 +1,57 @@
+include:
+- rabbitmq-producer/*
+kind: ArchiveUploadSpec
+name: rabbitmq-producer-dHrH
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbit-p-e71e95ed-723f-4c83-b37d-b5a7a0d791a3
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://rabbitmq-producer-dHrH
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-06-10T16:27:13Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: rabbit-p
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps: null
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: Handler
+    packageref:
+      name: rabbit-p-e71e95ed-723f-4c83-b37d-b5a7a0d791a3
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
+  secrets: null

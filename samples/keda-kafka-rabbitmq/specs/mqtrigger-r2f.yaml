@@ -1,0 +1,25 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: r2f
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 300
+  errorTopic: ""
+  functionref:
+    functionweights: null
+    name: r-consumer
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 0
+  messageQueueType: rabbitmq
+  metadata:
+    host: amqp://J5J75hlcSflR-GN5_YWCekJY3JRX11Tj:uqtv1ioEDU6ztRkKLXVw134CGmiH81hK@rabbitmq.rabbitmq.svc.cluster.local:5672/
+    queueName: publisher
+    topic: publisher
+  minReplicaCount: 0
+  mqtkind: keda
+  pollingInterval: 30
+  topic: publisher
