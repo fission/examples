@@ -1,0 +1,25 @@
+include:
+- web/*
+kind: ArchiveUploadSpec
+name: web-UHwB
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: web-pkg
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://web-UHwB
+  environment:
+    name: python
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2021-06-16T11:42:59Z"

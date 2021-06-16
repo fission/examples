@@ -1,0 +1,15 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: python
+  namespace: default
+spec:
+  builder: {}
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    image: fission/python-env
+  version: 2
