@@ -16,5 +16,7 @@ spec:
     host: '*'
     path: /broadcast
     tls: ""
-  method: GET
+  method: ""
+  methods:
+  - GET
   relativeurl: /broadcast

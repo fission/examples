@@ -9,17 +9,7 @@ spec:
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
-  resources: 
-    requests:
-      cpu: 10m
-      memory: 80Mi
+  resources: {}
   runtime:
-    image: fission/node-env:latest    
-    podspec:
-      containers:
-        - name: nodejs
-          imagepullpolicy: Always
-          env:
-            - name: TIMEOUT
-              value: 1000
-  version: 1
+    image: fission/node-env:latest
+  version: 2
