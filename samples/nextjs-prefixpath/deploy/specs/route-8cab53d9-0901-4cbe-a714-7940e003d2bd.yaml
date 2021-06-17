@@ -1,0 +1,24 @@
+apiVersion: fission.io/v1
+kind: HTTPTrigger
+metadata:
+  creationTimestamp: null
+  name: 8cab53d9-0901-4cbe-a714-7940e003d2bd
+  namespace: default
+spec:
+  createingress: false
+  functionref:
+    functionweights: null
+    name: nextjs-func
+    type: name
+  host: ""
+  ingressconfig:
+    annotations: null
+    host: '*'
+    path: /nextapp/
+    tls: ""
+  method: ""
+  methods:
+  - GET
+  - POST
+  prefix: /nextapp/
+  relativeurl: ""

@@ -1,0 +1,29 @@
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: nextjs-func
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 5
+  configmaps: null
+  environment:
+    name: nodejs
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: app
+    packageref:
+      name: nextjs-source
+      namespace: default
+  resources: {}
+  secrets: null

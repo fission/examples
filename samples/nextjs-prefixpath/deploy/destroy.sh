@@ -1,0 +1,1 @@
+ fission spec destroy --specdir='./deploy/specs'
