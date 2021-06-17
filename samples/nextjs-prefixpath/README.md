@@ -5,6 +5,10 @@ This sample demos a Fission function handling multiple URLs with prefix path men
 We also handle multiple HTTP verbs from same route in this example.
 Please check `deploy/spec` directory for the Fission specs.
 
+For Specs releated commands, please refer [this doc](deploy/specs/README.md)
+
+This examples uses [entrypoint](app.js) which loads NextJs app as Fission function with routing capabilities.
+
 ## Deploy
 
 - Fission builder
@@ -12,7 +16,10 @@ Please check `deploy/spec` directory for the Fission specs.
 - Build NodeJS app and create Fission package
 - Fission function and HTTP route
 
-Note: build.sh assumes you are using `kind` cluster.
+Note:
+
+- build.sh assumes you are using `kind` cluster. Please make necessary changes according to Kuberntes cluster type.
+- This example uses modified NodeJs environment and builder. These would be available in Fission default NodeJs environment soon.
 
 ```bash
 ./deploy/build.sh
