@@ -24,7 +24,7 @@
     "morgan": "*",
     "mz": "2.7.0",
     "request": "2.88.2",
-    "ws": "7.4.5",
+    "ws": "7.4.6",
     "underscore": "1.13.1",
     "request-promise-native": "1.0.9"
   }
