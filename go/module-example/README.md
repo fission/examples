@@ -22,14 +22,19 @@ $ go mod init "github.com/fission/fission/examples/go/go-module-example"
 $ go mod verify
 ```
 
-4. Archive and create package as usual
+4. Create a Go Env with builder
 
-```bash
-$ zip -r go.zip .
-    adding: go.mod (deflated 26%)
-    adding: go.sum (deflated 1%)
-    adding: README.md (deflated 37%)
-    adding: main.go (deflated 30%)
-    
-$ fission pkg create --env go --src go.zip
+```
+fission env create --name go --image fission/go-env-1.14 --builder fission/go-builder-1.14 --poolsize 1 --version 3
+```
+
+Create function with all source files
+
+```
+fission fn create --name gomod --env go --entrypoint Handler --src go.mod --src go.sum --src main.go
+```
+
+```
+$ fission fn test --name gomod
+Vendor Example Test
 ```

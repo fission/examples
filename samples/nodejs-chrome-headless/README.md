@@ -25,7 +25,7 @@ Validation Successful
 1 function updated: chrome
 ```
 
-The test gives out google homepage content as a response:
+The test gives out Google homepage content as a response:
 
 ```
 $ fission fn test --name chrome
@@ -37,13 +37,15 @@ $ fission fn test --name chrome
 
 ### Building a custom image
 
-The stock Fission image does not have Chromium built in and we use a modified base image. You will need to copy this modified Dockerfile in fission's main repo at environments/nodejs as it needs rest of code of environment.
+The stock Fission image does not have Chromium built in and we use a modified base image. Change to `headless-chrome-env` directory and build the custom image.
 
 ```
  $ docker build -t vishalbiyani/node-chrome:1 .
+
+ $ docker push vishalbiyani/node-chrome:1
  
 ```
-Or simply add this section to Dockerfile of NodeJS environment, build a new image and keep it ready. We will use this custom image to create environments later.
+Or simply add this section to Dockerfile of [NodeJS](https://github.com/fission/environments/tree/master/nodejs) environment, build a new image and keep it ready. We will use this custom image to create environments later.
 
 ```
 # Needed for chromium

@@ -1,0 +1,21 @@
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hellojs
+  namespace: default
+spec:
+  deployment:
+    checksum:
+      sum: 1a24906213d5713450fb2a883615d8bfe1f4b48f369d228b438127a298160934
+      type: sha256
+    type: url
+    url: https://raw.githubusercontent.com/fission/fission/master/examples/nodejs/hello.js
+  environment:
+    name: node
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2021-06-23T10:25:22Z"
