@@ -1,42 +1,27 @@
+# Spec commands
 
-Fission Specs
-=============
+## Spec Generation
 
-This is a set of specifications for a Fission app.  This includes functions,
-environments, and triggers; we collectively call these things "resources".
+```sh
+fission spec init
+fission env create --name=nodejs --image=fission/node-env:latest --spec
+fission fn create --name=broadcast --env=nodejs --rpp=5 --deploy=broadcast.js --spec
+fission httptrigger create --name=broadcast --url=/broadcast --function=broadcast --spec
 
-How to use these specs
-----------------------
+fission env create --name=python --image=fission/python-env:latest --spec
+fission package create --name=web-pkg --env=python --deploy="web/*" --spec
+fission fn create --name=web --env=python --pkg=web-pkg --entrypoint=app.main --spec
+fission httptrigger create --name=web --url='/chat/{html:[a-zA-Z0-9\.\/]+}' --function=web --spec
+```
 
-These specs are handled with the 'fission spec' command.  See 'fission spec --help'.
+## Spec Apply
 
-'fission spec apply' will "apply" all resources specified in this directory to your
-cluster.  That means it checks what resources exist on your cluster, what resources are
-specified in the specs directory, and reconciles the difference by creating, updating or
-deleting resources on the cluster.
+```sh
+fission spec apply
+```
 
-'fission spec apply' will also package up your source code (or compiled binaries) and
-upload the archives to the cluster if needed.  It uses 'ArchiveUploadSpec' resources in
-this directory to figure out which files to archive.
+## Spec Destroy
 
-You can use 'fission spec apply --watch' to watch for file changes and continuously keep
-the cluster updated.
-
-You can add YAMLs to this directory by writing them manually, but it's easier to generate
-them.  Use 'fission function create --spec' to generate a function spec,
-'fission environment create --spec' to generate an environment spec, and so on.
-
-You can edit any of the files in this directory, except 'fission-deployment-config.yaml',
-which contains a UID that you should never change.  To apply your changes simply use
-'fission spec apply'.
-
-fission-deployment-config.yaml
-------------------------------
-
-fission-deployment-config.yaml contains a UID.  This UID is what fission uses to correlate
-resources on the cluster to resources in this directory.
-
-All resources created by 'fission spec apply' are annotated with this UID.  Resources on
-the cluster that are _not_ annotated with this UID are never modified or deleted by
-fission.
-
+```sh
+fission spec destroy
+```
