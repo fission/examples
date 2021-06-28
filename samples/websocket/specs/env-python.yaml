@@ -2,7 +2,7 @@ apiVersion: fission.io/v1
 kind: Environment
 metadata:
   creationTimestamp: null
-  name: nodejs
+  name: python
   namespace: default
 spec:
   builder: {}
@@ -11,5 +11,5 @@ spec:
   poolsize: 3
   resources: {}
   runtime:
-    image: fission/node-env:latest
+    image: fission/python-env
   version: 2
