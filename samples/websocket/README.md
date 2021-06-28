@@ -9,6 +9,24 @@ For Specs related commands, please refer [this doc](specs/README.md)
 
 ## Deploy
 
+### Get router details
+
+- The fission router is exposed as a service.
+If you are running a kind cluster, you must get the node internal IP and router service node port.
+
+```
+kubectl get nodes -o wide
+kubectl get svc -n fission -l application=fission-router
+```
+
+- Edit the `web/app.html` and update the connection URL at line `32`.
+
+```
+...
+conn = new WebSocket("ws://<node-internal-ip>:<router-svc-node-port>/broadcast");
+...
+```
+
 - Fission environment
 - Build Fission package for NodeJS backend and Python based chat app
 - Fission functions and HTTP routes
@@ -28,6 +46,6 @@ Send message from either of the window, it will be broadcasted to all others.
 
 ## Cleanup
 
-```bash
-./deploy/destroy.sh
+```
+fission spec destroy
 ```
