@@ -36,6 +36,8 @@ $ kubectl apply -f kafka-topics.yaml
 
 Installing RabbitMQ with the krew plugin for RabbitMQ
 
+>  Please install Krew before using the following commands
+
 ```
 $ kubectl krew install rabbitmq
 $ kubectl create ns rabbitmq 

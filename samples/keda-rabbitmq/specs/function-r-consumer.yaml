@@ -1,0 +1,56 @@
+include:
+- r-consumer.js
+kind: ArchiveUploadSpec
+name: r-consumer-js-0z4c
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: r-consumer-5ae51a36-15d4-4297-96c0-74a77534dc4e
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://r-consumer-js-0z4c
+  environment:
+    name: nodeenv
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2021-06-11T03:47:07Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: r-consumer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps: null
+  environment:
+    name: nodeenv
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: r-consumer-5ae51a36-15d4-4297-96c0-74a77534dc4e
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
+  secrets: null
