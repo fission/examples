@@ -1,0 +1,54 @@
+include:
+- consumer/consumer.js
+kind: ArchiveUploadSpec
+name: consumer-consumer-js-TFOS
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: consumer-9f27be60-b3b5-4621-8c97-833124e4b047
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://consumer-consumer-js-TFOS
+  environment:
+    name: nodejs
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2021-06-29T10:30:24Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: consumer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: nodejs
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: consumer-9f27be60-b3b5-4621-8c97-833124e4b047
+      namespace: default
+  requestsPerPod: 1
+  resources: {}

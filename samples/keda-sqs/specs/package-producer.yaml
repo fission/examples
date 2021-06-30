@@ -1,0 +1,25 @@
+include:
+- producer/producer.zip
+kind: ArchiveUploadSpec
+name: producer-producer-zip-wR5m
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: producer
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://producer-producer-zip-wR5m
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-06-29T11:30:19Z"
