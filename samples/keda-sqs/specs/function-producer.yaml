@@ -1,0 +1,61 @@
+include:
+- producer/*
+kind: ArchiveUploadSpec
+name: producer-yh73
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: producer-854b4028-5e7b-4fcf-bb40-a75fd498d19e
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://producer-yh73
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-07-05T08:16:51Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: producer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps:
+  - name: queue-details
+    namespace: default
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: Handler
+    packageref:
+      name: producer-854b4028-5e7b-4fcf-bb40-a75fd498d19e
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
+  secrets:
+  - name: aws-credentials
+    namespace: default
