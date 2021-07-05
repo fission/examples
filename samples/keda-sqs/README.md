@@ -12,7 +12,7 @@ In order to setup SQS, you can either use [localstack](https://github.com/locals
 This example uses SQS setup on an AWS account.
 
 Below are the commands to create and send the message to a queue using `aws` CLI.
-If you do not the CLI, you can also create the queues from the AWS console.
+If you do not prefer the CLI, you can also create the queues from the AWS console.
 
 ```
 $ aws sqs create-queue --queue-name input
@@ -39,11 +39,6 @@ kubectl apply -f aws-config.yaml
 
 ## Deploy
 
-Let's first create an archive for the producer.
-
-```
-cd producer && zip -r producer.zip * && cd ..
-```
 
 Now, we can apply the specs using the command:
 

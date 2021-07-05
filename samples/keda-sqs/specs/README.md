@@ -7,8 +7,7 @@ Before you create the specs, please follow the setup steps in the [README](../RE
 ```sh
 fission spec init
 fission env create --name go --image fission/go-env-1.14 --builder fission/go-builder-1.14 --spec
-fission pkg create --name producer --env go --src producer/producer.zip --spec
-fission fn create --name producer --env go --pkg producer --entrypoint Handler --secret aws-credentials --configmap queue-details --spec
+fission fn create --name producer --env go --src "producer/*" --entrypoint Handler --secret aws-credentials --configmap queue-details --spec
 
 fission env create --name nodejs --image fission/node-env:latest --spec
 fission fn create --name consumer --env nodejs --code consumer/consumer.js --spec
