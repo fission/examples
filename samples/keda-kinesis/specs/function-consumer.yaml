@@ -1,0 +1,55 @@
+include:
+- consumer/*
+kind: ArchiveUploadSpec
+name: consumer-AqLe
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: consumer-b3d93272-1b08-40b7-baa8-84dd0bb79c68
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://consumer-AqLe
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-07-09T05:17:03Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: consumer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: Handler
+    packageref:
+      name: consumer-b3d93272-1b08-40b7-baa8-84dd0bb79c68
+      namespace: default
+  requestsPerPod: 1
+  resources: {}

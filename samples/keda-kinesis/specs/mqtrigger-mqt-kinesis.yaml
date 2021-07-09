@@ -1,0 +1,27 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: mqt-kinesis
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 300
+  errorTopic: error
+  functionref:
+    functionweights: null
+    name: consumer
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 3
+  messageQueueType: aws-kinesis-stream
+  metadata:
+    awsRegion: us-east-2
+    shardCount: "2"
+    streamName: request
+  minReplicaCount: 0
+  mqtkind: keda
+  pollingInterval: 30
+  respTopic: response
+  secret: aws-credentials
+  topic: request

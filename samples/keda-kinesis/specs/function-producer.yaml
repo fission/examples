@@ -1,0 +1,61 @@
+include:
+- producer/*
+kind: ArchiveUploadSpec
+name: producer-OdPX
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: producer-015198a7-1f20-44d6-9ffe-49022f7d5f66
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://producer-OdPX
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-07-09T05:16:14Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: producer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  configmaps:
+  - name: stream-details
+    namespace: default
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: Handler
+    packageref:
+      name: producer-015198a7-1f20-44d6-9ffe-49022f7d5f66
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
+  secrets:
+  - name: aws-credentials
+    namespace: default
