@@ -46,7 +46,7 @@ Creating specs,
 ```sh
 fission spec init
 fission fn run-container --name=nextapp --port=3000 --image next-app:dev --spec
-fission route create --name nextapp --function nextapp --prefix /nextapp/ --spec
+fission route create --name nextapp --function nextapp --prefix /nextapp --spec --keepprefix
 ```
 
 Applying specs,

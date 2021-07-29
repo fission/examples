@@ -4,22 +4,22 @@ const Header = () => (
   <header>
     <ul>
       <li>
-        <Link href="/nextapp/">
+        <Link href="/">
           <a>Home</a>
         </Link>
       </li>
       <li>
-        <Link href="/nextapp/about">
+        <Link href="/about">
           <a>About</a>
         </Link>
       </li>
       <li>
-        <Link href="/nextapp/post/[id]" as="/nextapp/post/first">
+        <Link href="/post/first">
           <a>First Post</a>
         </Link>
       </li>
       <li>
-        <Link href="/nextapp/post/[id]" as="/nextapp/post/second">
+        <Link href="/post/second">
           <a>Second Post</a>
         </Link>
       </li>

@@ -14,10 +14,11 @@ spec:
   ingressconfig:
     annotations: null
     host: '*'
-    path: /nextapp/
+    path: /nextapp
     tls: ""
+  keepPrefix: true
   method: ""
   methods:
   - GET
-  prefix: /nextapp/
+  prefix: /nextapp
   relativeurl: ""
