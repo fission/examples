@@ -1,23 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -39,9 +21,15 @@ Load image in kind,
 kind load docker-image next-app:dev
 ```
 
+OR push image to registry,
+
+```sh
+docker push <repository>/next-app:dev
+```
+
 ## Fission specs
 
-Creating specs,
+### Creating specs
 
 ```sh
 fission spec init
@@ -49,18 +37,38 @@ fission fn run-container --name=nextapp --port=3000 --image next-app:dev --spec
 fission route create --name nextapp --function nextapp --prefix /nextapp --spec --keepprefix
 ```
 
-Applying specs,
+Note:
+
+1. If you are using docker repository, you need to change image accordingly.
+2. Above `route create` command uses `keepprefix` introduced in Fission 1.14 release. It ensures the router forwards request to the function without trimming prefix.
+
+### Applying specs
 
 ```sh
 fission spec apply
 ```
 
-Cleaning specs,
+### Cleaning specs
 
 ```sh
 fission spec destroy
 ```
 
+### Without Fission specs
+
+```sh
+fission fn run-container --name=nextapp --port=3000 --image next-app:dev
+fission route create --name nextapp --function nextapp --prefix /nextapp --keepprefix
+```
+
 ## Calling function
 
-Visit app URL, `http://$ROUTER_URL/nextapp/`
+Visit app URL, `http://<router_url>/nextapp/`
+
+## Testing with Fission CLI
+
+```sh
+fission fn test --name nextapp --subpath /nextapp
+fission fn test --name nextapp --subpath /nextapp/about
+fission fn test --name nextapp --subpath /nextapp/post/first
+```
