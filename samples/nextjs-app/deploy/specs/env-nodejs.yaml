@@ -1,0 +1,17 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: nodejs
+  namespace: default
+spec:
+  builder:
+    command: build
+    image: nodejs-nextjs-builder
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    image: nodejs-nextjs-env
+  version: 2

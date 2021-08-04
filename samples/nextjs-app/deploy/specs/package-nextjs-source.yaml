@@ -1,0 +1,25 @@
+include:
+- nextjs-source.zip
+kind: ArchiveUploadSpec
+name: nextjs-source-zip-OS78
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: nextjs-source
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://nextjs-source-zip-OS78
+  environment:
+    name: nodejs
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-07-28T06:42:55Z"
