@@ -13,5 +13,5 @@ spec:
   poolsize: 3
   resources: {}
   runtime:
-    image: nodejs-nextjs-env
+    image: fission/node-env:1.31.1
   version: 2

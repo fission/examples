@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import blogs from '../data/blogs.json'
 import styles from '../styles/Home.module.css'
@@ -24,10 +25,12 @@ export default function Home() {
 
         <div className={styles.grid}>          
           {blogs.map(blog => (
-            <a href={`/${blog.slug}`} className={styles.card}>
-              <h2>{blog.title} &rarr;</h2>
-              <p>{blog.author}</p>
-            </a>
+            <Link href={`/${blog.slug}`} className={styles.card} key={blog.slug}>
+              <div>
+                <h2>{blog.title} &rarr;</h2>
+                <p>{blog.author}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </main>

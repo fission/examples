@@ -21,5 +21,5 @@ spec:
   source:
     checksum: {}
 status:
-  buildstatus: pending
+  buildstatus: succeeded
   lastUpdateTimestamp: "2021-07-28T06:42:55Z"
