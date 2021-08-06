@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog Demo with Next.js and Fission
 
-## Getting Started
+![Fission Blog Demo](blog-demo.png)
 
-First, run the development server:
+This sample shows a demo blog using Fission function handling multiple URLs with prefix path.
+With this way, we can see a demo webapp running with Fission.
+
+We also handle multiple HTTP verbs from same route in this example.
+Please check `deploy/spec` directory for the Fission specs.
+
+For Specs related commands, please refer [this doc](deploy/specs/README.md)
+
+This examples uses [entrypoint](app.js) which loads NextJs app as Fission function with routing capabilities.
+
+## Deploy
+
+- Build NodeJS app and create Fission deployment package
+- Fission function and HTTP route
+
+Note:
+
+- This example uses modified NodeJS environment, available in Fission default NodeJS environment.
+- Please ensure you NodeJS 12 version for this example.
 
 ```bash
-npm run dev
-# or
-yarn dev
+./deploy/build.sh
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Use
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Visit the browser,
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/blogs](http://localhost:3000/api/blogs). This endpoint can be edited in `pages/api/blogs.js`.
+```sh
+http://<router-url>/nextapp
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Using fission CLI,
 
-## Learn More
+```bash
+fission function test --name nextjs-func --subpath '/nextapp'
+fission function test --name nextjs-func --subpath '/nextapp/chrome-puppeteer-function'
+```
 
-To learn more about Next.js, take a look at the following resources:
+Using curl,
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+kubectl port-forward svc/router 8888:80 -nfission
+curl localhost:8888/nextapp
+curl localhost:8888/nextapp/chrome-puppeteer-function
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Cleanup
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+./deploy/destroy.sh
+```
