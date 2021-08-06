@@ -6,15 +6,10 @@ doit() {
   "$@"
 }
 
-# BUILDER=nodejs-nextjs-builder:latest
-# doit docker build -t $BUILDER deploy/builder/ -f deploy/builder/Dockerfile-12.16
-# doit kind load docker-image $BUILDER
-
 ENVIRONMENT=nodejs-nextjs-env:latest
 doit docker build -t $ENVIRONMENT deploy/environment/ -f deploy/environment/Dockerfile-12.16
 doit kind load docker-image $ENVIRONMENT
 
-# doit docker push $BUILDER
 # doit docker push $ENVIRONMENT
 
 doit npm install
