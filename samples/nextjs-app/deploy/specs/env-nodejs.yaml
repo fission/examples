@@ -5,13 +5,11 @@ metadata:
   name: nodejs
   namespace: default
 spec:
-  builder:
-    command: build
-    image: nodejs-nextjs-builder
+  builder: {}
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
   resources: {}
   runtime:
-    image: fission/node-env:1.31.1
+    image: nodejs-nextjs-env
   version: 2

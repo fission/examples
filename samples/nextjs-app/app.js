@@ -1,8 +1,8 @@
 "use strict";
 const next = require('next');
-const nextConfig = require('./next.config');
 const isDev = false;
 console.log(__dirname);
+const nextConfig = require('./next.config');
 const nextApp = next({
   dev: isDev,
   dir: __dirname,
