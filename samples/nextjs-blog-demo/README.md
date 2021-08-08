@@ -39,6 +39,7 @@ Using fission CLI,
 ```bash
 fission function test --name nextjs-func --subpath '/nextapp'
 fission function test --name nextjs-func --subpath '/nextapp/chrome-puppeteer-function'
+fission function test --name nextjs-func --subpath '/nextapp/api/blogs/chrome-puppeteer-function'
 ```
 
 Using curl,
@@ -47,6 +48,7 @@ Using curl,
 kubectl port-forward svc/router 8888:80 -nfission
 curl localhost:8888/nextapp
 curl localhost:8888/nextapp/chrome-puppeteer-function
+curl localhost:8888/nextapp/api/blogs/chrome-puppeteer-function
 ```
 
 ## Cleanup

@@ -28,10 +28,10 @@ export default function Blog({ blog }) {
       <footer className={styles.footer}>        
         Powered by{' '}
         <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={20} />
+            <Image src="/nextapp/vercel.svg" alt="Vercel Logo" width={72} height={20} />
         </span>
         <span className={styles.logo}>
-            <Image src="/fission.png" alt="Fission Logo" width={72} height={20} />
+            <Image src="/nextapp/fission.png" alt="Fission Logo" width={72} height={20} />
         </span>        
       </footer>
     </div>
