@@ -1,6 +1,6 @@
 ## Falco Example
 
-You can follow the steps described in the blog post [Kubernetes Response Engine, Part 8: Falcosidekick + Fission][1] to try the Falco and Fission integration.
+You can follow the steps described in the blog post [Kubernetes Response Engine, Part 9: Falcosidekick + Fission][1] to try the Falco and Fission integration.
 
 ## Prerequisites
 
@@ -25,4 +25,4 @@ kubectl apply -f sa-falco-pod-delete.yaml
 fission spec apply
 ```
 
-[1]: https://falco.org/blog/falcosidekick-reponse-engine-part-8-fission/
+[1]: https://falco.org/blog/falcosidekick-response-engine-part-9-fission/ 
