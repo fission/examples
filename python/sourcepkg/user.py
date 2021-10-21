@@ -1,4 +1,8 @@
-import yaml
+from yaml import load, dump
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
 document = """
   a: 1
@@ -7,5 +11,6 @@ document = """
     d: 4
 """
 
+
 def main():
-    return yaml.dump(yaml.load(document), default_flow_style=None)
+    return dump(load(document, Loader=Loader), default_flow_style=None, Dumper=Dumper)
