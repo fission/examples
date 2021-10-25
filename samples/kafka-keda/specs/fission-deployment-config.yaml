@@ -4,4 +4,4 @@
 apiVersion: fission.io/v1
 kind: DeploymentConfig
 name: kafka-keda
-uid: f961fbff-a12a-411c-9166-569a165717e6
+uid: 0dbecff0-7048-4412-83ed-386cfdee0b4a

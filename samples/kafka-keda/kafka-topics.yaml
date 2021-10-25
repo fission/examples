@@ -6,7 +6,7 @@ metadata:
     strimzi.io/cluster: "my-cluster"
 spec:
   partitions: 3
-  replicas: 2
+  replicas: 1
 ---
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
@@ -16,7 +16,7 @@ metadata:
     strimzi.io/cluster: "my-cluster"
 spec:
   partitions: 3
-  replicas: 2
+  replicas: 1
 ---
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
@@ -26,4 +26,4 @@ metadata:
     strimzi.io/cluster: "my-cluster"
 spec:
   partitions: 3
-  replicas: 2
+  replicas: 1

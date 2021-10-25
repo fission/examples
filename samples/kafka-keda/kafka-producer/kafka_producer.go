@@ -8,9 +8,14 @@ import (
 	sarama "github.com/Shopify/sarama"
 )
 
+const (
+	KAKFA_BROKERS = "my-cluster-kafka-brokers.kafka.svc:9092"
+	KAFKA_TOPIC   = "request-topic"
+)
+
 // Handler posts a message to Kafka Topic
 func Handler(w http.ResponseWriter, r *http.Request) {
-	brokers := []string{"my-cluster-kafka-brokers.my-kafka-project.svc:9092"}
+	brokers := []string{KAKFA_BROKERS}
 	producerConfig := sarama.NewConfig()
 	producerConfig.Producer.RequiredAcks = sarama.WaitForAll
 	producerConfig.Producer.Retry.Max = 100
@@ -26,7 +31,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		ts := time.Now().Format(time.RFC3339)
 		message := fmt.Sprintf("{\"message_number\": %d, \"time_stamp\": \"%s\"}", msg, ts)
 		_, _, err = producer.SendMessage(&sarama.ProducerMessage{
-			Topic: "request-topic",
+			Topic: KAFKA_TOPIC,
 			Value: sarama.StringEncoder(message),
 		})
 
