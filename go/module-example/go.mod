@@ -1,3 +1,5 @@
-module github.com/fission/fission/examples/go/go-module-example
+module github.com/fission/examples/go/module-example
 
-require github.com/golang/example v0.0.0-20170904185048-46695d81d1fa
+go 1.16
+
+require golang.org/x/example v0.0.0-20210811190340-787a929d5a0d

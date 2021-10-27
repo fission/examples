@@ -19,6 +19,7 @@ $ go mod init "github.com/fission/fission/examples/go/go-module-example"
 3. Verify
 
 ```bash
+$ go mod tidy
 $ go mod verify
 ```
 
