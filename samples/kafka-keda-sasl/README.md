@@ -2,6 +2,9 @@
 
 *Note: Please ensure that you are using Kafka Keda Connector version 0.9 or higher.*
 
+We have used [Confluent Cloud](https://www.confluent.io/) based Kafka cluster in this example.
+You can create a Kafka cluster in Confluent Cloud and use it for this example.
+
 ## Usage
 
 - Update [kafka-producer/kafka-producer.go](./kafka-producer/kafka_producer.go) with your kafka configuration.
