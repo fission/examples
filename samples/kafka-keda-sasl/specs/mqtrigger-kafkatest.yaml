@@ -16,11 +16,12 @@ spec:
   maxRetries: 3
   messageQueueType: kafka
   metadata:
-    bootstrapServers: my-cluster-kafka-bootstrap.kafka.svc:9092
+    bootstrapServers: kafka-test.asia-south1.gcp.confluent.cloud:9092
     consumerGroup: my-group
     topic: request-topic
   minReplicaCount: 0
   mqtkind: keda
   pollingInterval: 5
   respTopic: response-topic
+  secret: keda-kafka-secrets
   topic: request-topic

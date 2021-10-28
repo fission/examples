@@ -1,4 +1,4 @@
-module github.com/fission/examples/samples/kafka-keda/kafka-producer
+module github.com/fission/examples/samples/kafka-keda-sasl/kafka-producer
 
 go 1.16
 

@@ -9,4 +9,5 @@ popd
 mv kafka-producer/producer.zip .
 mv kafka-consumer/consumer.zip .
 
+kubectl apply -f kafka-config.yaml
 fission spec apply
