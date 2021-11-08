@@ -77,29 +77,6 @@ response-topic  my-cluster   3            1                    True
     fission fn test --name kafka-producer
     ```
 
-- Update specs if any changes needed.
-- Deploy producer and consumer functions.
-
-    ```console
-    cd samples/kafka-keda
-    ./deploy.sh
-    ```
-
-- Verify fission package build.
-
-    ```console
-    $ fission pkg list
-    NAME           BUILD_STATUS ENV LASTUPDATEDAT
-    kafka-producer succeeded    go  25 Oct 21 18:36 IST
-    kafka-consumer succeeded    go  25 Oct 21 18:36 IST
-    ```
-
-- Invoke producer and watch over consumer logs.
-
-    ```console
-    fission fn test --name kafka-producer
-    ```
-
 ## Generarting Specs
 
 If you want to generate spec on your own, please refer following commands.
