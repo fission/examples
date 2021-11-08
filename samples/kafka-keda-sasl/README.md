@@ -7,44 +7,48 @@ You can create a Kafka cluster in Confluent Cloud and use it for this example.
 
 ## Usage
 
-- Update [kafka-producer/kafka-producer.go](./kafka-producer/kafka_producer.go) with your kafka configuration.
-- Update [specs](./specs/) if any changes needed.
-- Update [kafka-config.yaml](./kafka-config.yaml) with your kafka configuration.
-- Build source zips,
+### Configuration of Kafka Connect
+
+- Make sure you have a Kafka cluster running in Confluent Cloud.
+- Create following topics in your Kafka cluster:
+  - `request-topic`
+  - `response-topic`
+  - `error-topic`
+- Make copy of [keda-config.yaml.tpl](./keda-config.yaml.tpl) and rename it to `keda-config.yaml`.
+- Update following values
+  - `username` and `password` in Secret `keda-kafka-secrets`
+  - `brokers` in ConfigMap `keda-kafka-configmap`. You would get this from Confluent Cloud cluster setting(Bootstrap Servers).
+- Update `bootstrapServers` in [specs/mqtrigger-kafkatest.yaml](./specs/mqtrigger-kafkatest.yaml) with value same as `brokers` in `keda-kafka-configmap`.
+
+
+### Deployment
+
+- Create sources zip for producer and consumer functions.
 
     ```console
-    cd samples/kafka-keda
-
-    # Create Zip of all files in kafka-producer
-    pushd kafka-producer/
-    zip producer.zip *
-    popd
-
-    # Create Zip of all files kafka-consumer
-    pushd ./kafka-consumer/
-    zip consumer.zip *
-    popd
-
-
-    mv kafka-producer/producer.zip .
-    mv kafka-consumer/consumer.zip .
+    zip -j producer.zip kafka-producer/*
+    zip -j consumer.zip kafka-consumer/*
     ```
 
-- Apply Fission spec to your cluster.
-  Please create `keda-kafka-configmap` and `keda-kafka-secret` before apply specs.
+- Create `keda-kafka-secrets` and `keda-kafka-configmap` in `default` namespace.
 
     ```console
     kubectl apply -f kafka-config.yaml
+    ```
+
+- Create Fission function with `producer.zip` and `consumer.zip` as sources and mqtrigger required configs.
+
+    ```console
     fission spec apply
     ```
 
-- Verify fission package build.
+- Please wait till package build is successful.
 
     ```console
-    $ fission pkg list
+    fission package list
     NAME           BUILD_STATUS ENV LASTUPDATEDAT
-    kafka-producer succeeded    go  25 Oct 21 18:36 IST
-    kafka-consumer succeeded    go  25 Oct 21 18:36 IST
+    kafka-producer succeeded    go  08 Nov 21 14:45 IST
+    kafka-consumer succeeded    go  08 Nov 21 14:45 IST
     ```
 
 - Invoke producer and watch over consumer logs.
@@ -55,7 +59,9 @@ You can create a Kafka cluster in Confluent Cloud and use it for this example.
 
 ## Spec Generation
 
-```sh
+If you want to generate spec on your own, please refer following commands.
+
+```console
 fission spec init
 fission env create --spec --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
 fission package create --spec --src producer.zip --env go --name kafka-producer

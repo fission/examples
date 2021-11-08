@@ -15,7 +15,7 @@ metadata:
   name: keda-kafka-configmap
   namespace: default
 data:
-  brokers: "<broker>"
+  brokers: "<bootstrap server>"
   request-topic: "request-topic"
   response-topic: "response-topic"
   error-topic: "error-topic"

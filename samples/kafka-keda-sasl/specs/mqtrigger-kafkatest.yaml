@@ -16,7 +16,7 @@ spec:
   maxRetries: 3
   messageQueueType: kafka
   metadata:
-    bootstrapServers: kafka-test.asia-south1.gcp.confluent.cloud:9092
+    bootstrapServers: "<bootstrap server>"
     consumerGroup: my-group
     topic: request-topic
   minReplicaCount: 0
