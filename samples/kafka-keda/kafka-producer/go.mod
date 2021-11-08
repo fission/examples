@@ -1,8 +1,5 @@
-module gitub.com/therahulbhati/scalingfissionfunction
+module github.com/fission/examples/samples/kafka-keda/kafka-producer
 
-go 1.12
+go 1.16
 
-require (
-	github.com/Shopify/sarama v1.23.1
-	gopkg.in/jcmturner/goidentity.v3 v3.0.0 // indirect
-)
+require github.com/Shopify/sarama v1.30.0

@@ -7,21 +7,11 @@ metadata:
 spec:
   builder:
     command: build
-    image: fission/go-builder-1.12:1.10.0
+    image: fission/go-builder-1.16:1.32.1
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
   resources: {}
   runtime:
-    image: fission/go-env-1.12:1.10.0
-    container:
-      env:
-        - name: RABBIT_HOST
-          value: "rabbitmq.rabbitmq.svc.cluster.local"
-        - name: RABBIT_PORT
-          value: "5672"
-        - name: RABBIT_USERNAME
-          value: "J5J75hlcSflR-GN5_YWCekJY3JRX11Tj"
-        - name: RABBIT_PASSWORD
-          value: "uqtv1ioEDU6ztRkKLXVw134CGmiH81hK" 
+    image: fission/go-env-1.16:1.32.1
   version: 2

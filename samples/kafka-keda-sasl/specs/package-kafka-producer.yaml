@@ -1,0 +1,25 @@
+include:
+- producer.zip
+kind: ArchiveUploadSpec
+name: producer-zip-5BpA
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: kafka-producer
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://producer-zip-5BpA
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-10-25T11:38:21Z"

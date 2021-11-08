@@ -2,14 +2,16 @@ apiVersion: fission.io/v1
 kind: Environment
 metadata:
   creationTimestamp: null
-  name: nodeenv
+  name: go
   namespace: default
 spec:
-  builder: {}
+  builder:
+    command: build
+    image: fission/go-builder-1.16
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
   resources: {}
   runtime:
-    image: fission/node-env
-  version: 1
+    image: fission/go-env-1.16
+  version: 2

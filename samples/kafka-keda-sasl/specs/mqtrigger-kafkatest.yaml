@@ -1,0 +1,27 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: kafkatest
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 30
+  errorTopic: error-topic
+  functionref:
+    functionweights: null
+    name: kafka-consumer
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 3
+  messageQueueType: kafka
+  metadata:
+    bootstrapServers: "<bootstrap server>"
+    consumerGroup: my-group
+    topic: request-topic
+  minReplicaCount: 0
+  mqtkind: keda
+  pollingInterval: 5
+  respTopic: response-topic
+  secret: keda-kafka-secrets
+  topic: request-topic
