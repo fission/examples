@@ -14,7 +14,7 @@ You can create a Kafka cluster in Confluent Cloud and use it for this example.
   - `request-topic`
   - `response-topic`
   - `error-topic`
-- Make copy of [keda-config.yaml.tpl](./keda-config.yaml.tpl) and rename it to `keda-config.yaml`.
+- Make copy of [kafka-config.yaml.tpl](./kafka-config.yaml.tpl) and rename it to `kafka-config.yaml`.
 - Update following values
   - `username` and `password` in Secret `keda-kafka-secrets`
   - `brokers` in ConfigMap `keda-kafka-configmap`. You would get this from Confluent Cloud cluster setting(Bootstrap Servers).
