@@ -1,7 +1,7 @@
 # Keda Kafka Example
 
 This examples assumes that you have a running Kafka cluster locally on Kubernetes.
-If you want to establish a connection with username/password, please refer [../kafka-keda-sasl](../kafka-keda-sasl) example.
+If you want to establish a connection with username/password, please refer [kafka-keda-sasl example](../kafka-keda-sasl).
 
 ## Strimzi Kafka and Topics
 
@@ -26,10 +26,10 @@ Please ensure that topic is READY.
 
 ```console
 kubectl get kafkatopic -n kafka
-NAME                                                                                               CLUSTER      PARTITIONS   REPLICATION FACTOR   READY
-error-topic                                                                                        my-cluster   3            1                    True
-request-topic                                                                                      my-cluster   3            1                    True
-response-topic                                                                                     my-cluster   3            1                    True
+NAME            CLUSTER      PARTITIONS   REPLICATION FACTOR   READY
+error-topic     my-cluster   3            1                    True
+request-topic   my-cluster   3            1                    True
+response-topic  my-cluster   3            1                    True
 ```
 
 ## Usage
