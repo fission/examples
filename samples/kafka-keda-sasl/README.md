@@ -20,7 +20,6 @@ You can create a Kafka cluster in Confluent Cloud and use it for this example.
   - `brokers` in ConfigMap `keda-kafka-configmap`. You would get this from Confluent Cloud cluster setting(Bootstrap Servers).
 - Update `bootstrapServers` in [specs/mqtrigger-kafkatest.yaml](./specs/mqtrigger-kafkatest.yaml) with value same as `brokers` in `keda-kafka-configmap`.
 
-
 ### Deployment
 
 - Create sources zip for producer and consumer functions.
