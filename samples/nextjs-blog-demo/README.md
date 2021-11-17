@@ -8,7 +8,7 @@ With this way, we can see a demo webapp running with Fission.
 We also handle multiple HTTP verbs from same route in this example.
 Please check [deploy/specs](./deploy/specs) directory for the Fission specs.
 
-For Specs related commands, please refer [spec README#spec-generation](deploy/specs/README.md)
+For Specs related commands, please refer [Specs Generation commands](deploy/specs/README.md#spec-generation)
 
 This examples uses [entrypoint](app.js) which loads NextJs app as Fission function with routing capabilities.
 
