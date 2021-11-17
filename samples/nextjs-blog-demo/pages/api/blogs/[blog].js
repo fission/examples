@@ -1,8 +1,8 @@
-import blogs from '../../../data/blogs.json'
+import blogs from "../../../data/blogs.json";
 
 export default function handler(req, res) {
-  const { blog } = req.query
+  const { blog } = req.query;
 
-  const blogPost = blogs.find(b => b.slug === blog)
-  res.status(200).json(blogPost)
+  const blogPost = blogs.find((b) => b.slug === blog);
+  res.status(200).json(blogPost);
 }
