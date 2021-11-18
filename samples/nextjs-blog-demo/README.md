@@ -1,4 +1,4 @@
-# Blog Demo with Next.js and Fission
+# Next.js Example Blog with Fission
 
 ![Fission Blog Demo](blog-example.png)
 
