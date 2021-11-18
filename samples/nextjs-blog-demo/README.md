@@ -1,14 +1,14 @@
-# Blog Demo with Next.js and Fission
+# Next.js Example Blog with Fission
 
-![Fission Blog Demo](blog-demo.png)
+![Fission Blog Demo](blog-example.png)
 
 This sample shows a demo blog using Fission function handling multiple URLs with prefix path.
 With this way, we can see a demo webapp running with Fission.
 
 We also handle multiple HTTP verbs from same route in this example.
-Please check `deploy/spec` directory for the Fission specs.
+Please check [deploy/specs](./deploy/specs) directory for the Fission specs.
 
-For Specs related commands, please refer [this doc](deploy/specs/README.md)
+For Specs related commands, please refer [Specs Generation commands](deploy/specs/README.md#spec-generation)
 
 This examples uses [entrypoint](app.js) which loads NextJs app as Fission function with routing capabilities.
 
@@ -20,7 +20,7 @@ This examples uses [entrypoint](app.js) which loads NextJs app as Fission functi
 Note:
 
 - This example uses modified NodeJS environment, available in Fission default NodeJS environment.
-- Please ensure you NodeJS 12 version for this example.
+- Please ensure you are using environment NodeJS version for this example as per local version(recommended NodeJs 16).
 
 ```bash
 ./deploy/build.sh
