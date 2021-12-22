@@ -11,8 +11,8 @@ import (
 
 const (
 	BrokersKey      = "brokers"
-	kedaConfig      = "keda-kafka-configmap"
-	kedaConfigNs    = "default"
+	mqtConfig       = "mqt-kafka-configmap"
+	mqtConfigNs     = "default"
 	RequestTopicKey = "request-topic"
 )
 
@@ -34,12 +34,12 @@ func getKafkaConfig() *sarama.Config {
 func Handler(w http.ResponseWriter, r *http.Request) {
 	saramaConfig := getKafkaConfig()
 
-	brokers, err := getConfigMapValue(kedaConfig, kedaConfigNs, BrokersKey)
+	brokers, err := getConfigMapValue(mqtConfig, mqtConfigNs, BrokersKey)
 	if err != nil {
 		w.Write([]byte(fmt.Sprintf("Error getting kafka brokers: %s", err)))
 		return
 	}
-	requestTopic, err := getConfigMapValue(kedaConfig, kedaConfigNs, RequestTopicKey)
+	requestTopic, err := getConfigMapValue(mqtConfig, mqtConfigNs, RequestTopicKey)
 	if err != nil {
 		w.Write([]byte(fmt.Sprintf("Error getting kafka request topic: %s", err)))
 		return
