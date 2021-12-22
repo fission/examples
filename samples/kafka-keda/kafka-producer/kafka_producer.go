@@ -63,6 +63,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(fmt.Sprintf("Failed to publish message to topic %s: %v", "request-topic", err)))
 			return
 		}
+		time.Sleep(time.Second)
 	}
 	w.Write([]byte(fmt.Sprintf("Published %d messages to topic %s", count, requestTopic)))
 }
