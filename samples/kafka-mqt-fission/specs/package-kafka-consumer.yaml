@@ -1,0 +1,25 @@
+include:
+- consumer.zip
+kind: ArchiveUploadSpec
+name: consumer-zip-KTze
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: kafka-consumer
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://consumer-zip-KTze
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2021-10-25T11:38:26Z"
