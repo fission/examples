@@ -28,4 +28,4 @@ Test the function:
 fission function test --name hello-py
 ```
 
-For a full guide see the [official documentation on Python with Fission](https://docs.fission.io/languages/python/).
+For a full guide see the official documentation on [Python with Fission](https://fission.io/docs/usage/languages/python/).
