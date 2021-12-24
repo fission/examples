@@ -1,0 +1,115 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+
+*{
+  box-sizing:border-box;
+}
+html,body{
+  margin: 0;
+  padding: 0;
+  background-color: #f9ecdc;
+  height: 100vh;
+  font-family: 'Open Sans';
+}
+
+button{
+  border-radius: 0;
+  width: 100%;
+  height: 50%;
+}
+
+button[type="submit"] {
+  -webkit-appearance:none; -webkit-border-radius:0;
+}
+
+button i{
+  float: right;
+  padding-right: 30px;
+  margin-top: 3px;
+}
+
+button.a{
+  background-color: #1a512e ;
+}
+
+button.b{
+  background-color: #007aa2;
+}
+
+#tip{
+  text-align: left;
+  color: #8f9ea8;
+  font-size: 14px;
+  text-align: center;
+}
+
+#hostname{
+  position: absolute;
+  bottom: 100px;
+  right: 0;
+  left: 0;
+  color: #8f9ea8;
+  font-size: 24px;
+}
+
+#content-container{
+  z-index: 2;
+  position: relative;
+  margin: 0 auto;
+  display: table;
+  padding: 10px;
+  max-width: 940px;
+  height: 100%;
+  text-align: center;
+}
+#content-container-center{
+  display: table-cell;
+}
+
+#content-container-center h3{
+  color: #254356;
+}
+
+#choice{
+  transition: all 300ms linear;
+  line-height: 1.3em;
+  display: inline;
+  vertical-align: middle;
+  font-size: 3em;
+}
+#choice a{
+  text-decoration:none;
+}
+#choice a:hover, #choice a:focus{
+  outline:0;
+  text-decoration:underline;
+}
+
+#choice button{
+  display: block;
+  height: 80px;
+  width: 330px;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-size:18px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#choice button.a:hover{
+  background-color: #c6dc93;
+}
+
+#choice button.b:hover{
+  background-color: #93cadf;
+}
+
+#choice button.a:focus{
+  background-color: #589d62;
+}
+
+#choice button.b:focus{
+  background-color: #4bafc9;
+}

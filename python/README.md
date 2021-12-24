@@ -8,6 +8,8 @@ This directory contains a Python examples to show different the features of the 
 - `guestbook/` is a more realistic demonstration of using Python and Fission to create a serverless guestbook.
 - `sourcepkg/` is an example of how to use the Fission Python Build environment to resolve (pip) dependencies 
   before deploying the function.
+- `votingapp/` demonstrates how to use a Fission function to connect to a relational database like Postgres & person basic operations
+  
 
 ## Getting Started
 
