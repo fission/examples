@@ -9,7 +9,7 @@ option_a = os.getenv('OPTION_A', "Mountains")
 option_b = os.getenv('OPTION_B', "Beaches")
 hostname = socket.gethostname()
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='/templates')
 
 @app.route("/", methods=['POST','GET'])
 def hello():
