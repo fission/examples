@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, g
+from flask import current_app, render_template, request, make_response, g
 import os
 import socket
 import random
@@ -9,21 +9,24 @@ option_a = os.getenv('OPTION_A', "Mountains")
 option_b = os.getenv('OPTION_B', "Beaches")
 hostname = socket.gethostname()
 
-app = Flask(__name__,template_folder='/templates')
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_DIR = os.path.join(APP_DIR, 'templates')
 
-@app.route("/", methods=['POST','GET'])
-def hello():
+
+def main():
+    current_app.template_folder = TEMPLATE_DIR
+
     voter_id = hex(random.getrandbits(64))[2:-1]
     vote = None
-    vote_beaches= None
-    vote_mountains=None
+    vote_beaches = None
+    vote_mountains = None
 
     if request.method == 'POST':
-        url = 'http://127.0.0.1:8888/castvote' #URL of the fission function
+        url = 'http://router.fission.svc/castvote'  # URL of the fission function
         vote = request.form['vote']
-        app.logger.info('Received vote for %s', vote)
+        current_app.logger.info('Received vote for %s', vote)
         data = {'voter_id': voter_id, 'vote': vote}
-        votes =  json.loads(requests.post(url,json=data).text)
+        votes = json.loads(requests.post(url, json=data).text)
         vote_mountains = votes[option_b]
         vote_beaches = votes[option_a]
 
@@ -37,7 +40,3 @@ def hello():
         vote_mountains=vote_mountains
     ))
     return resp
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
