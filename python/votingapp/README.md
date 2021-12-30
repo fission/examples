@@ -41,7 +41,7 @@ For this example, we have created a database named `votedb` and a table named `v
 
 <br>
 
-#### Python Environment setup
+#### Building Custom Python Environment
 
 Using PostgreSQL with Fission requires certain non-standard libraries and Python modules that require c extension to be present in the Python environment.
 For that you need to create a custom Python image.
@@ -131,3 +131,36 @@ curl -XPOST "localhost:8888/castvote" -H 'Content-Type: application/json' -d '{"
 <br>
 
 That was a short tutorial on how to use Fission function with a database. So what side are you on Mountains or Beaches? ;)
+
+### Packaging Source for Frontend and Backend
+
+```bash
+./package.sh
+```
+
+### Spec Generation Commands
+
+```bash
+fission spec init
+fission env create --name pythonsrc --image python-postgres --builder fission/python-builder:latest --spec
+fission package create --name backend-pkg --sourcearchive backend.zip --env pythonsrc --buildcmd "./build.sh" --spec
+fission fn create --name backend --pkg backend-pkg --entrypoint "backend.main" --spec
+fission route create --name backend --method POST --url /castvote --function backend --spec
+fission package create --name frontend-pkg --sourcearchive frontend.zip --env pythonsrc --spec
+fission fn create --name frontend --pkg frontend-pkg --entrypoint "frontend.main" --spec
+fission route create --name frontend --method POST --method GET --url /voteapp --function frontend --spec
+```
+
+### Applying Specs
+
+```bash
+fission spec apply # Ensure you run package.sh first
+```
+
+### Usage
+
+```bash
+kubectl port-forward svc/router 8888:80 -nfission
+```
+
+Visit `http://localhost:8888/voteapp` in your browser to see the result.
