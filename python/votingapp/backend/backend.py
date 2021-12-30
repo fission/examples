@@ -33,8 +33,8 @@ def main():
         # Getting total votes
         cursor.execute(votequery)
         votecount = cursor.fetchall()
-        vote_beaches = votecount[0][1]
-        vote_mountains = votecount[1][1]
+        vote_mountains = votecount[0][1]
+        vote_beaches = votecount[1][1]
         votes = {option_b: vote_beaches, option_a: vote_mountains}
 
         # Committing and closing connection
