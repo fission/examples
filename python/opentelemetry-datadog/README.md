@@ -27,6 +27,21 @@ fission fission-charts/fission-all \
 
 ### OpenTelemetry Configuration
 
+To get started with OpenTelemetry for Fission, we need to install the `OpenTelemetry Operator` that will allow us to send and process traces.
+However, to use the operator in an existing cluster, we need to add a `cert-manager`.
+
+You can use the following commands to add `cert-manager` to your existing cluster and install the OpenTelemetry Operator:
+
+```bash
+# cert-manager
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml
+
+# open telemetry operator
+kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
+```
+
+<br>
+
 The OpenTelemetry Collector is a vendor agnostic agent that can send and receive metrics, traces to different tools in different formats.
 In order to use it with Fission functions, we need to modify the `OpenTelemtry Collector` configuration as follows.
 
