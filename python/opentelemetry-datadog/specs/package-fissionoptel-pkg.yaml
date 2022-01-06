@@ -1,0 +1,26 @@
+include:
+- sample.zip
+kind: ArchiveUploadSpec
+name: sample-zip-kPpg
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: fissionoptel-pkg
+  namespace: default
+spec:
+  buildcmd: ./build.sh
+  deployment:
+    checksum: {}
+  environment:
+    name: pythonoptel
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://sample-zip-kPpg
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-01-06T02:48:21Z"
