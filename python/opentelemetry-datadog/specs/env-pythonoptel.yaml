@@ -1,0 +1,17 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: pythonoptel
+  namespace: default
+spec:
+  builder:
+    command: build
+    image: fission/python-builder:latest
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    image: username/python-opentelemetry
+  version: 2
