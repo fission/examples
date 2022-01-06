@@ -192,7 +192,7 @@ Tip: You can also create a [Fission Spec](https://fission.io/docs/usage/spec/) o
 
 ```bash
 fission spec init
-fission env create --name pythonoptel --image atulinfracloud/python-opentelemetry  --builder fission/python-builder:latest --spec
+fission env create --name pythonoptel --image username/python-opentelemetry  --builder fission/python-builder:latest --spec
 fission package create --name fissionoptel-pkg --sourcearchive sample.zip --env pythonoptel --buildcmd "./build.sh" --spec
 fission fn create --name optel --pkg fissionoptel-pkg --entrypoint "sample.main" --spec
 ```
@@ -203,4 +203,4 @@ fission fn create --name optel --pkg fissionoptel-pkg --entrypoint "sample.main"
 fission spec apply # Ensure you run package.sh first
 ```
 
-Once the specs are applied, all the resources for the voting app will be created.
+Once the specs are applied, all the resources for this app will be created.
