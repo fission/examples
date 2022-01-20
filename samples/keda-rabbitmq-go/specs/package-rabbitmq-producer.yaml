@@ -1,0 +1,25 @@
+include:
+- producer.zip
+kind: ArchiveUploadSpec
+name: producer-zip-UPs0
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-producer
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://producer-zip-UPs0
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-01-20T09:46:14Z"

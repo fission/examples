@@ -1,0 +1,25 @@
+include:
+- consumer.zip
+kind: ArchiveUploadSpec
+name: consumer-zip-XlZd
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-consumer
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://consumer-zip-XlZd
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-01-20T09:46:14Z"
