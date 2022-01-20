@@ -24,6 +24,18 @@ fission mqt create --name rabbitmqtest --function receive --mqtype rabbitmq --mq
 
 > The `host URI` needs to be encoded using base64 and needs to be in the format `amqp://[username]:[password]@[host]:[port]`
 
+## Steps to reproduce the error
+
+1. Setup rabbitmq cluster using [bitnami](https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq).
+
+2. Change service type to NodePort to send messages via producer code. `sudo helm upgrade my-release bitnami/rabbitmq --set service.type=NodePort --set auth.password=$RABBITMQ_PASSWORD --set auth.erlangCookie=$RABBITMQ_ERLANG_COOKIE`.
+
+3. Run the python code in the send folder after adding your credentials.
+
+4. Setup the consumer function.
+
+5. Create the mqt trigger. `fission mqt create --name rabbitmqtest --function consumer --mqtype rabbitmq --mqtkind keda --topic hello --resptopic response-topic --errortopic error-topic --maxretries 3 --metadata queueName=hello --cooldownperiod=30 --pollinginterval=5 --metadata host=amqp://[username]:[password]@my-release-rabbitmq.default.svc.cluster.local:5672/vhost --metadata protocol=amqp --metadata mode=QueueLength --metadata value=20`.
+
 ## References:
 
 - [Keda-Rabbitmq Sample](https://github.com/fission/examples/tree/master/samples/keda-rabbitmq) - by Vishal
