@@ -1,0 +1,26 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-test
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 30
+  errorTopic: error-topic
+  functionref:
+    functionweights: null
+    name: rabbitmq-consumer
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 3
+  messageQueueType: rabbitmq
+  metadata:
+    queueName: request-topic
+    topic: request-topic
+  minReplicaCount: 0
+  mqtkind: keda
+  pollingInterval: 5
+  respTopic: response-topic
+  secret: keda-rabbitmq-secret
+  topic: request-topic
