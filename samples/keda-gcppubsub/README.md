@@ -9,11 +9,11 @@
 5. Create a fission publisher function -> `fission fn create --name pub --pkg pub-pkg --entrypoint "pub.main"`
 6. Create a new fission consumer function -> `fission fn create --name consumer --env nodeenv --code consumer.js ` *make sure to have nodejs environment in place*
 7. Create a `secret.yaml` with the Google Cloud credentials, *you'll get a file.json from GCP*, create a yaml file with a key `GoogleApplicationCredentials` and value as the content of the json file.
-8. Create a `secret` -> `kubectl create secret generic pubsubsecret --from-env-file=./secret.yaml` *make sure this is in the default namespace*
+8. Create a `secret` -> `kubectl create secret generic pubsub-secret --from-file=GoogleApplicationCredentials=/home/ankitchawla/gcpTest/filename.json --from-literal=PROJECT_ID=project_id` *make sure this is in the default namespace*
 9. Create the `mqtrigger` of `mqtype` as gcp-pubsub and `mqtkind` as keda along with the secret created above:
 
 ``` bash
-fission mqt create --name gcppubsubtest --function consumer --mqtype gcp-pubsub --mqtkind keda --topic request-topic --resptopic response-topic --errortopic error-topic --maxretries 3 --metadata subscriptionName=projects/fissiongcppubsub/subscriptions/request-topic-sub --cooldownperiod=30 --pollinginterval=5 --secret pubsubsecret 
+fission mqt create --name gcptest --function consumer --mqtype gcp-pubsub --mqtkind keda --topic request-topic-sub --resptopic response-topic --errortopic error-topic --maxretries 3 --cooldownperiod=30 --pollinginterval=5 --metadata subscriptionName=request-topic-sub --metadata credentialsFromEnv=GoogleApplicationCredentials --secret pubsub-secret
 ```
 
 ## Expected Ouput
