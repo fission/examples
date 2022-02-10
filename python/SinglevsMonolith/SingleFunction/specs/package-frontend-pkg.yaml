@@ -1,0 +1,25 @@
+include:
+- main.zip
+kind: ArchiveUploadSpec
+name: main-zip-OOOZ
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: frontend-pkg
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://main-zip-OOOZ
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-02-10T03:47:19Z"
