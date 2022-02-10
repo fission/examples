@@ -20,7 +20,7 @@ This folder contains 3 Fission functions:
 * `reorder.py` - *function that returns the estimated delivery date*
 
 The user launches the application and enters a product code. *abc123 or xyz123*.
-It internalls calls getStock fission function that returns a stock.
+It internally calls getstock fission function that returns a stock.
 If the returned stock is less than 5, the user will see another form or reorder.
 The user will enter the reorder quantity which will be passed to the reorder function that will return the estimated delivery date.
 
