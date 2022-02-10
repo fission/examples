@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fission - Single Serverless Function Example</title>
+    <base href="/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">Stock Keeper</h1>
+        <p class="lead">This is a simple stock keeper application to show single serverless function implementation. It
+            allows you to query the current stock of a particular product and allows you to re-order if under stocked.
+        </p>
+        <hr class="my-4">
+
+        <form action="main" method="POST">
+            <div class="form-group">
+                <label for="sku">Product SKU</label>
+                <input type="text" class="form-control" id="sku" name="sku" placeholder="Enter product SKU. Eg: abc123, xyz123">
+            </div>
+            <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+        </form>
+        <br>
+        <p id="currentstockstatus" hidden>The current stock is {{answer}}<hr></p>
+
+        <form action="main" method="POST" id="reorder" hidden>
+            <p>The stock quantity is low, you should order more right now. Please enter the reorder quantity below to
+                place an order.</p>
+            <div class="form-group">
+                <label for="reorderquant">Re-Order Quantity</label>
+                <input type="number" class="form-control" id="reorderquant" name="reorderquant"
+                    placeholder="Re-Order Quantity">
+            </div>
+            <button type="submit" class="btn btn-success" name="submit" value="reorder">Re-Order</button>
+        </form>
+
+
+        <script>
+            var answer = parseInt("{{answer}}")
+            if (answer >= 0) {
+                document.getElementById("currentstockstatus").hidden = false;
+                if (answer < 5) {
+                    document.getElementById("reorder").hidden = false;
+                }
+            }
+        </script>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
