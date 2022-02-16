@@ -1,0 +1,25 @@
+include:
+- monolith.zip
+kind: ArchiveUploadSpec
+name: monolith-zip-mE8k
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: frontend-monolith
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://monolith-zip-mE8k
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-02-10T03:54:22Z"

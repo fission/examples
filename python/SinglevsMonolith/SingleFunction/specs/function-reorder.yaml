@@ -1,0 +1,54 @@
+include:
+- reorder.py
+kind: ArchiveUploadSpec
+name: reorder-py-QELH
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: reorder-56bb8379-0b89-419e-a7b7-353af6ea4e16
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://reorder-py-QELH
+  environment:
+    name: python
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2022-02-10T03:47:19Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: reorder
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: python
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: reorder-56bb8379-0b89-419e-a7b7-353af6ea4e16
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
