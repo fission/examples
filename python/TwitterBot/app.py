@@ -2,11 +2,11 @@ import tweepy
 from slack_sdk.webhook import WebhookClient
 
 # Secrets and Tokens
-consumer_key = 'Gb1bYedXipZ93hV7I1Os1Zm0r'
-consumer_secret = 'F6qbQq4KNZTG6Zc8V78Etl7WMfAeSx1HUhgNm1JVH0JjWTDsCo'
-access_token = '1444005416950648832-lx0w5eKp4IvpjjmnCBM5Ss0LTP9DLt'
-access_token_secret = 'ZC7o8jwT88MmfrBTUEs2EI1uxyIlEpwMY3xSuUNi8c4WI'
-username='thetechmaharaj'
+consumer_key = '<replace with your consumer_key>'
+consumer_secret = '<replace with your consumer_secret>'
+access_token = '<replace with your access_token>'
+access_token_secret = '<replace with your access_token_secret>'
+username='username'
 
 def main():
     auth = tweepy.OAuth1UserHandler(
@@ -22,6 +22,6 @@ def main():
         sid = s.id
         m = "Hey! "+sn+", thanks for reaching out!"
         api.update_status(status = m, in_reply_to_status_id = sid) #Replying to the Tweet
-        url = "https://hooks.slack.com/services/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" 
+        url = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX" 
         webhook = WebhookClient(url)
         response = webhook.send(text=sn+" mentioned you on Twitter. Please check!") #Sending message to Slack webhook

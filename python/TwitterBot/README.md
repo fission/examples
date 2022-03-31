@@ -1,10 +1,10 @@
 # Twitter Bot
 
-This sample application shows how you can create a Twitter bot to interact with users on Twitter. This is a basic application to showcase the use case, you can build on top of this and automate your Twitter interactions.
+This sample application shows how you can create a Twitter bot to interact with users on Twitter. This is a basic application to showcase the use case, you can build on top of this and automate your Twitter interactions using Fission functions.
 
 ## Application
 
-The sample application is a simple Twitter bot to help you interact with users on Twitter. The app uses **Twitter API** to interact with Twitter. It looks for mentions and replies to every tweet that mentions you with a predefined message. After responding to each tweet, the app sends a message to a **Slack Workspace** using a webhook url.
+The sample application is a simple Twitter bot to help you interact with users on Twitter. The app uses **Twitter API** to interact with Twitter. It looks for tweets that mention you and replies to every tweet with a predefined message. After responding to each tweet, the app sends a message to a **Slack Workspace** using a webhook url.
 
 The application is written in Python, uses **Tweepy** and **Slack SDK** along with standard Python libraries.
 
@@ -25,7 +25,7 @@ Since the application is about creating a Twitter bot and using Slack, you need 
 9. Back on the Project Page, navigate to Keys and Tokens.
 10. Under Authentication Tokens, generate Access Token and Secret. *Make sure it says "Created with Read and Write Permissions*
 
-At this point, your Twitter App is ready to be used. Make sure to save `consumer_key`,`consumer_secret`,`access_token`,`access_token_secret`, you need to update this in `app.py` file.
+At this point, your Twitter App is ready to be used. Make sure to save `consumer_key`,`consumer_secret`,`access_token`,`access_token_secret`, you need to update this in `app.py`.
 
 Next we'll setup the Slack Bot with webhook access.
 
@@ -56,10 +56,7 @@ You can clone this repository to create this application.
 
 Update these details and save the file.
 
-
 ## Steps to Execute
-
-### Single Function
 
 Create a Python environment
 
@@ -67,9 +64,13 @@ Create a Python environment
 fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
 ```
 
-Create a zip archive as `sample.zip` archive
+Create a zip archive as `sample.zip` archive by executing `package.sh` script
 
-Create a package
+```bash
+./package.sh
+```
+
+Create a Package
 
 ```bash
 fission package create --name fissiontwitter-pkg --sourcearchive sample.zip --env python --buildcmd "./build.sh"
