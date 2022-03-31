@@ -8,8 +8,10 @@ This directory contains a Python examples to show different the features of the 
 - `guestbook/` is a more realistic demonstration of using Python and Fission to create a serverless guestbook.
 - `sourcepkg/` is an example of how to use the Fission Python Build environment to resolve (pip) dependencies 
   before deploying the function.
-- `votingapp/` demonstrates how to use a Fission function to connect to a relational database like Postgres & perform basic operations
+- `votingapp/` demonstrates how to use a Fission function to connect to a relational database like Postgres & perform basic operations.
 - `opentelemetry-datadog` is an example of how you can use Opentelemetry to send traces from your Fission functions to Datadog.
+- `SinglevsMonolith` is an example to show the different architectural pattern that you can use while creation application in Fission.
+- `TwitterBot` example to create a Twitter Bot to reply to mentions, notify on slack & use Fission's Time Trigger.
   
 
 ## Getting Started
