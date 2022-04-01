@@ -1,12 +1,25 @@
 import tweepy
 from slack_sdk.webhook import WebhookClient
 
-# Secrets and Tokens
-consumer_key = '<replace with your consumer_key>'
-consumer_secret = '<replace with your consumer_secret>'
-access_token = '<replace with your access_token>'
-access_token_secret = '<replace with your access_token_secret>'
+# Username
 username='username'
+
+# Path to Kubernetes Secrects
+ck_path = "/secrets/default/twitter-secret/consumer_key"
+cs_path = "/secrets/default/twitter-secret/consumer_secret"
+at_path = "/secrets/default/twitter-secret/access_token"
+ats_path = "/secrets/default/twitter-secret/access_token_secret"
+
+# Opening files and storing secrets in variables
+with open(ck_path, 'r') as a, open(cs_path, 'r') as b, open(at_path, 'r') as c, open(ats_path, 'r') as d:
+    consumer_key = a.read()
+    consumer_secret = b.read()
+    access_token = c.read()
+    access_token_secret = d.read()
+    a.close()
+    b.close()
+    c.close()
+    d.close()
 
 def main():
     auth = tweepy.OAuth1UserHandler(
@@ -25,3 +38,5 @@ def main():
         url = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX" 
         webhook = WebhookClient(url)
         response = webhook.send(text=sn+" mentioned you on Twitter. Please check!") #Sending message to Slack webhook
+    
+    return response

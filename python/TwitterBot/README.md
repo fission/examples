@@ -1,4 +1,4 @@
-## Twitter Bot
+# Twitter Bot
 
 This sample application shows how you can create a Twitter bot to interact with users on Twitter. This is a basic application to showcase the use case, you can build on top of this and automate your Twitter interactions using Fission functions.
 Application
@@ -45,15 +45,48 @@ We have successfully created a Twitter App and a Slack App. Let's now create the
 
 You can clone this repository to create this application.
 
-`app.py` is the file which does all the work. Before you execute the application, below are the few things that you must update in the file:
+`app.py` is the file which does all the work. Make sure to update the `username` in app.py before running the script. 
+
+As we are using sensitive information like tokens and secrets, we will use **Kubernetes Secrets** to store these and access them in the code
 
 - `consumer_key` - Consumer Key
 - `consumer_secret` - Consumer Secret
 - `access_token` - OAuth Access Token
 - `access_token_secret` - OAuth Access Token Secret
-- `username` - Twitter handle of the current user
 
-Update these details and save the file.
+Start by encoding all the keys and secrets
+
+```bash
+echo -n 'actual-consumer-key' | base64
+EncodedConsumerKey==
+
+echo -n 'actual-consumer-secret' | base64
+EncodedConsumerSecret==
+
+echo -n 'actual-access-token' | base64
+EncodedAccessToken==
+
+echo -n 'actual-access-token-secret' | base64
+EncodedAccessTokenSecret==
+```
+
+Create a new `secrets.yaml` file and add the encoded strings as data. We would be accessing these secrets from our code. Refer to our [documentation on accessing secrets in Fission](https://fission.io/docs/usage/function/access-secret-cfgmap-in-function/) from code.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: default
+  name: twitter-secret
+data:
+  consumer_key: EncodedConsumerKey==
+  consumer_secret:  EncodedConsumerSecret==
+  access_token: EncodedAccessToken==
+  access_token_secret:  EncodedAccessTokenSecret==
+type: Opaque
+```
+
+Deploy the secret using `kubectl apply -f secrets.yaml`
 
 ## Steps to Execute
 
@@ -78,7 +111,7 @@ fission package create --name fissiontwitter-pkg --sourcearchive sample.zip --en
 Create the tweetbot fission function
 
 ```bash
-fission fn create --name tweetbot --pkg fissiontwitter-pkg --entrypoint "app.main"
+fission fn create --name tweetbot --pkg fissiontwitter-pkg --entrypoint "app.main" --secret twitter-secret
 ```
 
 ## Test and Execute
@@ -101,8 +134,8 @@ fission timer create --name minute --function tweetbot --cron "@every 1m"
 
 ```bash
 fission spec init
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
-fission package create --name fissiontwitter-pkg --sourcearchive sample.zip --env python --buildcmd "./build.sh"
-fission fn create --name tweetbot --pkg fissiontwitter-pkg --entrypoint "app.main"
-fission timer create --name minute --function tweetbot --cron "@every 1m"
+fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
+fission package create --name fissiontwitter-pkg --sourcearchive sample.zip --env python --buildcmd "./build.sh" --spec
+fission fn create --name tweetbot --pkg fissiontwitter-pkg --entrypoint "app.main" --secret twitter-secret --spec
+fission timer create --name minute --function tweetbot --cron "@every 1m" --spec
 ```
