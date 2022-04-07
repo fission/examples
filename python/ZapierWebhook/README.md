@@ -75,7 +75,7 @@ Open the Google Sheet that you had created, you should see a new row added with 
 ```bash
 fission spec init
 fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
-fission package create --name fissionzapier-pkg --sourcearchive sample.zip --env python--spec
+fission package create --name fissionzapier-pkg --sourcearchive sample.zip --env python --spec
 fission fn create --name pawesome --pkg fissionzapier-pkg --entrypoint "main.main"  --spec
 fission route create --name pawesome --method POST --method GET --prefix /pawesome --function pawesome --spec
 ```
