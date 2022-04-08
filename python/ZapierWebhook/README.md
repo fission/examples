@@ -33,7 +33,7 @@ echo -n 'actual-webhook-url' | base64
 EncodedWebhookUrl
 ```
 
-Create a new `secret.yaml` file and add the encoded strings as data. We would be accessing these secrets from our code. Refer to our [documentation on accessing secrets in Fission](https://fission.io/docs/usage/function/access-secret-cfgmap-in-function/) from code.
+Create a new `secret.yaml` file and add the encoded string as data. We would be accessing these secrets from our code. Refer to our [documentation on accessing secrets in Fission](https://fission.io/docs/usage/function/access-secret-cfgmap-in-function/) from code.
 
 ```yaml
 apiVersion: v1
@@ -46,7 +46,7 @@ data:
 type: Opaque
 ```
 
-Deploy the secret using `kubectl apply -f secrets.yaml`
+Deploy the secret using `kubectl apply -f secret.yaml`
 
 ## Steps to Execute
 
