@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, current_app
 import os
 import requests, json
 
-app = Flask(__name__)
+ROOT_PREFIX = "/pawesome"
+app = Flask(__name__, static_url_path=ROOT_PREFIX + '/static')
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIR = os.path.join(APP_DIR, 'templates')
@@ -10,12 +11,12 @@ STATIC_DIR = os.path.join(APP_DIR,'static')
 current_app.template_folder = TEMPLATE_DIR
 current_app.static_folder = STATIC_DIR
 
-@app.route('/pawesome',methods=['GET', 'POST'])
+# Path to access Kubernetes Secrets
+wh_path ='/secrets/default/secret/webhook_url'
+
+@app.route('/'+ROOT_PREFIX,methods=['GET', 'POST'])
 def main():
-
-    current_app.template_folder = TEMPLATE_DIR
-    current_app.static_folder = STATIC_DIR
-
+    print(current_app.__dict__)
     if request.method == "POST":
         if request.form['submit'] == 'placeOrder':
             skus = request.form.getlist('products')
@@ -26,7 +27,11 @@ def main():
             email = request.form.get('inputEmail')
             itemOrdered = request.form.get('itemOrdered')
             data = {"name": name,"email": email, "itemsOrdered": itemOrdered}
-            webhook_url = "https://hooks.zapier.com/hooks/catch/123456789/abcdefghijk/"
+
+            with open(wh_path, 'r') as a:
+                webhook_url=a.read()
+            a.close()  
+
             response = requests.post(
                 webhook_url, data=json.dumps(data),
                 headers={'Content-Type': 'application/json'}

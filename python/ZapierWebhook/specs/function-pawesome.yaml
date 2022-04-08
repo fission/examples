@@ -26,3 +26,6 @@ spec:
       namespace: default
   requestsPerPod: 1
   resources: {}
+  secrets:
+  - name: secret
+    namespace: default

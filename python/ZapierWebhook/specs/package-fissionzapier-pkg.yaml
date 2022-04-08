@@ -1,7 +1,7 @@
 include:
 - sample.zip
 kind: ArchiveUploadSpec
-name: sample-zip-Nu08
+name: sample-zip-Er1W
 
 ---
 apiVersion: fission.io/v1
@@ -19,7 +19,7 @@ spec:
   source:
     checksum: {}
     type: url
-    url: archive://sample-zip-Nu08
+    url: archive://sample-zip-Er1W
 status:
   buildstatus: pending
-  lastUpdateTimestamp: "2022-04-07T08:59:50Z"
+  lastUpdateTimestamp: "2022-04-08T05:34:51Z"

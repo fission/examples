@@ -22,7 +22,31 @@ You will need a valid Zapier Account (*paid or trial version as Webhooks are NOT
 
 You can clone this repository to create this application.
 
-`main.py` is the file which does all the work. Make sure to update the `webhook_url` with the actual Zapier webhook url that you get
+`main.py` is the file which does all the work.
+
+We sill make use of **Kuberenetes Secretes** to store and access the `webhook_url`.
+
+Start by encoding the `webhook_url` that you got after creating the Zap
+
+```bash
+echo -n 'actual-webhook-url' | base64
+EncodedWebhookUrl
+```
+
+Create a new `secret.yaml` file and add the encoded strings as data. We would be accessing these secrets from our code. Refer to our [documentation on accessing secrets in Fission](https://fission.io/docs/usage/function/access-secret-cfgmap-in-function/) from code.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: default
+  name: secret
+data:
+  webhook_url: EncodedWebhookUrl
+type: Opaque
+```
+
+Deploy the secret using `kubectl apply -f secrets.yaml`
 
 ## Steps to Execute
 
@@ -47,7 +71,7 @@ fission package create --name fissionzapier-pkg --sourcearchive sample.zip --env
 Create the fission function
 
 ```bash
-fission fn create --name pawesome --pkg fissionzapier-pkg --entrypoint "main.main" 
+fission fn create --name pawesome --pkg fissionzapier-pkg --entrypoint "main.main" --secret secret
 ```
 
 Create a Route
@@ -76,6 +100,6 @@ Open the Google Sheet that you had created, you should see a new row added with 
 fission spec init
 fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
 fission package create --name fissionzapier-pkg --sourcearchive sample.zip --env python --spec
-fission fn create --name pawesome --pkg fissionzapier-pkg --entrypoint "main.main"  --spec
+fission fn create --name pawesome --pkg fissionzapier-pkg --entrypoint "main.main" --secret secret --spec
 fission route create --name pawesome --method POST --method GET --prefix /pawesome --function pawesome --spec
 ```

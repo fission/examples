@@ -4,4 +4,4 @@
 apiVersion: fission.io/v1
 kind: DeploymentConfig
 name: zapierwebhook
-uid: de15b97d-740b-44f2-b5e3-0f766bd58c93
+uid: c0481317-3098-4457-8132-4eb89ef13a67
