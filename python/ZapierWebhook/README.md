@@ -24,7 +24,7 @@ You can clone this repository to create this application.
 
 `main.py` is the file which does all the work.
 
-We sill make use of **Kuberenetes Secretes** to store and access the `webhook_url`.
+We will make use of **Kuberenetes Secretes** to store and access the `webhook_url`.
 
 Start by encoding the `webhook_url` that you got after creating the Zap
 
