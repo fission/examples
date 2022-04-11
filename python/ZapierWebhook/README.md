@@ -85,7 +85,7 @@ fission route create --name pawesome --method POST --method GET --prefix /paweso
 Port forward the service to access it from browser
 
 ```bash
-kubectl port-forward svc/router 8888:80 -nfissionouter 8888:80 -nfission
+kubectl port-forward svc/router 8888:80 -nfission
 ```
 
 Navigate to `http://127.0.0.1:8888/pawesome` to access the application.
