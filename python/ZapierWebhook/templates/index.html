@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pawsome Food Store</title>
+    <base href="/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Pawsome Food Store</span>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Pawsome Food Store</h1>
+        <p class="lead">This demo shopping application allows you to choose a product, simulate the ordering and payment
+            process. Go ahead and choose a pawsome food for your four-legged friend and complete your order.
+        </p>
+        <hr class="my-4">
+
+        <div class="container">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-4">
+                        <!-- Product 1 -->
+                        <div class="card" style="width: 18rem;">
+                            <img src="/pawesome/static/dog-food.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Dog Food</h5>
+                                <p class="card-text">Why should you have all the fun? Here's some delicious food for
+                                    your
+                                    dog.
+                                    Delicious, nutritious and pawsome!</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Dog Food" id="dog"
+                                        name="products">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Get This
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <!-- Product 2 -->
+                        <div class="card" style="width: 18rem;">
+                            <img src="/pawesome/static/cat-food.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Cat Food</h5>
+                                <p class="card-text">Feed your furry four legged friend some delicious, nutirious and
+                                    pawesome
+                                    food. You're cat will go Meea-WOW!</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Cat Food" id="cat"
+                                        name="products">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Get This
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <!-- Product 2 -->
+                        <div class="card" style="width: 18rem;">
+                            <img src="/pawesome/static/rabbit-food.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Rabbit Food</h5>
+                                <p class="card-text">So your rabbit loves only carrot? Think again. Give this healthy,
+                                    tasty
+                                    and pawsome food to your rabbit and see it hop around!</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Rabbit Food" id="rabbit"
+                                        name="products">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Get This
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-12 text-center">
+                    <button type="submit" name="submit" value="placeOrder" class="btn btn-primary">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var answer = "{{product}}"
+        var response = "{{status}}"
+        $(document).ready(function () {
+            if (answer.includes('Dog') || answer.includes('Cat') || answer.includes('Rabbit')) {
+                $("#modal").modal('show');
+            }
+        
+            if(response==200){
+                alert('Order Placed Successfully!')
+            }
+            
+        });
+    </script>
+
+    <div class="modal" tabindex="-1" id="modal" name="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thanks for your interest. Please fill the following details so that our team can get back to you.
+                    </p>
+                    <div class="container">
+                        <form method="post" action="" id="details">
+                            <div class="row mb-3">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputName" name="inputName">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputAddress">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputState" class="col-sm-2 col-form-label">State</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputState">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputCity" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputZIP" class="col-sm-2 col-form-label">ZIP</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputZIP">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="itemOrdered" class="col-sm-2 col-form-label">Items Ordered</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" value="{{ product }}" id="itemOrdered" name="itemOrdered" readonly>
+                                </div>
+                            </div>
+                            <button type="submit" name="submit" value="submitDetails" class="btn btn-primary">Submit
+                                Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
