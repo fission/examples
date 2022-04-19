@@ -12,6 +12,7 @@ This directory contains a Python examples to show different the features of the 
 - `opentelemetry-datadog` is an example of how you can use Opentelemetry to send traces from your Fission functions to Datadog.
 - `Single vs Monolith` is an application to show how you can create Fission applications using different architectures.
 - `Twitter Bot` is an application to perform Twitter interaction using Fission functions.
+- `Zapier Webhook` is a applicatin to show how you can integrate Fission function with a Zapier Webhook
   
 
 ## Getting Started
