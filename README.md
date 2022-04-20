@@ -4,16 +4,17 @@ A place for examples of Fission functions from community and Fission team. These
 
 Currently, the examples in this repo are categorised based on the languages as mentioned below:
 
-- .NET
-- Go
-- Java
-- NodeJS
-- Perl
-- Pthon
-- PHP
-- Ruby
+- [.NET](https://github.com/fission/examples/tree/main/dotnet)
+- [Go](https://github.com/fission/examples/tree/main/go)
+- [Java](https://github.com/fission/examples/tree/main/java)
+- [NodeJS](https://github.com/fission/examples/tree/main/nodejs)
+- [Perl](https://github.com/fission/examples/tree/main/perl)
+- [Python](https://github.com/fission/examples/tree/main/python)
+- [PHP](https://github.com/fission/examples/tree/main/php7)
+- [Ruby](https://github.com/fission/examples/tree/main/ruby)
+- [Miscellaneous](https://github.com/fission/examples/tree/main/miscellaneous)
 
-Apart from this, there are other examples with respect to different use cases that are present under the `Miscellaneous` folder. You can find examples related to message triggers, specifications, using Fission for testing and much more.
+There are other examples with respect to different use cases that are present under the `Miscellaneous` folder. You can find examples related to message triggers, specifications, using Fission for testing and much more.
 
 ## Getting Started
 
