@@ -1,0 +1,23 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Ruby",
+      "path": "https://github.com/fission/examples/blob/main/ruby/hello.rb",
+      "tag": ["Hello World","Ruby"],
+      "language": "Ruby"
+    },
+    {
+      "name": "Request-Response in Ruby",
+      "description": "Code to show Fission::Context and Fission::Response objects",
+      "path": "https://github.com/fission/examples/blob/main/ruby/request_data.rb",
+      "tag": ["Request Response", "Ruby"],
+      "language": "Ruby"
+    },
+    {
+      "name": "Send events to Slack",
+      "description": "Code to show how to send events to Slack using Ruby",
+      "path": "https://github.com/fission/examples/blob/main/ruby/events_to_slack.rb",
+      "tag": ["Ruby","Slack"],
+      "language": "Ruby"
+    }
+]

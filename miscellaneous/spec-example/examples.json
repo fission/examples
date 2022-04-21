@@ -1,0 +1,30 @@
+[
+    {
+      "name": "Hello Spec Example",
+      "description": "Hello world example using Fission Specs.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/spec-example/hello-spec-exmaple",
+      "tag": ["Miscellaneous","Python","Spec"],
+      "language": "Python"
+    },
+    {
+      "name": "Multi namespace spec example",
+      "description": "Fission spec example with multi namespaces.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/spec-example/multinamespace-spec-example",
+      "tag": ["Miscellaneous","Go","Spec"],
+      "language": "Go"
+    },
+    {
+      "name": "Nodejs Parse Limit",
+      "description": "Example to deploy a Node.js application using Fission specs.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/spec-example/nodejs-bodyParser-limit-example",
+      "tag": ["Miscellaneous","Javascript","Spec"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Podspec example",
+      "description": "Code to show how to add podspec for builder of environment",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/spec-example/podspec-example",
+      "tag": ["Miscellaneous","Spec"],
+      "language": ""
+    }
+]

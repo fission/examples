@@ -1,0 +1,79 @@
+[
+    {
+      "name": "Kafka Keda SASL",
+      "description": "Fission Message Queue Trigger based on Kafka Keda SASL",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-keda-sasl",
+      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Keda","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Kafka Keda",
+      "description": "Fission Message Queue Trigger based on Strimzi Kafka.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-keda",
+      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Keda","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Kafka Message Queue Trigger",
+      "description": "Fission Message Queue Trigger based on Strimzi Kafka.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-mqt-fission",
+      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Keda GCP Pub Sub",
+      "description": "Fission Message Queue Trigger based on Google Cloud's Publisher Subscriber Service.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-gcppubsub",
+      "tag": ["Miscellaneous","Message Queue Trigger","Google Cloud", "Keda", "PubSub","Python"],
+      "language": "Python"
+    },
+    {
+      "name": "Keda Kafka RabbitMQ",
+      "description": "Fission Message Queue Trigger based on Kafka and Rabbit MQ",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-kafka-rabbitmq",
+      "tag": ["Miscellaneous","Message Queue Trigger","Rabbit MQ", "Keda","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "AWS Kinesis with Keda",
+      "description": "Fission Message Queue Trigger based on AWS Kinesis",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-kinesis",
+      "tag": ["Miscellaneous","Message Queue Trigger","AWS", "Keda","Go","Kinesis"],
+      "language": "Go"
+    },
+    {
+      "name": "Keda Rabbit MQ in Go",
+      "description": "Fission Message Queue Trigger based on Rabbit MQ in Go",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-rabbitmq-go",
+      "tag": ["Miscellaneous","Message Queue Trigger","Rabbit MQ", "Keda","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Keda Rabbit MQ Functions",
+      "description": "Fission Message Queue Trigger based on Rabbit MQ",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-rabbitmq",
+      "tag": ["Miscellaneous","Message Queue Trigger","Rabbit MQ", "Keda","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "AWS SQS with Keda",
+      "description": "The example demonstrates the integration of Fission functions, AWS SQS and Keda",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/keda-sqs",
+      "tag": ["Miscellaneous","Message Queue Trigger","AWS", "Keda","Go","SQS"],
+      "language": "Go"
+    },
+    {
+      "name": "NATS with Keda",
+      "description": "The example demonstrates the integration of Fission functions, NATS Message Queue and Keda",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/nats-keda",
+      "tag": ["Miscellaneous","Message Queue Trigger","NATS", "Keda","Javascript"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Message Queue Trigger Demonstration - NATS Streaming",
+      "description": "The example demonstrates the integration of Fission functions, NATS Streaming and Keda",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/nats-streaming",
+      "tag": ["Miscellaneous","Message Queue Trigger","NATS", "Keda","Go"],
+      "language": "Go"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in PHP",
+      "path": "https://github.com/fission/examples/blob/main/php7/hello.php",
+      "tag": ["Hello World","PHP"],
+      "language": "PHP"
+    },
+    {
+      "name": "Hello World with Request-Response",
+      "description": "Code to show how request response work with PHP in Fission.",
+      "path": "https://github.com/fission/examples/blob/main/php7/hellopsr.php",
+      "tag": ["Request Response", "PHP"],
+      "language": "PHP"
+    },
+    {
+      "name": "Currency Converter ",
+      "description": "Code to show working with APIs in PHP",
+      "path": "https://github.com/fission/examples/blob/main/php7/stock.php",
+      "tag": ["Request Response","API","PHP"],
+      "language": "PHP"
+    },
+    {
+      "name": "Multi File",
+      "description": "Working with multiple files and external libraries in PHP",
+      "path": "https://github.com/fission/examples/tree/main/php7/multifile",
+      "tag": ["PHP"],
+      "language": "PHP"
+    }
+]

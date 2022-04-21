@@ -1,0 +1,16 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Go",
+      "path": "https://github.com/fission/examples/tree/main/go/hello%20world",
+      "tag": ["Hello World","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Using Go Modules",
+      "description": "How to use Go Modules in Fission",
+      "path": "https://github.com/fission/examples/tree/main/go/module-example",
+      "yag": ["Go"],
+      "language": "Go"
+    }
+]

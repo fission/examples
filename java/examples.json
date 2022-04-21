@@ -1,0 +1,9 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Java",
+      "path": "https://github.com/fission/examples/tree/main/java/hello-world",
+      "tag": ["Hello World","Java","JVM"],
+      "language": "Java"
+    }
+]

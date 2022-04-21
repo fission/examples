@@ -1,0 +1,9 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Perl",
+      "path": "https://github.com/fission/examples/blob/main/perl/hello.pm",
+      "tag": ["Hello World","perl"],
+      "language": "perl"
+    }
+]

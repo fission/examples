@@ -1,0 +1,79 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Python",
+      "path": "https://github.com/fission/examples/blob/main/python/hello.py",
+      "tag": ["Hello World","Python"],
+      "language": "Python"
+    },
+    {
+      "name": "Request-Response in Python",
+      "description": "Code to show how you can access the HTTP request fields, such as the body, headers and query.",
+      "path": "https://github.com/fission/examples/blob/main/python/requestdata.py",
+      "tag": ["Request Response", "Python"],
+      "language": "Python"
+    },
+    {
+      "name": "Changing Status Code",
+      "description": "Code to show how you can change the response status code",
+      "path": "https://github.com/fission/examples/blob/main/python/statuscode.py",
+      "tag": ["Request Response","Python"],
+      "language": "Python"
+    },
+    {
+      "name": "Multi File",
+      "description": "Working with multiple source files in Python",
+      "path": "https://github.com/fission/examples/tree/main/python/multifile",
+      "tag": ["Python"],
+      "language": "Python"
+    },
+    {
+      "name": "Guestbook",
+      "description": "Demonstration of using Python and Fission to create a serverless guestbook",
+      "path": "https://github.com/fission/examples/tree/main/python/guestbook",
+      "tag": ["Python","Application"],
+      "language": "Python"
+    },
+    {
+      "name": "Source Package",
+      "description": "Example of how to use the Fission Python Build environment to resolve (pip) dependencies before deploying the function.",
+      "path": "https://github.com/fission/examples/tree/main/python/sourcepkg",
+      "tag": ["Python","PIP"],
+      "language": "Python"
+    },
+    {
+      "name": "Voting App",
+      "description": "Fission based application to connect to a relational database like Postgres & perform basic operations",
+      "path": "https://github.com/fission/examples/tree/main/python/votingapp",
+      "tag": ["Python","Application","Database","PostgreSQL"],
+      "language": "Python"
+    },
+    {
+      "name": "OpenTelemetry Datadog",
+      "description": "Example to show how you can use Opentelemetry to send traces from your Fission functions to Datadog.",
+      "path": "https://github.com/fission/examples/tree/main/python/opentelemetry-datadog",
+      "tag": ["Python","Application","Observability","Opentelemetry","Datadog"],
+      "language": "Python"
+    },
+    {
+      "name": "Single Vs Monolith",
+      "description": "Example to show how you can create Fission applications using different architectures",
+      "path": "https://github.com/fission/examples/tree/main/python/SinglevsMonolith",
+      "tag": ["Python","Application","Architecture","Design"],
+      "language": "Python"
+    },
+    {
+      "name": "Twitter Bot",
+      "description": "Twitter Bot that responds to tweets & notifies in Slack channel.",
+      "path": "https://github.com/fission/examples/tree/main/python/TwitterBot",
+      "tag": ["Python","Application","Twitter","Slack","Bot"],
+      "language": "Python"
+    },
+    {
+      "name": "Zapier Webhook",
+      "description": "Example to show webhook integration with Zapier",
+      "path": "https://github.com/fission/examples/tree/main/python/ZapierWebhook",
+      "tag": ["Python","Application","Zapier","Webhook"],
+      "language": "Python"
+    }
+]

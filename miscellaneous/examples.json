@@ -1,0 +1,100 @@
+[
+    {
+      "name": "Binary Environment",
+      "description": "Sample codes using binary go server to execute shell scripts.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/binary",
+      "tag": ["Miscellaneous","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Binary Environment with multiple files",
+      "description": "Code to show fission binary environment with multiple programs.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/binary-function",
+      "tag": ["Miscellaneous","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Container Functions",
+      "description": "Example to show how to run container functions in Fission.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/container-functions/next-app",
+      "tag": ["Container","Docker","Javascript"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Dashboards",
+      "description": "Prometheus and Grafana dashboards for Fission.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/dashboards",
+      "tag": ["Observability","Prometheus","Grafana","Loki"],
+      "language": ""
+    },
+    {
+      "name": "Falco",
+      "description": "Using Falcosidekick and Fission to detect and delete a compromised pod in a Kubernetes cluster.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/falco",
+      "tag": ["Falco","Application","Go"],
+      "language": "Go"
+    },
+    {
+      "name": "Penetration Testing With Gobuster",
+      "description": "Example to perform penetration testing with Gobuster and Fission",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/gobuster-example",
+      "tag": ["Testing","Gobuster","Application"],
+      "language": "Go"
+    },
+    {
+      "name": "Long Running Compute",
+      "description": "Example to show how long running computes work in Fission.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/long-running-compute",
+      "tag": ["Python","Application"],
+      "language": "Python"
+    },
+    {
+      "name": "Long Running Functions",
+      "description": "Example to show how long running functions work in Fission.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/long-running-functions",
+      "tag": ["Python","Application"],
+      "language": "Python"
+    },
+    {
+      "name": "Nextjs Blog",
+      "description": "This sample shows a demo blog using Fission function handling multiple URLs with prefix path.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/nextjs-blog-demo",
+      "tag": ["Nextjs","Application","Blog","Prefix"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Nextjs app with prefix",
+      "description": "This sample demos a Fission function handling multiple URLs with prefix path mentioned in route.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/nextjs-prefixpath",
+      "tag": ["Nextjs","Application","Blog","Prefix"],
+      "language": "Python"
+    },
+    {
+      "name": "Chrome Headless in a Fission function",
+      "description": "This examples shows running headless chrome in a fission function.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/nodejs-chrome-headless",
+      "tag": ["Javascript","Application","Chrome","Headless"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Tensorflow serving environment",
+      "description": "Example to show how tensorflow serving environment works in Fission.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/tensorflow-serving",
+      "tag": ["Tensorflow","Application"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Websocket based chat application",
+      "description": "Chat application built on websockets.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/websocket",
+      "tag": ["Chat","Application","Websocket"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Workshop Samples",
+      "description": "Examples showcased during any workshops.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/workshop",
+      "tag": ["Workshop"],
+      "language": "Go"
+    }
+]

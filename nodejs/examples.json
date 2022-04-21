@@ -1,0 +1,44 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World Example in Node.js",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/hello.js",
+      "tag": ["Hello World","node.js"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Hello World with callback",
+      "description": "Simple Hello World Example implemented with legacy call back implementation",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/hello-callback.js",
+      "tag": ["Hello World","node.js"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Node.js require ",
+      "description": "Demonstrates require feature in Node.js",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/index.js",
+      "tag": ["Hello World","node.js"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Multi Entry",
+      "description": "This is a multiple exports example.",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/multi-entry.js",
+      "tag": ["node.js"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Kubernetes Events",
+      "description": "This example watches Kubernetes events and sends them to a Slack channel.",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/kubeEventsSlack.js",
+      "tag": ["node.js","Kubernetes","Slack"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Weather API",
+      "description": "In this example, the Yahoo Weather API is used to current weather at a given location",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/weather.js",
+      "tag": ["node.js","API"],
+      "language": "Javascript"
+    }
+]
