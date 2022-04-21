@@ -2,7 +2,7 @@
     {
       "name": "Hello World",
       "description": "Simple Hello World Example in Go",
-      "path": "https://github.com/fission/examples/tree/main/go/hello%20world",
+      "path": "https://github.com/fission/examples/tree/main/go/hello-world",
       "tag": ["Hello World","Go"],
       "language": "Go"
     },
