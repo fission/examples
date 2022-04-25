@@ -13,9 +13,7 @@ def main(ws, clients):
 
 ### Websocket `ws` object
 
-`ws` is a websocket object which can be used to send and receive data.
-
-`ws` object [a Websocket object](https://github.com/imachug/gevent-ws/blob/450fac5cb5a9992c3eab30a2a91ed28d6a284214/gevent_ws/__init__.py#L25) coming from `gevent-ws` package.
+`ws` object [a Websocket object](https://github.com/imachug/gevent-ws/blob/450fac5cb5a9992c3eab30a2a91ed28d6a284214/gevent_ws/__init__.py#L25) coming from [gevent-ws](https://pypi.org/project/gevent-ws/) package.
 
 ```python
 # Send data over websocket
@@ -37,9 +35,35 @@ ws.close()
 ### Clients `clients` list
 
 `clients` is a set of active websocket connections to the server, including current `ws` object.
-`clients` can be used to broadcast data to all connected clients, including current connection.
+`clients` can be used to broadcast data to all connected clients.
 `clients` should be used in read-only mode.
 It might happen that few of connections are closed from the list, so it is recommended to use `closed` value to check if connection is closed or not.
+
+## Usage
+
+[main.py](./main.py) is a sample websocket application.
+Here, we receive data from client and send it back to client.
+After certain no of messages, we close the connection.
+
+You can connect to this websocket application with client like [wscat](https://github.com/websockets/wscat) or write one using [websocket-client](https://pypi.org/project/websocket-client/) package.
+
+Sample usage:
+
+```bash
+wscat -c ws://localhost:8089/socktest
+Connected (press CTRL+C to quit)
+> 1
+< 1
+> 2
+< 2
+> 3
+< 3
+> 4
+< 4
+> 5
+< 5
+Disconnected (code: 1000, reason: "")
+```
 
 ## Spec
 
