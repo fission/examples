@@ -1,0 +1,24 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: python
+  namespace: default
+spec:
+  builder:
+    container:
+      name: ""
+      resources: {}
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    container:
+      env:
+      - name: WSGI_FRAMEWORK
+        value: GEVENT
+      name: ""
+      resources: {}
+    image: tripples/python-env-3.9:dev
+  version: 1
