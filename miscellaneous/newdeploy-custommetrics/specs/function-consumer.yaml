@@ -1,0 +1,72 @@
+include:
+- consumer.js
+kind: ArchiveUploadSpec
+name: consumer-js-XkP1
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: consumer-5b1d1136-c6fb-4991-aaa6-1973f9e35a7f
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://consumer-js-XkP1
+  environment:
+    name: nodejs
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2022-05-04T12:23:04Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: consumer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: newdeploy
+      MaxScale: 5
+      MinScale: 1
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+      hpaMetrics:
+      - type: Object
+        object:
+          metric:
+            name: kafka_consumergroup_lag
+          describedObject:
+            apiVersion: v1
+            kind: Pod
+            name: my-cluster-kafka-exporter-55867498c9-pnqhz
+          target:
+            type: AverageValue
+            averageValue: 500  
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: nodejs
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: consumer-5b1d1136-c6fb-4991-aaa6-1973f9e35a7f
+      namespace: default
+  requestsPerPod: 1
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
