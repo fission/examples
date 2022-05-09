@@ -14,4 +14,4 @@ rules:
     name:
       matches: "kafka_consumergroup_lag"
       as: "kafka_consumergroup_lag"
-    metricsQuery: 'avg_over_time(kafka_consumergroup_lag{topic="request-topic1",consumergroup="3f665dc7-6187-4593-8b81-7e4bb08f7f11"}[1m])'
+    metricsQuery: 'avg_over_time(kafka_consumergroup_lag{topic="request-topic",consumergroup="3f665dc7-6187-4593-8b81-7e4bb08f7f11"}[1m])'

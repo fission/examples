@@ -7,7 +7,7 @@ metadata:
 spec:
   contentType: application/json
   cooldownPeriod: 300
-  errorTopic: error-topic1
+  errorTopic: error-topic
   functionref:
     functionweights: null
     name: consumer
@@ -19,5 +19,5 @@ spec:
   minReplicaCount: 0
   mqtkind: fission
   pollingInterval: 30
-  respTopic: response-topic1
-  topic: request-topic1
+  respTopic: response-topic
+  topic: request-topic
