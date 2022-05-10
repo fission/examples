@@ -21,6 +21,7 @@ Wait until the `strimzi-cluster-operator` starts running.
 Then apply the `kafka-config.yaml` file.
 
 ```
+cd kafka-config
 kubectl apply -f kafka-config.yaml
 ```
 
