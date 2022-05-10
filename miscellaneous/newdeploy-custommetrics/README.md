@@ -5,17 +5,15 @@ The hpa will then scale up and down according to that metric.
 
 We'll be using the kafka mqtrigger type fission for this example.
 
-I would recommend cloning this repository because there are quite a few files that we need to apply.
-
 You can also find the files in the [strimzi repository](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics). We have made some slight changes to those files according to our example.
 
-## Setting up strimzi
+## Setting up Apache Kafka
 
 Create the kafka namespace. Then we'll install strimzi in the same namespace.
 
 ```
 kubectl create ns kafka
-curl -L http://strimzi.io/install/latest | sed 's/namespace: .*/namespace: kafka/' | kubectl create -f - -n kafka
+kubectl create -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
 ```
 
 Wait until the `strimzi-cluster-operator` starts running.
@@ -26,6 +24,19 @@ Then apply the `kafka-config.yaml` file.
 kubectl apply -f kafka-config.yaml
 ```
 
+## Creating kafka topics
+
+We'll create the following topics
+
+- request-topic
+- response-topic
+- error-topic
+
+```
+cd kafka-config
+kubectl apply -f kafka-topic.yaml -n kafka
+```
+
 ## Setting up Prometheus monitoring
 
 Create the monitoring namespace.
@@ -34,106 +45,26 @@ Create the monitoring namespace.
 kubectl create ns monitoring
 ```
 
-Then we'll apply the crd to deploy the prometheus operator.
+We now have to install prometheus using helm
 
 ```
-cd crd
-kubectl create -f bundle.yaml -n monitoring
+helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring --set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false,prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
 ```
 
-You should be able to see this.
+Next we have to create a pod monitor which will scrape the metrics from the kafka pods.
 
 ```
-kubectl get pods -n monitoring
-NAME                                             READY   STATUS    RESTARTS   AGE
-prometheus-operator-7c5d6769d-jmmp5              1/1     Running   0          4d1h
-```
-
-We need to create a secret `additional-scrape-configs` from the file `prometheus_additional.yaml`. The secret will contain the configuration to setup a cadvisor.
-
-```
-cd prometheus_additional
-kubectl create secret generic additional-scrape-configs --from-file=prometheus-additional.yaml -n monitoring
-```
-
-Now we have to apply 3 files.
-
-- `strimzi-pod-monitor.yaml` which will scrape data directly from the kafka pods. This file will create the kafka exporter.
-- `prometheus-rules.yaml` which specifies the alerting rules for prometheus.
-- `prometheus.yaml` which will install and run prometheus. It also uses the secret we defined earlier.
-
-```
-cd prometheus_install
-kubectl apply -f strimzi-pod-monitor.yaml
-kubectl apply -f prometheus-rules.yaml
-kubectl apply -f prometheus.yaml
-```
-
-If all the steps are performed correctly, you should see something like this.
-
-```
-kubectl get pods -n monitoring
-NAME                                             READY   STATUS    RESTARTS   AGE
-grafana-f5797fcc9-7csp2                          1/1     Running   1          4d1h
-prometheus-operator-7c5d6769d-jmmp5              1/1     Running   0          4d1h
-prometheus-prometheus-0                          2/2     Running   0          4d
-
-kubectl get svc -n monitoring
-NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-grafana                         ClusterIP   10.96.51.54     <none>        3000/TCP   4d1h
-prometheus-operated             ClusterIP   None            <none>        9090/TCP   4d
-prometheus-operator             ClusterIP   None            <none>        8080/TCP   4d1h
-```
-
-## Creating kafka topics
-
-You'll need to create the following topics.
-
-```
-cat << EOF | kubectl create -n kafka -f -
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaTopic
-metadata:
-    name: request-topic
-    labels:
-        strimzi.io/cluster: "my-cluster"
-spec:
-    partitions: 3
-    replicas: 1
-EOF
-```
-
-```
-cat << EOF | kubectl create -n kafka -f -
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaTopic
-metadata:
-    name: response-topic
-    labels:
-        strimzi.io/cluster: "my-cluster"
-spec:
-    partitions: 3
-    replicas: 1
-EOF
-```
-
-```
-cat << EOF | kubectl create -n kafka -f -
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaTopic
-metadata:
-    name: error-topic
-    labels:
-        strimzi.io/cluster: "my-cluster"
-spec:
-    partitions: 3
-    replicas: 1
-EOF
+cd prometheus
+kubectl apply -f strimzi-pod-monitor.yaml -n monitoring
 ```
 
 ## Setting up the fission fn
 
 Run the `fission spec apply` command to apply the specs. It will create an environment, a package, a newdeploy function and a kafka mqtrigger.
+
+We'll need to make a small change. We have mentioned the pod name of kafka-exporter in the hpa of the new deploy function. So we'll need to change it accordingly.
+
+To do that run the command `kubectl get pods -n kafka` and copy the pod name of the kafka-exporter. Then go to the `function-consumer.yaml` file in the specs folder. Under hpaMetrics, you'll find a field `name`.Replace the value with the copied value.
 
 We need to get the uid of the mqtrigger which is also the name of the `consumergroup`.
 
