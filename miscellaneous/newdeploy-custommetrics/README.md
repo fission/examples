@@ -1,11 +1,11 @@
 # Adding custom metrics to newdeploy functions
 
-In this example, we are going to setup a strimzi kafka exporter which is going to provide the metrics that we feed to the newdeploy hpa.
+In this example, we are going to add custom metrics to the hpa defined in the `function-consumer.yaml` spec file. For that, we will setup a strimzi kafka exporter which is going to provide the metrics that we feed to the newdeploy hpa. Then we will use a pod monitor to scrape the metrics from the pods and finally a prometheus adapter which will expose the metrics to our hpa.
 The hpa will then scale up and down according to that metric.
 
-We'll be using the kafka mqtrigger type fission for this example.
+We'll be using the kafka mqtrigger type fission for this example so you'll have to enable the kafka mqtrigger and provide it with appropriate broker url while installing fission.
 
-You can also find the files in the [strimzi repository](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics). We have made some slight changes to those files according to our example.
+You can also find the configuration files in the [strimzi repository](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics). We have made some slight changes to those files according to our example.
 
 ## Setting up Apache Kafka
 
@@ -96,6 +96,8 @@ Note: If you are using a shell different from bash(eg. zsh), then this might not
 ```
 kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1/namespaces/kafka/pods/%2A/kafka_consumergroup_lag
 ```
+
+Note: If you are not getting any value, it maybe because the metric has not been defined yet. So you'll have to send some messages to the queue.
 
 ## Testing
 
