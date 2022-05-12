@@ -1,0 +1,4 @@
+kafka:
+  enabled: true
+  # Please use the brokers link for your kafka here.
+  brokers: 'my-cluster-kafka-bootstrap.kafka.svc:9092'
