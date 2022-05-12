@@ -1,0 +1,17 @@
+prometheus:
+  port: 9090
+  url: http://prometheus-operated.monitoring.svc.cluster.local
+  
+rules:
+  default: false
+  resource: {}
+  custom:
+  - seriesQuery: 'kafka_consumergroup_lag'
+    resources:
+      overrides:
+        kubernetes_namespace: {resource: "namespace"}
+        kubernetes_pod_name: {resource: "pod"}
+    name:
+      matches: "kafka_consumergroup_lag"
+      as: "kafka_consumergroup_lag"
+    metricsQuery: 'avg_over_time(kafka_consumergroup_lag{topic="request-topic",consumergroup="3f665dc7-6187-4593-8b81-7e4bb08f7f11"}[1m])'
