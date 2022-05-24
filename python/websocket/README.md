@@ -3,7 +3,7 @@
 ## Writing a Websocket based application
 
 Fission Python environment supports writing a websocket based application.
-You need to ensure you are setting `WSGI_FRAMEWORK` env to `"GEVENT"` in your runtime container config as shown in below spec command.
+You need to ensure that you are setting `WSGI_FRAMEWORK` env to `"GEVENT"` in your runtime container config as shown in below spec command.
 Python exported function should accept to two arguments:
 
 ```python
