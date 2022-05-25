@@ -20,5 +20,5 @@ spec:
         value: GEVENT
       name: ""
       resources: {}
-    image: tripples/python-env-3.9:dev
+    image: fission/python-env-3.9:1.34.0
   version: 1
