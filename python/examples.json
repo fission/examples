@@ -75,5 +75,12 @@
       "path": "https://github.com/fission/examples/tree/main/python/ZapierWebhook",
       "tag": ["Python","Application","Zapier","Webhook"],
       "language": "Python"
+    },
+    {
+      "name": "Websocket Sample Python",
+      "description": "Example to show usage of websocket in Python based function",
+      "path": "https://github.com/fission/examples/tree/main/python/websocket",
+      "tag": ["Python","Application","Websocket"],
+      "language": "Python"
     }
 ]
