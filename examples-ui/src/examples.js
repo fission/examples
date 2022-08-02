@@ -17,7 +17,6 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Checkbox from "@material-ui/core/Checkbox";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
-import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
 
 import examples from "./resources/examples.json";
@@ -34,38 +33,29 @@ const languageLogos = [
   { language: 'TensorFlow', logo: './logo/tensorflow-logo.svg' },
 ]
 
-const drawerWidth = 170;
-
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  root: {
-    display: "flex",
-    height: "270px",
-    width: "220px",
-  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
-    width: drawerWidth,
+    width: 200,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    marginTop: 65,
+    width: 200,
     background: "#f5f5f5",
+    padding: 10,
   },
   drawerContainer: {
     overflow: "auto",
   },
+  card: {
+    maxWidth: "250px",
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-  },
-  checkBox: {
-    width: "100%",
-    maxWidth: 360,
   },
 }));
 
@@ -102,62 +92,42 @@ export default function Examples() {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Avatar alt="fission" src="./logo/fission-env.png" />
-          <Typography
-            variant="h5"
-            noWrap
-            style={{ paddingLeft: "5px", fontWeight: "bold" }}
-          >
+          <Typography variant="h5" noWrap style={{ paddingLeft: "10px", fontWeight: "bold" }}>
             Fission Examples
           </Typography>
         </Toolbar>
       </AppBar>
 
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <Toolbar />
-        <Typography
-          variant="subtitle1"
-          noWrap
-          style={{ padding: "10px", alignItems: "center" }}
-        >
-          Filter languages
-        </Typography>
-        <Divider />
-        <div className={classes.drawerContainer}>
-          <List dense className={classes.checkBox}>
-            <ListItem key="All" button>
-              <ListItemText id="All" primary="All" />
+      <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }}>
+        <Typography variant="subtitle1" noWrap>Filter languages</Typography>
+        <List style={{ padding: 0 }} dense>
+          <ListItem key="All">
+            <ListItemText id="All" primary="All" />
+            <ListItemSecondaryAction>
+              <Checkbox
+                name="All"
+                edge="end"
+                onChange={handleChange}
+                checked={checked.indexOf("All") !== -1}
+                inputProps={{ "aria-labelledby": "All" }}
+              />
+            </ListItemSecondaryAction>
+          </ListItem>
+          {examples.map(example => (
+            <ListItem key={example.language}>
+              <ListItemText id={example.language} primary={example.language} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  name="All"
+                  name={example.language}
                   edge="end"
                   onChange={handleChange}
-                  checked={checked.indexOf("All") !== -1}
-                  inputProps={{ "aria-labelledby": "All" }}
+                  checked={checked.indexOf(example.language) !== -1}
+                  inputProps={{ "aria-labelledby": example.language }}
                 />
               </ListItemSecondaryAction>
             </ListItem>
-            {examples.map(example => (
-              <ListItem key={example.language} button>
-                <ListItemText id={example.language} primary={example.language} />
-                <ListItemSecondaryAction>
-                  <Checkbox
-                    name={example.language}
-                    edge="end"
-                    onChange={handleChange}
-                    checked={checked.indexOf(example.language) !== -1}
-                    inputProps={{ "aria-labelledby": example.language }}
-                  />
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-        </div>
+          ))}
+        </List>
       </Drawer>
 
       <main className={classes.content}>
@@ -174,7 +144,7 @@ export default function Examples() {
                 languageLogos.find(l => l.language === exampleItem.language)?.logo || "./logo/misc-logo.svg";
               return (
                 <Grid item key={index}>
-                  <Card className={classes.root} style={{ height: 'max-content' }} variant="outlined">
+                  <Card className={classes.card} variant="outlined">
                     <CardActionArea href={exampleItem.link}
                       style={{ padding: "10px" }}>
                       <CardMedia
@@ -187,12 +157,11 @@ export default function Examples() {
                       />
                       <CardContent
                         style={{
-                          paddingTop: "3px",
+                          paddingBottom: 0, paddingTop: "16px",
                         }}
                       >
                         <Typography variant="body1" component="h2">{exampleItem.name}</Typography>
                         <Typography
-                          border="1"
                           variant="body2"
                           color="textSecondary"
                           component="p"
@@ -211,6 +180,7 @@ export default function Examples() {
                                 margin: "3px",
                                 background: "cadetblue",
                                 color: "white",
+                                pointerEvents: "none"
                               }}
                             />
                           ))}
