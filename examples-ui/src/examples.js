@@ -108,7 +108,7 @@ export default function Examples() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Avatar alt="fission" src="./logo/fission-env.png" />
+          <Avatar alt="Fission logo" src="./logo/fission-logo.png" />
           <Typography variant="h5" noWrap style={{ paddingLeft: "10px", fontWeight: "bold" }}>
             Fission Examples
           </Typography>
