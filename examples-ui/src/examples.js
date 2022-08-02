@@ -20,6 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 
 import examples from "./resources/examples.json";
+import { TextField } from "@material-ui/core";
 
 const languageLogos = [
   { language: 'Python', logo: '/logo/python-logo.svg' },
@@ -38,12 +39,12 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
-    width: 200,
+    width: 230,
     flexShrink: 0,
   },
   drawerPaper: {
     marginTop: 65,
-    width: 200,
+    width: 230,
     background: "#f5f5f5",
     padding: 10,
   },
@@ -62,29 +63,45 @@ const useStyles = makeStyles((theme) => ({
 export default function Examples() {
   const classes = useStyles();
 
-  const [ checked, setChecked ] = React.useState(["All"]);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const [ checked, setChecked ] = React.useState([]);
   const handleChange = (event) => {
     let value = event.target.name;
-    let newChecked = [...checked];
+    let newChecked = [ ...checked ];
     if (event.target.checked) {
       if (value === "All") {
-        newChecked = ["All"];
+        newChecked = [];
       } else {
-        const allindex = newChecked.indexOf("All");
-        if (allindex > -1) {
-          newChecked.splice(allindex, 1);
-        }
         newChecked.push(value);
       }
     } else {
-      const currentindex = newChecked.indexOf(value);
-      newChecked.splice(currentindex, 1);
-      if (newChecked.length === 0) {
-        newChecked = ["All"];
+      const currentIndex = newChecked.indexOf(value);
+      if (currentIndex !== -1) {
+        newChecked.splice(currentIndex, 1);
       }
     }
     setChecked(newChecked);
   };
+
+  const filteredExamples = React.useMemo(() => {
+    let fe = [ ...examples ];
+
+    if (checked.length > 0) {
+      fe = fe.filter(example => checked.includes(example.language));
+    }
+
+    if (searchQuery.trim()) {
+      const search = searchQuery.trim().toLowerCase();
+      fe = fe.map(example => {
+        const matchingExamples = example.examples.filter(e => e.name.toLowerCase().includes(search) || 
+          e.description.toLowerCase().includes(search) || e.tags.find(tag => tag.toLowerCase().includes(search)));
+        return { ...example, examples: matchingExamples };
+      })
+    }
+
+    return fe;
+  }, [checked, searchQuery]);
 
   return (
     <div style={{ display: "flex" }}>
@@ -99,16 +116,17 @@ export default function Examples() {
       </AppBar>
 
       <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }}>
+        <TextField label="Search" size="small" value={searchQuery} variant="outlined"
+          style={{ margin: "4px 0 10px 0" }} onChange={(e) => setSearchQuery(e.target.value)} />
+
         <Typography variant="subtitle1" noWrap>Filter languages</Typography>
         <List style={{ padding: 0 }} dense>
           <ListItem key="All">
             <ListItemText id="All" primary="All" />
             <ListItemSecondaryAction>
-              <Checkbox
-                name="All"
-                edge="end"
-                onChange={handleChange}
-                checked={checked.indexOf("All") !== -1}
+              <Checkbox name="All" edge="end"
+                onChange={handleChange} disabled
+                checked={checked.length === 0}
                 inputProps={{ "aria-labelledby": "All" }}
               />
             </ListItemSecondaryAction>
@@ -132,57 +150,35 @@ export default function Examples() {
 
       <main className={classes.content}>
         <Toolbar />
-        <Grid container spacing={4}>
-          {examples.map(example => {
-            if (checked.indexOf("All") === -1 && checked.indexOf(example.language) === -1) {
-              return <></>;
-            }
-
+        <Grid container spacing={4} style={{ justifyContent: "center" }}>
+          {filteredExamples.map(example => {
             const languageLogo = languageLogos.find(l => l.language === example.language)?.logo;
+
             return example.examples.map((exampleItem, index) => {
-              const logo = languageLogo || 
+              const logo = languageLogo ||
                 languageLogos.find(l => l.language === exampleItem.language)?.logo || "./logo/misc-logo.svg";
+
               return (
                 <Grid item key={index}>
-                  <Card className={classes.card} variant="outlined">
+                  <Card className={classes.card} variant="outlined" style={{ height: "100%"}}>
                     <CardActionArea href={exampleItem.link}
-                      style={{ padding: "10px" }}>
-                      <CardMedia
-                        style={{
-                          objectFit: "fill",
-                          height: "100px",
-                        }}
-                        component="img"
-                        image={logo}
-                      />
-                      <CardContent
-                        style={{
-                          paddingBottom: 0, paddingTop: "16px",
-                        }}
-                      >
+                      style={{ padding: "10px", height: "100%" }}>
+                      <CardMedia style={{ objectFit: "fill", padding: "6px 20px", height: "100px" }}
+                        component="img" image={logo} />
+
+                      <CardContent style={{ paddingBottom: 0, paddingTop: "16px" }}>
                         <Typography variant="body1" component="h2">{exampleItem.name}</Typography>
-                        <Typography
-                          variant="body2"
-                          color="textSecondary"
-                          component="p"
-                        >
+                        <Typography variant="body2" color="textSecondary" component="p">
                           {exampleItem.description}
                         </Typography>
                       </CardContent>
+
                       <CardActions>
                         <div style={{ padding: "2px" }}>
                           {example.tags.concat(exampleItem.tags).map(t => (
-                            <Chip
-                              size="small"
-                              key={t}
-                              label={t}
-                              style={{
-                                margin: "3px",
-                                background: "cadetblue",
-                                color: "white",
-                                pointerEvents: "none"
-                              }}
-                            />
+                            <Chip size="small" key={t} label={t}
+                              style={{ margin: "3px", background: "cadetblue",
+                                color: "white", pointerEvents: "none" }} />
                           ))}
                         </div>
                       </CardActions>
