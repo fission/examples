@@ -1,5 +1,9 @@
 # Message Queue Trigger Demonstration - NATS Jetstream
 
+## Create Nats Jetstream server
+```
+kubectl apply -f jetstream-server.yaml
+```
 ## Create Consumer
 
 ```bash
