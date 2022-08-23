@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"strconv"
 
@@ -15,32 +17,51 @@ const (
 	subjectName    = "input.created"
 )
 
-func main() {
-
+// Handler is the entry point for this fission function
+func Handler(w http.ResponseWriter, r *http.Request) { // nolint:unused,deadcode
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Error reading request body",
+			http.StatusInternalServerError)
+	}
+	results := string(body)
+	fmt.Println(results)
 	// Connect to NATS
-	host := os.Getenv("NATS_SERVER")
+	host := "nats://nats-jetstream.default.svc.cluster.local:4222"
 	if host == "" {
 		log.Fatal("mqtrigger: received empty host field")
 	}
 	nc, err := nats.Connect(host)
-	checkErr(err)
+	if err != nil {
+		w.Write([]byte(fmt.Sprintf("error connecting to host:  %v", err.Error())))
+		return
+	}
 	// Creates JetStreamContext
 	js, err := nc.JetStream()
-	checkErr(err)
+	if err != nil {
+		w.Write([]byte(fmt.Sprintf("error getting context:  %v", err.Error())))
+		return
+	}
 	// Creates stream
 	err = createStream(js)
-	checkErr(err)
+	if err != nil {
+		w.Write([]byte(fmt.Sprintf("error create stream:  %v", err.Error())))
+		return
+	}
 	// Create records by publishing messages
-	err = publishdata(js)
-	checkErr(err)
-
+	err = publishdata(w, js)
+	if err != nil {
+		w.Write([]byte(fmt.Sprintf("error in publishing stream:  %v", err.Error())))
+		return
+	}
 	fmt.Println("Published all the messages")
 
-	select {}
+	w.Write([]byte("Successfully sent to request-topic"))
+	// select {}
 }
 
 // publishdata publishes data to input stream
-func publishdata(js nats.JetStreamContext) error {
+func publishdata(w http.ResponseWriter, js nats.JetStreamContext) error {
 
 	no, err := strconv.Atoi(os.Getenv("COUNT"))
 	if err != nil {
@@ -54,7 +75,7 @@ func publishdata(js nats.JetStreamContext) error {
 			log.Println("Error found: ", err)
 			return err
 		}
-		log.Printf("Order with OrderID:%d has been published\n", i)
+		w.Write([]byte(fmt.Sprintf("Order with OrderID:%d has been published\n", i)))
 	}
 	return nil
 }
@@ -76,11 +97,4 @@ func createStream(js nats.JetStreamContext) error {
 		}
 	}
 	return nil
-}
-
-func checkErr(err error) {
-	if err != nil {
-		log.Fatalf("error sending message to topic: %v", err.Error())
-		return
-	}
 }

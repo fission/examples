@@ -4,8 +4,10 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
+	"time"
 
 	"github.com/nats-io/nats.go"
 )
@@ -17,36 +19,53 @@ var (
 	errorstreamSubjects = "errorstream.error-topic"
 )
 
-func main() {
-	// Connect to NATS
-
-	host := os.Getenv("NATS_SERVER")
+// Handler is the entry point for this fission function
+func Handler(w http.ResponseWriter, r *http.Request) { // nolint:unused,deadcode
+	host := "nats://nats-jetstream.default.svc.cluster.local:4222"
 	if host == "" {
-		log.Fatal("consumer: received empty host field")
+		w.Write([]byte(string("consumer: received empty host field")))
+		return
 	}
-	nc, _ := nats.Connect(host)
+	nc, err := nats.Connect(host)
+	if err != nil {
+		w.Write([]byte(string(err.Error())))
+		return
+
+	}
+
 	js, err := nc.JetStream()
 	if err != nil {
-		log.Fatal(err)
+		w.Write([]byte(string(err.Error())))
+		return
 	}
 
 	// handle error condition
-	createStream(js, streamName, streamSubjects)
-	go consumerMessage(js, streamSubjects, streamName, "response_consumer")
+	err = createStream(js, streamName, streamSubjects)
+	if err != nil {
+		w.Write([]byte(string(err.Error())))
+		return
+	}
+	go consumerMessage(w, js, streamSubjects, streamName, "response_consumer")
 
 	// handle error
-	createStream(js, errStreamName, errorstreamSubjects)
-	consumerMessage(js, errorstreamSubjects, errStreamName, "err_consumer")
+	err = createStream(js, errStreamName, errorstreamSubjects)
+	if err != nil {
+		w.Write([]byte(string(err.Error())))
+		return
+	}
+	go consumerMessage(w, js, errorstreamSubjects, errStreamName, "err_consumer")
 
 	fmt.Println("All messages consumed")
 
 }
 
-func consumerMessage(js nats.JetStreamContext, topic, stream, consumer string) {
+func consumerMessage(w http.ResponseWriter, js nats.JetStreamContext, topic, stream, consumer string) (err error) {
 	sub, err := js.PullSubscribe(topic, consumer, nats.PullMaxWaiting(512))
 	if err != nil {
-		fmt.Printf("error occurred while consuming message:  %v", err.Error())
+		w.Write([]byte(fmt.Sprintf("error occurred while consuming message:  %v", err.Error())))
+		return
 	}
+	context.WithTimeout(context.Background(), time.Duration(15*time.Second))
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -63,19 +82,19 @@ func consumerMessage(js nats.JetStreamContext, topic, stream, consumer string) {
 			}
 			err = js.DeleteConsumer(stream, consumer)
 			if err != nil {
-				fmt.Errorf("error occurred while closing connection %s", err.Error())
+				return fmt.Errorf("error occurred while closing connection %s", err.Error())
 			}
 			return
 		default:
 		}
 		msgs, _ := sub.Fetch(10, nats.Context(ctx))
 		for _, msg := range msgs {
-			fmt.Println(string(msg.Data))
+			w.Write([]byte(string(msg.Data)))
 			msg.Ack()
 
 		}
 	}
-
+	return nil
 }
 
 // createStream creates a stream by using JetStreamContext
