@@ -30,7 +30,7 @@ fission fn create --name helloworld --env go --src hello.go --entrypoint Handler
 ## Create Fission trigger
 
 ```bash
-$ fission mqt create --name jetstreamtest --function helloworld --mqtype nats-jetstream --mqtkind keda --topic input.created --resptopic output.response-topic --errortopic output.error-topic --maxretries 3 --metadata stream=input --metadata fissionConsumer= fission_consumer --metadata natsServerMonitoringEndpoint=nats-jetstream.default.svc.cluster.local:8222  --metadata natsServer=nats://nats-jetstream.default.svc.cluster.local:4222
+$ fission mqt create --name jetstreamtest --function helloworld --mqtype nats-jetstream --mqtkind keda --topic input.created --resptopic output.response-topic --errortopic errorstream.error-topic --maxretries 3 --metadata stream=input --metadata fissionConsumer= fission_consumer --metadata natsServerMonitoringEndpoint=nats-jetstream.default.svc.cluster.local:8222  --metadata natsServer=nats://nats-jetstream.default.svc.cluster.local:4222
 
 ```
 ## Update replicas for producer
