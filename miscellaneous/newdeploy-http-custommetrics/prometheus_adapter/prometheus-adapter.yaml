@@ -1,0 +1,26 @@
+prometheus:
+  port: 9090
+  url: http://prometheus-operated.monitoring.svc.cluster.local
+  
+rules:
+  default: false
+  resource: {}
+  custom:
+  # - seriesQuery: 'http_requests_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
+  #   resources:
+  #     overrides:
+  #       kubernetes_namespace: {resource: "namespace"}
+  #       kubernetes_pod_name: {resource: "pod"}
+  #   name:
+  #     matches: "http_requests_total"
+  #     as: "http_requests_total"
+  #   metricsQuery: '(sum (rate(http_requests_total{path="/fission-function/newdeployconsumer"}[5m])) by(path)) / on() group_right() (kube_deployment_status_replicas_ready{namespace="fission-function",deployment="newdeploy-newdeployconsumer-default-a923-1951b39d68d7-69d6b6slb"})'  
+  - seriesQuery: 'http_requests_total{namespace!="",pod!=""}'
+    resources:
+      overrides:
+        kubernetes_namespace: {resource: "namespace"}
+        kubernetes_pod_name: {resource: "pod"}
+    name:
+      matches: "^(.*)_total"
+      as: "${1}_per_second"
+    metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'  

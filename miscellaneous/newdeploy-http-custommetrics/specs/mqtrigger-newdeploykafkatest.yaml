@@ -1,0 +1,23 @@
+apiVersion: fission.io/v1
+kind: MessageQueueTrigger
+metadata:
+  creationTimestamp: null
+  name: newdeploykafkatest
+  namespace: default
+spec:
+  contentType: application/json
+  cooldownPeriod: 300
+  errorTopic: error-topic
+  functionref:
+    functionweights: null
+    name: newdeployconsumer
+    type: name
+  maxReplicaCount: 100
+  maxRetries: 0
+  messageQueueType: kafka
+  metadata: {}
+  minReplicaCount: 0
+  mqtkind: fission
+  pollingInterval: 30
+  respTopic: response-topic
+  topic: request-topic
