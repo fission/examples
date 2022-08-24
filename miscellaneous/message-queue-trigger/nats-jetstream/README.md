@@ -25,7 +25,7 @@ fission mqt create --name jetstreamtest --function helloworld --mqtype nats-jets
 ```
 fission fn test --name=producer
 ```
-## Sample Output
+### Sample Output
 ```
 Order with OrderID:1 has been published
 Order with OrderID:2 has been published
@@ -33,7 +33,7 @@ Order with OrderID:3 has been published
 Successfully sent to request-topic
 ```
 
-## check logs
+## Check logs
 To verify the status of trigger, we can- 
 
 - check for logs in the fission helloworld function's pod
@@ -50,7 +50,7 @@ $ kubectl -n fission-function get pod -l functionName=helloworld
 NAME                                          READY   STATUS        RESTARTS   AGE
 poolmgr-go-default-6312601-6d6b85ff4f-b8m7g   2/2     Terminating   0          30m
 ```
-sample output
+### sample output
 
 ```
 $ kubectl -n fission-function logs -f -c go poolmgr-go-default-6312601-6d6b85ff4f-b8m7g 
