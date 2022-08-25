@@ -7,12 +7,12 @@ kubectl apply -f jetstream-server.yaml
 ## Create Producer
 
 ```
+fission environment create --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
 fission fn create --name producer --env go --src "producer/*" --entrypoint Handler 
 ```
 
 ## Create Fission env and function
 ```
-fission environment create --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
 fission fn create --name helloworld --env go --src hello.go --entrypoint Handler
 ```
 
