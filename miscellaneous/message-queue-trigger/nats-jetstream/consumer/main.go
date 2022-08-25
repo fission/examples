@@ -89,7 +89,7 @@ func consumerMessage(w http.ResponseWriter, js nats.JetStreamContext, topic, str
 		}
 		msgs, _ := sub.Fetch(10, nats.Context(ctx))
 		for _, msg := range msgs {
-			w.Write([]byte(string(msg.Data)))
+			w.Write([]byte(fmt.Sprintf("Hello: %s", msg.Data)))
 			msg.Ack()
 
 		}
