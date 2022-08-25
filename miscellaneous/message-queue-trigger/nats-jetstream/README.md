@@ -11,7 +11,7 @@ fission environment create --name go --image fission/go-env-1.16 --builder fissi
 fission fn create --name producer --env go --src "producer/*" --entrypoint Handler 
 ```
 
-## Create Fission env and function
+## Create Fission function
 ```
 fission fn create --name helloworld --env go --src hello.go --entrypoint Handler
 ```
