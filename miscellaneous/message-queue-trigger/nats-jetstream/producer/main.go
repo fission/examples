@@ -37,6 +37,14 @@ func Handler(w http.ResponseWriter, r *http.Request) { // nolint:unused,deadcode
 		w.Write([]byte(fmt.Sprintf("error getting context:  %v", err.Error())))
 		return
 	}
+
+	// Creates stream
+	err = createStream(js, streamName, streamSubjects)
+	if err != nil {
+		w.Write([]byte(fmt.Sprintf("error create stream:  %v", err.Error())))
+		return
+	}
+
 	// Creates stream
 	err = createStream(js, responseStreamName, responseStreamSubject)
 	if err != nil {

@@ -19,7 +19,7 @@ fission fn create --name helloworld --env go --src hello.go --entrypoint Handler
 ## Create Fission trigger
 
 ```
-fission mqt create --name jetstreamtest --function helloworld --mqtype nats-jetstream --mqtkind keda --topic input.created --resptopic output.response-topic --errortopic erroutput.error-topic --maxretries 3 --metadata stream=input --metadata fissionConsumer=fission_consumer --metadata natsServerMonitoringEndpoint=nats-jetstream.default.svc.cluster.local:8222  --metadata natsServer=nats://nats-jetstream.default.svc.cluster.local:4222  --metadata responseStream=output --metadata errorStream=erroutput --metadata consumer=fission_consumer
+fission mqt create --name jetstreamtest --function helloworld --mqtype nats-jetstream --mqtkind keda --topic input.created --resptopic output.response-topic --errortopic erroutput.error-topic --maxretries 3 --metadata stream=input --metadata fissionConsumer=fission_consumer --metadata natsServerMonitoringEndpoint=nats-jetstream.default.svc.cluster.local:8222 --metadata natsServer=nats://nats-jetstream.default.svc.cluster.local:4222 --metadata consumer=fission_consumer
 ```
 ## Run the producer
 ```
@@ -58,9 +58,9 @@ $ kubectl -n fission-function logs -f -c go poolmgr-go-default-6312601-6d6b85ff4
 2022/08/24 06:42:23 specializing ...
 2022/08/24 06:42:23 loading plugin from /userfunc/deployarchive/helloworld-eb3f240a-d6bb-4728-b806-f426ce0e255a-vyh8tf-oa1sgs
 2022/08/24 06:42:23 done
-Test1
-Test2
-Test3
+Hello Test1
+Hello Test2
+Hello Test3
 ```
 
 - check jetstream pods logs-
@@ -71,3 +71,7 @@ $ kubectl logs deploy/jetstreamtest
 {"level":"info","ts":1661322333.8208282,"caller":"app/main.go:90","msg":"Done processing message","messsage":"Hello Test2"}
 {"level":"info","ts":1661322333.8217056,"caller":"app/main.go:90","msg":"Done processing message","messsage":"Hello Test3"}
 ```
+
+NOTE:
+- Jetstream connector creates a push based subscriber to get the data. Make sure the `consumer` provided in `mqt` is of type pull. Also if the consumer is not present connector will itself create the it.
+- The connector needs all the stream mentioned(topic,respTopic,errTopic streams) to be present otherwise it will fail. For this example we have created all these streams in producer function. So before pusblisher publishes the messages it also creates the required stream if not present.

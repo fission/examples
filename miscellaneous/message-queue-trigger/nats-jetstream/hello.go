@@ -14,7 +14,7 @@ func Handler(w http.ResponseWriter, r *http.Request) { // nolint:unused,deadcode
 			http.StatusInternalServerError)
 	}
 	results := string(body)
-	fmt.Println(results)
+	fmt.Println("Hello: ", results)
 	_, err = w.Write([]byte("Hello " + results))
 	if err != nil {
 		http.Error(w, "Error writing response", http.StatusInternalServerError)
