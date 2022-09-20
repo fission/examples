@@ -40,17 +40,17 @@ spec:
       SpecializationTimeout: 120
       TargetCPUPercent: 0
       hpaMetrics:
-      - type: Object
-        object:
+      - type: External
+        external:
           metric:
-            name: http_requests_total
-          describedObject:
-            apiVersion: v1
-            kind: Pod
-            name: my-cluster-kafka-exporter-6bcddf669d-zzwkp #change the pod name
+            name: fission_mqt_message_lag
+            selector:
+              matchLabels:
+                trigger_namespace: default
+                trigger_name: kafkatest
           target:
             type: AverageValue
-            averageValue: 15
+            averageValue: 40
     StrategyType: execution
   concurrency: 500
   environment:
