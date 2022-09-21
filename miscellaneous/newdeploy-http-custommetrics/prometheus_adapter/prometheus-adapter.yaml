@@ -1,0 +1,11 @@
+prometheus:
+  port: 9090
+  url: http://prometheus-operated.monitoring.svc.cluster.local
+  
+rules:
+  default: false
+  external:
+  - seriesQuery: '{__name__="fission_mqt_message_lag",trigger_namespace!="",trigger_name!=""}'
+    metricsQuery: '(sum (rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by(trigger_name))'
+    resources:  
+      namespaced: false

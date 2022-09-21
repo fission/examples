@@ -1,0 +1,73 @@
+include:
+- consumer.go
+kind: ArchiveUploadSpec
+name: consumer-go-BUIy
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: newdeployconsumer-b6b2b10a-d6d7-4823-9da6-c7042037c7b8 # replace this with function package name
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: go
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://consumer-go-BUIy
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-08-17T09:54:18Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: newdeployconsumer
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: newdeploy
+      MaxScale: 3
+      MinScale: 1
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+      hpaMetrics:
+      - type: External
+        external:
+          metric:
+            name: fission_mqt_message_lag
+            selector:
+              matchLabels:
+                trigger_namespace: default
+                trigger_name: kafkatest
+          target:
+            type: AverageValue
+            averageValue: 40
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: go
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: Handler
+    packageref:
+      name: newdeployconsumer-b6b2b10a-d6d7-4823-9da6-c7042037c7b8
+      namespace: default
+  requestsPerPod: 1
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi

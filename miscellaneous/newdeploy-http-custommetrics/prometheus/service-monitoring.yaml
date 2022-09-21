@@ -1,0 +1,71 @@
+# Source: fission-all/templates/controller/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: controller-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - fission
+  selector:
+    matchLabels:
+      svc: controller
+  endpoints:
+  - targetPort: 8080
+---
+# Source: fission-all/templates/executor/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: executor-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - fission
+  selector:
+    matchLabels:
+      svc: executor
+  endpoints:
+  - targetPort: 8080
+---
+# Source: fission-all/templates/router/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: router-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - fission
+  selector:
+    matchLabels:
+      svc: router
+  endpoints:
+  - targetPort: 8080
+---
+# Source: fission-all/templates/storagesvc/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: storagesvc-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - fission
+  selector:
+    matchLabels:
+      svc: storagesvc
+  endpoints:
+  - targetPort: 8080
