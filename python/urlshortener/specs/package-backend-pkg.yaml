@@ -1,0 +1,25 @@
+include:
+- backend.zip
+kind: ArchiveUploadSpec
+name: backend-zip-DdUr
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: backend-pkg
+spec:
+  buildcmd: ./build.sh
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://backend-zip-DdUr
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2023-02-14T06:07:01Z"
