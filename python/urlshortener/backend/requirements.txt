@@ -1,0 +1,4 @@
+Flask==2.0.2
+requests==2.26.0
+pyshorteners==1.0.1
+pymongo==4.3.3
