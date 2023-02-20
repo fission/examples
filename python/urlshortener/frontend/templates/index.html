@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fission - URL Shortener</title>
+    <base href="/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5 ">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">URL Shortner</h1>
+            <p class="col-lg-10 fs-4">This is a URL Shortener application built using Fission Serverless framework and MongoDB. Provide a long URL to shorten. </p>
+          </div>
+          <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" action="main" method="POST" >
+              <div class="form-floating mb-3">
+                <label for="plongurl">Long URL</label>
+                <input type="text" class="form-control" id="plongurl" name="plongurl" placeholder="Eg.: google.com">          
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" type="submit" id="submit" name="submit" value="submit">Shorten</button>
+              <hr class="my-4">
+              <p id="shortenedURL" hidden>Shortened URL: <a href="{{answer}}" target="_blank">{{answer}}</a> <br><i>{{status}}</i></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <div class="container md-4">
+        <p style="text-align:center">Built with <br>
+            <a href="https://fission.io"><img src="https://fission.io/images/logo-gh.svg" width="100" /></a>
+            <a href="https://mongodb.com"><img
+                    src="https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg"
+                    width="100" /></a>
+            <a href="https://azure.com"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/1024px-Microsoft_Azure_Logo.svg.png"
+                    width="100" /></a>
+            </p>
+        <p style="text-align:center">You can find the code for this application here: <a href="https://github.com/techmaharaj/urlshortener">https://github.com/techmaharaj/urlshortener</a></p>
+    </div>
+
+    <script>
+        var answer = '{{answer}}'
+        console.log(answer)
+        if (answer.includes('http'))
+            {document.getElementById("shortenedURL").hidden = false;}
+            else{document.getElementById("shortenedURL").hidden = true;
+            }
+        
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

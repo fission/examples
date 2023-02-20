@@ -1,0 +1,25 @@
+include:
+- frontend.zip
+kind: ArchiveUploadSpec
+name: frontend-zip-Iyzw
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: frontend-pkg
+spec:
+  buildcmd: ./build.sh
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://frontend-zip-Iyzw
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2023-02-14T06:06:47Z"
