@@ -21,7 +21,7 @@ Test the function:
 fission fn test --name helloworld
 ```
 
-To setup a Fo environment on Fission and to learn more about it, check out [Go Environment in Fission](https://github.com/fission/environments/tree/master/go)
+To setup a Go environment on Fission and to learn more about it, check out [Go Environment in Fission](https://github.com/fission/environments/tree/master/go)
 
 Find all Go related code here. Currently, we have the following examples:
 
