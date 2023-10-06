@@ -10,7 +10,7 @@ Create a Fission Go environment with the default Go runtime image (this does not
 fission environment create --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
 ```
 
-Use the `hello.go` to create a Fission Python function:
+Use the `hello.go` to create a Fission Go function:
 
 ```
 fission fn create --name helloworld --env go --src hello.go --entrypoint Handler
