@@ -10,7 +10,7 @@ Create a Fission .NET environment with the default .NET runtime image (this does
 fission env create --name dotnet --image fission/dotnet-env
 ```
 
-Use the `hello.cs` to create a Fission Python function:
+Use the `hello.cs` to create a Fission .Net function:
 
 ```
 fission function create --name hello-dotnet --env dotnet --code hello.cs 
