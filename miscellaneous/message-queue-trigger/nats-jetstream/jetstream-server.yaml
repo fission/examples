@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats-jetstream-deployment
+  labels:
+    app: nats-jetstream
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nats-jetstream
+  template:
+    metadata:
+      labels:
+        app: nats-jetstream
+    spec:
+      containers:
+      - name: nats-jetstream
+      #  docker run --network host -p 4222:4222 nats -js -m 8222
+        image: nats:latest
+        args: ["-js","-m", "8222" ]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nats-jetstream
+  labels:
+    app: nats-jetstream
+spec:
+  selector:
+    app: nats-jetstream
+  clusterIP: None
+  ports:
+  - name: client
+    port: 4222
+  - name: cluster
+    port: 6222
+  - name: monitor
+    port: 8222
+  - name: metrics
+    port: 7777
+  - name: leafnodes
+    port: 7422
+  - name: gateways
+    port: 7522
