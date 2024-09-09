@@ -10,7 +10,7 @@ Create a Fission .NET environment with the default .NET runtime image (this does
 fission env create --name dotnet --image fission/dotnet-env
 ```
 
-Use the `hello.cs` to create a Fission .Net function:
+Use the `hello.cs` to create a Fission C# function:
 
 ```
 fission function create --name hello-dotnet --env dotnet --code hello.cs 
