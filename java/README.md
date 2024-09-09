@@ -4,7 +4,7 @@ This is the repository for all Java sample codes for Fission.
 
 ## Getting Started
 
-Create a Fission Go environment with the default Go runtime image (this does not include the build environment):
+Create a Fission Java environment with the default JVM runtime image (this does not include the build environment):
 
 ```bash
 fission environment create --name java --image fission/jvm-env --builder fission/jvm-builder
