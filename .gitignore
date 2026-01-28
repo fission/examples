@@ -1,2 +1,7 @@
 *.bkp
 *.zip
+.vscode/
+.DS_Store
+node_modules/
+dist/
+.env

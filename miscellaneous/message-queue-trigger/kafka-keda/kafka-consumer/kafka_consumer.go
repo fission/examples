@@ -8,8 +8,14 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	b, _ := io.ReadAll(r.Body)
+	b, err := io.ReadAll(r.Body)
 	defer r.Body.Close()
+
+	if err != nil {
+		log.Println("Error reading request body:", err)
+		http.Error(w, "Failed to read request body", http.StatusInternalServerError)
+		return
+	}
 
 	s := string(b)
 	log.Println("Consumer", s)
