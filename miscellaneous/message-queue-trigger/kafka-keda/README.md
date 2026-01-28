@@ -74,7 +74,7 @@ response-topic  my-cluster   3            1                    True
 - Invoke producer and watch over consumer logs.
 
     ```console
-    fission fn test --name kafka-producer
+    fission fn test --name kafka-producer --body '{"count":10}'
     ```
 
 ## Generarting Specs
@@ -83,7 +83,7 @@ If you want to generate spec on your own, please refer following commands.
 
 ```console
 fission spec init
-fission env create --spec --name go --image fission/go-env-1.16:1.32.1 --builder fission/go-builder-1.16:1.32.1
+fission env create --spec --name go --image ghcr.io/fission/go-env-1.25:1.33.0 --builder ghcr.io/fission/go-builder-1.25:1.33.0
 fission package create --spec --src producer.zip --env go --name kafka-producer
 fission package create --spec --src consumer.zip --env go --name kafka-consumer
 fission fn create --spec --name kafka-producer --env go --pkg kafka-producer --entrypoint Handler --configmap keda-kafka-configmap

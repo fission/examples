@@ -1,12 +1,15 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"time"
 
-	sarama "github.com/Shopify/sarama"
+	sarama "github.com/IBM/sarama"
 )
 
 const (
@@ -30,28 +33,26 @@ func getKafkaConfig() *sarama.Config {
 	return producerConfig
 }
 
-// Handler posts a message to Kafka Topic
-func Handler(w http.ResponseWriter, r *http.Request) {
+func produceMessage(ctx context.Context, count int) error {
 	saramaConfig := getKafkaConfig()
-
 	brokers, err := getConfigMapValue(kedaConfig, kedaConfigNs, BrokersKey)
 	if err != nil {
-		w.Write([]byte(fmt.Sprintf("Error getting kafka brokers: %s", err)))
-		return
+		return fmt.Errorf("getting kafka brokers: %w", err)
 	}
 	requestTopic, err := getConfigMapValue(kedaConfig, kedaConfigNs, RequestTopicKey)
 	if err != nil {
-		w.Write([]byte(fmt.Sprintf("Error getting kafka request topic: %s", err)))
-		return
+		return fmt.Errorf("getting kafka request topic: %w", err)
 	}
 	producer, err := sarama.NewSyncProducer([]string{string(brokers)}, saramaConfig)
-	fmt.Println("Created a new producer ", producer)
 	if err != nil {
-		w.Write([]byte(fmt.Sprintf("Error creating kafka producer: %s", err)))
-		return
+		return fmt.Errorf("creating kafka producer: %w", err)
 	}
-	count := 10
+	defer producer.Close()
+	fmt.Println("Created a new producer ", producer)
 	for msg := 1; msg <= count; msg++ {
+		if ctx.Err() != nil {
+			return ctx.Err()
+		}
 		ts := time.Now().Format(time.RFC3339)
 		message := fmt.Sprintf("{\"message_number\": %d, \"time_stamp\": \"%s\"}", msg, ts)
 		_, _, err = producer.SendMessage(&sarama.ProducerMessage{
@@ -60,10 +61,42 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		})
 
 		if err != nil {
-			w.Write([]byte(fmt.Sprintf("Failed to publish message to topic %s: %v", "request-topic", err)))
-			return
+			return fmt.Errorf("publishing message to topic %s: %w", string(requestTopic), err)
 		}
 		time.Sleep(time.Second)
 	}
-	w.Write([]byte(fmt.Sprintf("Published %d messages to topic %s", count, requestTopic)))
+	return nil
+}
+
+type RequestBody struct {
+	Count int `json:"count"`
+}
+
+// Handler posts a message to Kafka Topic
+func Handler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	// Read request body for messages to be produced
+	body, err := io.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err != nil {
+		fmt.Println("Error reading request body: ", err)
+		http.Error(w, fmt.Sprintf("Error reading request body: %s", err), http.StatusInternalServerError)
+		return
+	}
+	payload := RequestBody{}
+	err = json.Unmarshal(body, &payload)
+	if err != nil {
+		fmt.Println("Error unmarshalling request body: ", err)
+		http.Error(w, fmt.Sprintf("Error unmarshalling request body: %s", err), http.StatusBadRequest)
+		return
+	}
+	err = produceMessage(ctx, payload.Count)
+	if err != nil {
+		fmt.Println("Error producing message: ", err)
+		w.Write([]byte(fmt.Sprintf("Error producing message: %s", err)))
+		return
+	}
+	msg := fmt.Sprintf("Produced %d messages successfully", payload.Count)
+	fmt.Println(msg)
+	w.Write([]byte(msg))
 }
