@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Fission.DotNet.Common">
+      <HintPath>./Fission.DotNet.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

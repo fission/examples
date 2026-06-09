@@ -35,7 +35,7 @@ The monolight application contains only one fission function that is `app.py` wh
 Create a Python environment
 
 ```bash
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create a zip archive with app.py and templates director
@@ -79,7 +79,7 @@ Access the application at http://localhost:8888/main
 Create a Python environment
 
 ```bash
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create a zip archive with app.py and templates director
@@ -120,7 +120,7 @@ Access the application at http://localhost:8888/monolith
 
 ```bash
 fission spec init
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest --spec
 fission package create --name frontend-pkg --sourcearchive main.zip --env python --spec
 fission fn create --name app --pkg frontend-pkg --entrypoint "app.main" --spec
 fission fn create --name reorder --env python --code reorder.py --spec
@@ -134,7 +134,7 @@ fission route create --name reorder --method POST --url /reorder --function reor
 
 ```bash
 fission spec init
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest --spec
 fission package create --name frontend-monolith --sourcearchive monolith.zip --env python --spec
 fission fn create --name monolith --pkg frontend-monolith --entrypoint "app.main" --spec
 fission route create --name monolith --method POST --method GET --url /monolith --function monolith --spec

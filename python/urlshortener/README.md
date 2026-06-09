@@ -37,7 +37,7 @@ Clone this repo and perform the following steps.
 Create a Python environment
 
 ```bash
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create zip archives for backend and frontend by executing package.sh script

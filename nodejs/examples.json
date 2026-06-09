@@ -40,5 +40,19 @@
       "path": "https://github.com/fission/examples/blob/main/nodejs/weather.js",
       "tag": ["node.js","API"],
       "language": "Javascript"
+    },
+    {
+      "name": "ECMAScript Modules (ESM)",
+      "description": "Pure ESM function using export default, for the Node.js 22 environment",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/hello-esm.js",
+      "tag": ["Hello World","node.js","ESM"],
+      "language": "Javascript"
+    },
+    {
+      "name": "WebSocket Echo",
+      "description": "WebSocket handler that echoes received messages back to the client",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/echo.js",
+      "tag": ["node.js","Websocket"],
+      "language": "Javascript"
     }
 ]

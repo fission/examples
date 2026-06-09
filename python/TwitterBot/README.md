@@ -93,7 +93,7 @@ Deploy the secret using `kubectl apply -f secrets.yaml`
 Create a Python environment
 
 ```bash
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create a zip archive as sample.zip archive by executing package.sh script
@@ -134,7 +134,7 @@ fission timer create --name minute --function tweetbot --cron "@every 1m"
 
 ```bash
 fission spec init
-fission environment create --name python --image fission/python-env --builder fission/python-builder:latest --spec
+fission environment create --name python --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder:latest --spec
 fission package create --name fissiontwitter-pkg --sourcearchive sample.zip --env python --buildcmd "./build.sh" --spec
 fission fn create --name tweetbot --pkg fissiontwitter-pkg --entrypoint "app.main" --secret twitter-secret --spec
 fission timer create --name minute --function tweetbot --cron "@every 1m" --spec

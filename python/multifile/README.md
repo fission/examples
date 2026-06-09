@@ -4,7 +4,7 @@ files including some static data in text file.
 ### Create an environment
 
 ```
-fission env create --name python --image fission/python-env:0.4.0rc --version 2
+fission env create --name python --image ghcr.io/fission/python-env:0.4.0rc --version 2
 ```
 
 ### Create a zip file with all your files

@@ -4,7 +4,7 @@ files including external libraries via composer.
 ### Create an environment
 
 ```
-fission env create --name php --image fission/php-env:latest --builder fission/php-builder:latest --version 2
+fission env create --name php --image ghcr.io/fission/php-env:latest --builder ghcr.io/fission/php-builder:latest --version 2
 ```
 
 ### Create a zip file with all your files

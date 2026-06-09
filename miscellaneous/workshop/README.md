@@ -28,7 +28,7 @@ $ fission spec init
 
 Creating fission spec directory 'specs'
 
-$ fission env create --name node --image fission/node-env --version 3 --poolsize 1 --spec
+$ fission env create --name node --image ghcr.io/fission/node-env --version 3 --poolsize 1 --spec
 
 Saving Environment 'default/node' to 'specs/env-node.yaml'
 
