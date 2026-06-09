@@ -149,7 +149,7 @@ To create a source package you need to zip the source folder. Excecute the below
 Create Fission environment:
 
 ```bash
-fission env create --name pythonoptel --image username/python-opentelemetry --builder fission/python-builder:latest
+fission env create --name pythonoptel --image username/python-opentelemetry --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create source packages:
@@ -192,7 +192,7 @@ Tip: You can also create a [Fission Spec](https://fission.io/docs/usage/spec/) o
 
 ```bash
 fission spec init
-fission env create --name pythonoptel --image username/python-opentelemetry  --builder fission/python-builder:latest --spec
+fission env create --name pythonoptel --image username/python-opentelemetry  --builder ghcr.io/fission/python-builder:latest --spec
 fission package create --name fissionoptel-pkg --sourcearchive sample.zip --env pythonoptel --buildcmd "./build.sh" --spec
 fission fn create --name optel --pkg fissionoptel-pkg --entrypoint "sample.main" --spec
 ```

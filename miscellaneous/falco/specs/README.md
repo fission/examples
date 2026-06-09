@@ -1,7 +1,7 @@
 ## Specs
 
 ```sh
-fission env create --name go --image fission/go-env-1.14 --builder fission/go-builder-1.14 --spec
+fission env create --name go --image ghcr.io/fission/go-env-1.14 --builder ghcr.io/fission/go-builder-1.14 --spec
 fission fn create --name falco-pod-delete --env go --src "falco-pod-delete/*" --entrypoint Handler --spec
 fission route create --name falco-pod-delete --url "/falco-pod-delete"  --function falco-pod-delete --spec
 ```

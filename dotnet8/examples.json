@@ -1,0 +1,30 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Minimal .NET 8 function returning a string",
+      "path": "https://github.com/fission/examples/tree/main/dotnet8/HelloWorld",
+      "tag": ["Hello World", ".NET", "C#"],
+      "language": ".NET 8"
+    },
+    {
+      "name": "HTTP Trigger",
+      "description": "Read the HTTP method and URL from the request context",
+      "path": "https://github.com/fission/examples/tree/main/dotnet8/HttpTriggerExample",
+      "tag": ["Request Response", ".NET", "C#"],
+      "language": ".NET 8"
+    },
+    {
+      "name": "Async Function",
+      "description": "Run asynchronous work inside a .NET 8 function",
+      "path": "https://github.com/fission/examples/tree/main/dotnet8/AsyncFunctionExample",
+      "tag": [".NET", "C#", "Async"],
+      "language": ".NET 8"
+    },
+    {
+      "name": "Multi File",
+      "description": "Multi-file .NET 8 project with controllers, services, and models",
+      "path": "https://github.com/fission/examples/tree/main/dotnet8/MultiFileExample",
+      "tag": [".NET", "C#", "Application"],
+      "language": ".NET 8"
+    }
+]

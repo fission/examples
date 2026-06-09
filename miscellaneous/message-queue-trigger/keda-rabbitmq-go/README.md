@@ -50,7 +50,7 @@ Check consumer function logs and messages count for the queue `response-topic` o
 
 ```shell
 fission spec init
-fission env create --spec --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
+fission env create --spec --name go --image ghcr.io/fission/go-env-1.16 --builder ghcr.io/fission/go-builder-1.16
 fission package create --spec --src producer.zip --env go --name rabbitmq-producer
 fission package create --spec --src consumer.zip --env go --name rabbitmq-consumer
 fission fn create --spec --name rabbitmq-producer --env go --pkg rabbitmq-producer \

@@ -1,0 +1,16 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Single-file Rust function using an axum handler signature",
+      "path": "https://github.com/fission/examples/blob/main/rust/hello.rs",
+      "tag": ["Hello World", "Rust"],
+      "language": "Rust"
+    },
+    {
+      "name": "Cargo Project",
+      "description": "A full Cargo crate that serves HTTP on the Fission runtime port and echoes the request body as JSON",
+      "path": "https://github.com/fission/examples/tree/main/rust/project-example",
+      "tag": ["Rust", "Application", "Cargo", "axum"],
+      "language": "Rust"
+    }
+]

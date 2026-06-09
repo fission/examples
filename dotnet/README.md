@@ -7,7 +7,7 @@ This is the repository for all .NET sample codes for Fission.
 Create a Fission .NET environment with the default .NET runtime image (this does not include the build environment):
 
 ```
-fission env create --name dotnet --image fission/dotnet-env
+fission env create --name dotnet --image ghcr.io/fission/dotnet-env
 ```
 
 Use the `hello.cs` to create a Fission C# function:

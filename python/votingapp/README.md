@@ -81,7 +81,7 @@ To create a source package you need to zip `backend` and `frontend` folders. Exc
 Create Fission environment:
 
 ```bash
-fission env create --name pythonsrc --image username/python-postgres --builder fission/python-builder:latest
+fission env create --name pythonsrc --image username/python-postgres --builder ghcr.io/fission/python-builder:latest
 ```
 
 Create source packages:
@@ -123,7 +123,7 @@ Tip: You can also create a [Fission Spec](https://fission.io/docs/usage/spec/) o
 
 ```bash
 fission spec init
-fission env create --name pythonsrc --image python-postgres --builder fission/python-builder:latest --spec
+fission env create --name pythonsrc --image python-postgres --builder ghcr.io/fission/python-builder:latest --spec
 fission package create --name backend-pkg --sourcearchive backend.zip --env pythonsrc --buildcmd "./build.sh" --spec
 fission fn create --name backend --pkg backend-pkg --entrypoint "backend.main" --spec
 fission route create --name backend --method POST --url /castvote --function backend --spec

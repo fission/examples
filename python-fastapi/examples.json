@@ -1,0 +1,44 @@
+[
+    {
+      "name": "Hello World",
+      "description": "Simple Hello World example for the Python FastAPI environment",
+      "path": "https://github.com/fission/examples/blob/main/python-fastapi/hello.py",
+      "tag": ["Hello World", "Python", "FastAPI"],
+      "language": "Python (FastAPI)"
+    },
+    {
+      "name": "Request-Response",
+      "description": "Access the HTTP request fields, such as the body, headers and query",
+      "path": "https://github.com/fission/examples/blob/main/python-fastapi/requestdata.py",
+      "tag": ["Request Response", "Python", "FastAPI"],
+      "language": "Python (FastAPI)"
+    },
+    {
+      "name": "Changing Status Code",
+      "description": "Change the response status code",
+      "path": "https://github.com/fission/examples/blob/main/python-fastapi/statuscode.py",
+      "tag": ["Request Response", "Python", "FastAPI"],
+      "language": "Python (FastAPI)"
+    },
+    {
+      "name": "Multi File",
+      "description": "Working with multiple source files in the Python FastAPI environment",
+      "path": "https://github.com/fission/examples/tree/main/python-fastapi/multifile",
+      "tag": ["Python", "FastAPI"],
+      "language": "Python (FastAPI)"
+    },
+    {
+      "name": "Source Package",
+      "description": "Use the Python build environment to resolve (pip) dependencies before deploying the function",
+      "path": "https://github.com/fission/examples/tree/main/python-fastapi/sourcepkg",
+      "tag": ["Python", "FastAPI", "PIP"],
+      "language": "Python (FastAPI)"
+    },
+    {
+      "name": "Guestbook",
+      "description": "A serverless guestbook built with Python FastAPI and Redis",
+      "path": "https://github.com/fission/examples/tree/main/python-fastapi/guestbook",
+      "tag": ["Python", "FastAPI", "Application", "Redis"],
+      "language": "Python (FastAPI)"
+    }
+]

@@ -11,7 +11,7 @@ then
 fi
 
 # Create python env if it doesn't exist
-fission env get --name python || fission env create --name python --image fission/python-env
+fission env get --name python || fission env create --name python --image ghcr.io/fission/python-env
 
 # Register functions and routes with fission
 fission function create --name guestbook-get --env python --code get.py --url /guestbook --method GET

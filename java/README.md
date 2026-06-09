@@ -8,7 +8,7 @@ Create a Fission Java environment with the default JVM runtime image (this does 
 
 
 ```bash
-fission environment create --name java --image fission/jvm-env --builder fission/jvm-builder
+fission environment create --name java --image ghcr.io/fission/jvm-env --builder ghcr.io/fission/jvm-builder
 ```
 
 Create a package
@@ -30,6 +30,9 @@ fission fn test --name javatest
 ```
 
 To setup a Java environment on Fission and to learn more about it, check out [Java Environment in Fission](https://github.com/fission/environments/tree/master/jvm)
+
+Fission also ships a JAX-RS variant of the JVM environment, [`jvm-jersey`](https://github.com/fission/environments/tree/master/jvm-jersey).
+The `hello-world` example here works on both; the only difference is the environment image you create (`ghcr.io/fission/jvm-jersey-env` instead of `ghcr.io/fission/jvm-env`).
 
 Find all Java related code here. Currently, we have the following examples:
 

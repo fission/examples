@@ -67,7 +67,7 @@
       "description": "This sample demos a Fission function handling multiple URLs with prefix path mentioned in route.",
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/nextjs-prefixpath",
       "tag": ["Nextjs","Application","Blog","Prefix"],
-      "language": "Python"
+      "language": "Javascript"
     },
     {
       "name": "Chrome Headless in a Fission function",
@@ -81,7 +81,7 @@
       "description": "Example to show how tensorflow serving environment works in Fission.",
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/tensorflow-serving",
       "tag": ["Tensorflow","Application"],
-      "language": "Javascript"
+      "language": "TensorFlow"
     },
     {
       "name": "Websocket based chat application",

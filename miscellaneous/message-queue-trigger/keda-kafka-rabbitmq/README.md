@@ -72,9 +72,9 @@ We will create spec for all resources and apply in end. You can directly apply t
 Environment are runtimes for functions. We only have a Go runtime and a NodeJS runtime. All functions are based on either of them
 
 ```
-$ fission environment create --name go --image fission/go-env-1.12:1.10.0 --builder fission/go-builder-1.12:1.10.0 --spec
+$ fission environment create --name go --image ghcr.io/fission/go-env-1.12:1.10.0 --builder ghcr.io/fission/go-builder-1.12:1.10.0 --spec
 
-$ fission env create --name nodeenv --image fission/node-env --spec
+$ fission env create --name nodeenv --image ghcr.io/fission/node-env --spec
 ```
 
 ### Functions & Triggers

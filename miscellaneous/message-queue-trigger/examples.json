@@ -3,21 +3,21 @@
       "name": "Kafka Keda SASL",
       "description": "Fission Message Queue Trigger based on Kafka Keda SASL",
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-keda-sasl",
-      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Keda","Go"],
+      "tag": ["Miscellaneous","Message Queue Trigger","Kafka", "Keda","Go"],
       "language": "Go"
     },
     {
       "name": "Kafka Keda",
       "description": "Fission Message Queue Trigger based on Strimzi Kafka.",
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-keda",
-      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Keda","Go"],
+      "tag": ["Miscellaneous","Message Queue Trigger","Kafka", "Keda","Go"],
       "language": "Go"
     },
     {
       "name": "Kafka Message Queue Trigger",
       "description": "Fission Message Queue Trigger based on Strimzi Kafka.",
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/message-queue-trigger/kafka-mqt-fission",
-      "tag": ["Miscellaneous","Message Queue Trigger","Kakfa", "Go"],
+      "tag": ["Miscellaneous","Message Queue Trigger","Kafka", "Go"],
       "language": "Go"
     },
     {

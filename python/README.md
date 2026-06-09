@@ -20,7 +20,7 @@ This directory contains a Python examples to show different the features of the 
 Create a Fission Python environment with the default Python runtime image (this does not include the build environment):
 
 ```
-fission environment create --name python --image fission/python-env
+fission environment create --name python --image ghcr.io/fission/python-env
 ```
 
 Use the `hello.py` to create a Fission Python function:

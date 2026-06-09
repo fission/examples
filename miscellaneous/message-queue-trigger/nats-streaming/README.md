@@ -4,7 +4,7 @@
 
 ```bash
 $ fission spec init
-$ fission env create --name go --image fission/go-env-1.12:1.7.1 --builder fission/go-builder-1.12:1.7.1 --period 5 --spec
+$ fission env create --name go --image ghcr.io/fission/go-env-1.12:1.7.1 --builder ghcr.io/fission/go-builder-1.12:1.7.1 --period 5 --spec
 $ fission pkg create --name publisher --src mqtrigger/* --spec
 $ fission fn create --name publisher --env go --pkg publisher --entrypoint "Handler" --spec
 $ fission fn create --name hello --env go --src https://raw.githubusercontent.com/fission/fission/master/examples/go/hello.go --entrypoint "Handler" --spec

@@ -8,7 +8,7 @@ Fission's builder can be used to create the binary artifact from source code. Cr
 
 ```
 $ zip -r java-src-pkg.zip *
-$ fission env create --name java --image fission/jvm-env --version 2 --keeparchive --builder fission/jvm-builder
+$ fission env create --name java --image ghcr.io/fission/jvm-env --version 2 --keeparchive --builder ghcr.io/fission/jvm-builder
 $ fission package create --sourcearchive java-src-pkg.zip --env java
 java-src-pkg-zip-tvd0
 $ fission package info --name java-src-pkg-zip-tvd0
@@ -52,7 +52,7 @@ Both of above steps will generate a target subdirectory which has the archive `t
 - The archive created above will be used as a deploy package when creating the function.
 
 ```
-$ fission env create --name jvm --image fission/jvm-env --version 2 --keeparchive=true
+$ fission env create --name jvm --image ghcr.io/fission/jvm-env --version 2 --keeparchive=true
 $ fission fn create --name hello --deploy target/hello-world-1.0-SNAPSHOT-jar-with-dependencies.jar --env jvm --entrypoint io.fission.HelloWorld
 $ fission route create --function hello --url /hellop --method GET
 $ fission fn test --name hello

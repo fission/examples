@@ -7,7 +7,7 @@ This is the repository for all Go sample codes for Fission.
 Create a Fission Go environment with the default Go runtime image (this does not include the build environment):
 
 ```
-fission environment create --name go --image fission/go-env-1.16 --builder fission/go-builder-1.16
+fission environment create --name go --image ghcr.io/fission/go-env-1.16 --builder ghcr.io/fission/go-builder-1.16
 ```
 
 Use the `hello.go` to create a Fission Go function:

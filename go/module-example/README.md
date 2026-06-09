@@ -26,7 +26,7 @@ $ go mod verify
 4. Create a Go Env with builder
 
 ```
-fission env create --name go --image fission/go-env-1.14 --builder fission/go-builder-1.14 --poolsize 1 --version 3
+fission env create --name go --image ghcr.io/fission/go-env-1.14 --builder ghcr.io/fission/go-builder-1.14 --poolsize 1 --version 3
 ```
 
 Create function with all source files

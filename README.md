@@ -5,13 +5,16 @@ A place for examples of Fission functions from community and Fission team. These
 Currently, the examples in this repo are categorised based on the languages as mentioned below:
 
 - [.NET](https://github.com/fission/examples/tree/main/dotnet)
+- [.NET 8](https://github.com/fission/examples/tree/main/dotnet8)
 - [Go](https://github.com/fission/examples/tree/main/go)
 - [Java](https://github.com/fission/examples/tree/main/java)
 - [NodeJS](https://github.com/fission/examples/tree/main/nodejs)
 - [Perl](https://github.com/fission/examples/tree/main/perl)
 - [Python](https://github.com/fission/examples/tree/main/python)
+- [Python (FastAPI)](https://github.com/fission/examples/tree/main/python-fastapi)
 - [PHP](https://github.com/fission/examples/tree/main/php7)
 - [Ruby](https://github.com/fission/examples/tree/main/ruby)
+- [Rust](https://github.com/fission/examples/tree/main/rust)
 - [Miscellaneous](https://github.com/fission/examples/tree/main/miscellaneous)
 
 There are other examples with respect to different use cases that are present under the `Miscellaneous` folder. You can find examples related to message triggers, specifications, using Fission for testing and much more.
@@ -23,7 +26,7 @@ The easiest way to getting started with Fission is shown below. This one is usin
 Create a Fission Python environment with the default Python runtime image (this does not include the build environment):
 
 ```
-fission environment create --name python --image fission/python-env
+fission environment create --name python --image ghcr.io/fission/python-env
 ```
 
 Use the `hello.py` to create a Fission Python function:

@@ -8,7 +8,7 @@ Before running any of these functions, make sure you have created a `nodejs` Fis
 
 ```bash
 # Create an environment with default nodejs images
-$ fission env create --name nodeenv --image fission/node-env:latest --builder fission/node-builder:latest
+$ fission env create --name nodeenv --image ghcr.io/fission/node-env:latest --builder ghcr.io/fission/node-builder:latest
 # Create zip file from our example
 $ zip -jr nodejs.zip nodejs/
 # Create a package with the zip file

@@ -6,10 +6,10 @@ Before you create the specs, please follow the setup steps in the [README](../RE
 
 ```sh
 fission spec init
-fission env create --name go --image fission/go-env-1.14 --builder fission/go-builder-1.14 --spec
+fission env create --name go --image ghcr.io/fission/go-env-1.14 --builder ghcr.io/fission/go-builder-1.14 --spec
 fission fn create --name producer --env go --src "producer/*" --entrypoint Handler --secret aws-credentials --configmap queue-details --spec
 
-fission env create --name nodejs --image fission/node-env:latest --spec
+fission env create --name nodejs --image ghcr.io/fission/node-env:latest --spec
 fission fn create --name consumer --env nodejs --code consumer/consumer.js --spec
 
 fission mqt create --name sqstest --function consumer --mqtype aws-sqs-queue \

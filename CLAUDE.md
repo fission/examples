@@ -13,7 +13,7 @@ You generally cannot run these examples without a Kubernetes cluster with Fissio
 
 ## Layout
 
-Top-level directories are language buckets (`python/`, `go/`, `nodejs/`, `java/`, `dotnet/`, `ruby/`, `perl/`, `php7/`) plus `miscellaneous/` for cross-cutting use cases (message-queue triggers, specs, containers, observability, websockets, long-running functions, etc.).
+Top-level directories are language buckets (`python/`, `python-fastapi/`, `go/`, `nodejs/`, `java/`, `dotnet/`, `dotnet8/`, `ruby/`, `perl/`, `php7/`, `rust/`) plus `miscellaneous/` for cross-cutting use cases (message-queue triggers, specs, containers, observability, websockets, long-running functions, etc.).
 
 ## The two ways a function gets deployed
 
@@ -21,7 +21,7 @@ Every example follows one of these patterns. Recognize which one before editing.
 
 1. **Single-file / inline** — deploy the source directly with the CLI:
    ```
-   fission environment create --name python --image fission/python-env
+   fission environment create --name python --image ghcr.io/fission/python-env
    fission function create --name hello-py --env python --code hello.py
    fission function test --name hello-py
    ```
@@ -40,7 +40,10 @@ When adding or fixing a function, match the runtime's expected signature:
 - **Go** — `func Handler(w http.ResponseWriter, r *http.Request)`, `package main`. Deployed with `--entrypoint Handler`.
 - **Ruby** — top-level `def handler`.
 - **Java** — class implementing the Fission `Function` interface (e.g. `io.fission.HelloWorld`); function name in the spec is the FQCN.
+- **.NET (legacy `dotnet/`)** — single `.cs` file; the function body is the file.
+- **.NET 8 (`dotnet8/`)** — class with `public object Execute(FissionContext context)`; entrypoint is the FQ `Namespace.Class` (built via `--buildcmd /usr/local/bin/build`).
 - **PHP** — plain script; `$logger` is injected.
+- **Rust** — single-file mode: `pub async fn handler` with any axum handler signature. Cargo-project mode: a binary crate that serves HTTP on `127.0.0.1:$FISSION_RUNTIME_PORT` (any framework works).
 
 ## Builder vs. runtime environments
 

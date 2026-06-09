@@ -26,9 +26,9 @@ If the `mqtrigger` is configured correctly, you should see the consumer function
 
 ```console
 fission spec init
-fission env create --name python-gcp --image fission/python-env --builder fission/python-builder --spec
+fission env create --name python-gcp --image ghcr.io/fission/python-env --builder ghcr.io/fission/python-builder --spec
 fission fn create --name producer --env python-gcp --src pub/pub.py  --entrypoint main --src pub/requirements.txt --spec
-fission env create --name nodeenv --image fission/node-env --spec
+fission env create --name nodeenv --image ghcr.io/fission/node-env --spec
 fission fn create --name consumer --env nodeenv --code consumer.js --spec
 fission mqt create --name gcptest --function consumer --mqtype gcp-pubsub --mqtkind keda --topic request-topic-sub --resptopic response-topic --errortopic error-topic --maxretries 3 --cooldownperiod=30 --pollinginterval=5 --metadata subscriptionName=request-topic-sub --metadata credentialsFromEnv=GoogleApplicationCredentials --secret pubsub-secret --spec
 ```

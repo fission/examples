@@ -7,7 +7,7 @@ This directory contains several examples to get you started using Node.js with F
 Before running any of these functions, make sure you have created a `nodejs` Fission environment:
 
 ```
-$ fission env create --name nodejs --image fission/node-env
+$ fission env create --name nodejs --image ghcr.io/fission/node-env
 ```
 
 Note: The default `fission/node-env` image is based on Alpine, which is much smaller than the main Debian Node image (65MB vs 680MB) while still being suitable for most use cases.

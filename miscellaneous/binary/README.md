@@ -9,7 +9,7 @@ For more info read the [environment README](../../environments/binary/README.md)
 First, set up your fission deployment with the binary environment.
 
 ```bash
-fission env create --name binary-env --image fission/binary-env
+fission env create --name binary-env --image ghcr.io/fission/binary-env
 ```
 
 ## Example Usage
