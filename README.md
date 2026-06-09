@@ -1,8 +1,13 @@
 # Fission Examples & Samples
 
-A place for examples of Fission functions from community and Fission team. These are sample codes and application that will help you understand Fission better. You can use these as stepping stone to build your real world use cases on Fission.
+A place for examples of Fission functions from the community and the Fission team.
+These are sample codes and applications that will help you understand Fission better.
+Use them as a stepping stone to build your real-world use cases on Fission.
 
-Currently, the examples in this repo are categorised based on the languages as mentioned below:
+You can also browse these examples in the searchable catalog at [fission.io/examples](https://fission.io/examples).
+
+The examples in this repo are categorised by language as listed below.
+Each directory has its own `README.md` with the exact `fission` commands to deploy and test that example.
 
 - [.NET](https://github.com/fission/examples/tree/main/dotnet)
 - [.NET 8](https://github.com/fission/examples/tree/main/dotnet8)
@@ -17,11 +22,12 @@ Currently, the examples in this repo are categorised based on the languages as m
 - [Rust](https://github.com/fission/examples/tree/main/rust)
 - [Miscellaneous](https://github.com/fission/examples/tree/main/miscellaneous)
 
-There are other examples with respect to different use cases that are present under the `Miscellaneous` folder. You can find examples related to message triggers, specifications, using Fission for testing and much more.
+The `Miscellaneous` folder holds examples for different use cases such as message-queue triggers, specs, container functions, observability, websockets, long-running functions, and more.
 
 ## Getting Started
 
-The easiest way to getting started with Fission is shown below. This one is using Python, however, you can refer to the examples present for other langugages as well.
+The easiest way to get started with Fission is shown below.
+This uses Python; you can refer to the examples for other languages as well.
 
 Create a Fission Python environment with the default Python runtime image (this does not include the build environment):
 
@@ -29,22 +35,31 @@ Create a Fission Python environment with the default Python runtime image (this 
 fission environment create --name python --image ghcr.io/fission/python-env
 ```
 
-Use the `hello.py` to create a Fission Python function:
+Use `python/hello.py` to create a Fission Python function:
+
 ```
-fission function create --name hello-py --env python --code hello.py 
+fission function create --name hello-py --env python --code python/hello.py
 ```
 
 Test the function:
+
 ```
 fission function test --name hello-py
 ```
 
 For a full guide see the official documentation on [Python with Fission](https://fission.io/docs/usage/languages/python/).
 
+## Contributing an example
+
+Add your function under the relevant language directory with a short `README.md` showing how to deploy and test it.
+To make it appear in the [catalog](https://fission.io/examples), add an entry to that directory's `examples.json` (fields: `name`, `description`, `path`, `tag`, `language`).
+The catalog page is generated from these files in the [fission.io](https://github.com/fission/fission.io) repo, so no UI changes are needed here.
+
 ## Documentation
 
-If you are new to Fission and want to know how it works, features and everything else, refer to the [Fission Documents](https://fission.io/docs/)
+If you are new to Fission and want to know how it works, its features, and everything else, refer to the [Fission documentation](https://fission.io/docs/).
 
 ## Fission Blog
 
-We are always working on getting new examples and use cases using Fission for you. For the latest updates on what's goind on with Fission, check out our [Fission Blog](https://fission.io/blog/).
+We are always working on new examples and use cases for Fission.
+For the latest updates on what's going on with Fission, check out the [Fission Blog](https://fission.io/blog/).
