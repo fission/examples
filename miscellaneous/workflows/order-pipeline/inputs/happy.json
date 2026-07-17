@@ -1,0 +1,9 @@
+{
+  "orderId": "ord-1001",
+  "customer": { "email": "dana@example.com" },
+  "items": [
+    { "sku": "kettle-steel", "qty": 1, "unitPrice": 49 },
+    { "sku": "mug-blue", "qty": 4, "unitPrice": 9 }
+  ],
+  "payment": { "card": "valid" }
+}

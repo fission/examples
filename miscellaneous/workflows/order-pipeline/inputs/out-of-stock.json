@@ -1,0 +1,6 @@
+{
+  "orderId": "ord-1005",
+  "customer": { "email": "kim@example.com" },
+  "items": [{ "sku": "oos-standing-desk", "qty": 1, "unitPrice": 599 }],
+  "payment": { "card": "valid" }
+}

@@ -1,0 +1,6 @@
+{
+  "subscriptionId": "sub-4712",
+  "plan": "starter-monthly",
+  "amount": 29,
+  "payment": { "card": "valid" }
+}

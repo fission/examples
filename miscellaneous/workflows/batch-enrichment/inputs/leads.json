@@ -1,0 +1,11 @@
+{
+  "campaign": "q3-webinar",
+  "leads": [
+    { "email": "cto@acme-robotics.com", "company": "Acme Robotics", "employees": 2400, "title": "CTO" },
+    { "email": "maya@brightpath.io", "company": "BrightPath", "employees": 140, "title": "Head of Platform" },
+    { "email": "jordan.p@gmail.com", "company": "", "employees": 0, "title": "" },
+    { "email": "vp.eng@finlever.com", "company": "FinLever", "employees": 800, "title": "VP Engineering" },
+    { "email": "sam@tinyshop.dev", "company": "TinyShop", "employees": 6, "title": "Founder" },
+    { "email": "casey@yahoo.com", "company": "", "employees": 12, "title": "Analyst" }
+  ]
+}

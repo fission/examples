@@ -1,0 +1,6 @@
+{
+  "subscriptionId": "sub-4711",
+  "plan": "team-annual",
+  "amount": 1188,
+  "payment": { "card": "past-due" }
+}

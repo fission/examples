@@ -1,0 +1,55 @@
+apiVersion: fission.io/v1
+kind: Workflow
+metadata:
+  name: payment-dunning
+spec:
+  startAt: first-attempt
+  timeout: 2h
+  historyRetention:
+    maxCount: 20
+    maxAge: 24h
+  states:
+
+    # First renewal attempt. A decline is not an error to retry rapidly —
+    # the business process says: wait out a grace period, then try again.
+    first-attempt:
+      type: Task
+      function: { name: wf-charge-subscription }
+      timeout: 30s
+      # resultPath keeps the subscription document flowing (the error object
+      # merges at $.lastError instead of replacing the input) — the second
+      # attempt still needs the card and amount.
+      catch:
+        - errorType: PaymentDeclined
+          next: grace-period
+          resultPath: $.lastError
+      next: record
+
+    # Durable timer. In production this would be days ("duration: 72h");
+    # 15s keeps the demo watchable. The run consumes no resources while
+    # waiting, survives controller restarts, and fires exactly once.
+    grace-period:
+      type: Wait
+      duration: 15s
+      next: second-attempt
+
+    # Retry after the grace period. A second decline ends the relationship.
+    second-attempt:
+      type: Task
+      function: { name: wf-charge-subscription }
+      timeout: 30s
+      catch:
+        - errorType: PaymentDeclined
+          next: cancel
+          resultPath: $.lastError
+      next: record
+
+    record:
+      type: Task
+      function: { name: wf-record-payment }
+      end: true
+
+    cancel:
+      type: Task
+      function: { name: wf-cancel-subscription }
+      end: true

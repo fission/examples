@@ -1,0 +1,85 @@
+apiVersion: fission.io/v1
+kind: Workflow
+metadata:
+  name: order-pipeline
+spec:
+  startAt: validate
+  timeout: 1h
+  # Keep the last 20 finished runs (and nothing older than a day) so the
+  # demo cluster doesn't accumulate history forever.
+  historyRetention:
+    maxCount: 20
+    maxAge: 24h
+  states:
+
+    # 1. Validation. A malformed order returns the typed error
+    #    "InvalidOrder"; the catch route short-circuits to rejection.
+    validate:
+      type: Task
+      function: { name: wf-validate-order }
+      timeout: 30s
+      # resultPath merges the error at $.error so the reject step still sees
+      # the order document (omitting it would REPLACE the document with the
+      # error object — the Step-Functions default).
+      catch:
+        - errorType: InvalidOrder
+          next: reject
+          resultPath: $.error
+      next: screening
+
+    # 2. Risk screening. Fraud scoring and the inventory check are
+    #    independent, so they run concurrently in a Parallel state. The
+    #    join is an ordered array — [fraudResult, inventoryResult] —
+    #    merged into the order document at $.screening.
+    screening:
+      type: Parallel
+      branches:
+        - startAt: fraud
+          states:
+            fraud: { type: Task, function: { name: wf-fraud-score }, end: true }
+        - startAt: stock
+          states:
+            stock: { type: Task, function: { name: wf-inventory-check }, end: true }
+      resultPath: $.screening
+      next: decision
+
+    # 3. Data-driven routing on the screening results. No function runs
+    #    here — Choice is evaluated by the engine from the document.
+    decision:
+      type: Choice
+      choices:
+        - variable: $.screening[0].riskScore
+          numericGreaterThan: 70
+          next: reject
+        - variable: $.screening[1].status
+          stringEquals: OUT_OF_STOCK
+          next: reject
+      default: charge
+
+    # 4. Payment. Transient gateway errors (5xx) are retried with backoff;
+    #    a decline is a typed business error that no retry can fix, so it
+    #    is caught and routed to rejection instead. The receipt lands at
+    #    $.charge, preserving the rest of the order document.
+    charge:
+      type: Task
+      function: { name: wf-charge-card }
+      timeout: 30s
+      retry: { maxAttempts: 3, backoffBase: 1s, backoffCap: 10s }
+      catch:
+        - errorType: PaymentDeclined
+          next: reject
+          resultPath: $.error
+      resultPath: $.charge
+      next: fulfil
+
+    # 5a. Happy path.
+    fulfil:
+      type: Task
+      function: { name: wf-fulfil-order }
+      end: true
+
+    # 5b. Every failure route converges here.
+    reject:
+      type: Task
+      function: { name: wf-reject-order }
+      end: true

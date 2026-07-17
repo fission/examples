@@ -96,5 +96,26 @@
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/workshop",
       "tag": ["Workshop"],
       "language": "Go"
+    },
+    {
+      "name": "Workflow: Order Pipeline",
+      "description": "E-commerce checkout orchestration: parallel fraud/stock screening, choice routing, payment retry with typed-error catch.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/workflows/order-pipeline",
+      "tag": ["Workflows","Orchestration","Javascript"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Workflow: Batch Lead Enrichment",
+      "description": "Map fan-out over a CRM lead batch with bounded concurrency; ordered join feeds an aggregation step.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/workflows/batch-enrichment",
+      "tag": ["Workflows","Orchestration","Javascript"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Workflow: Payment Dunning",
+      "description": "Subscription payment recovery with durable Wait timers between charge attempts.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/workflows/payment-dunning",
+      "tag": ["Workflows","Orchestration","Javascript"],
+      "language": "Javascript"
     }
 ]

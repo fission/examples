@@ -1,0 +1,6 @@
+{
+  "orderId": "ord-1003",
+  "customer": { "email": "lee@example.com" },
+  "items": [{ "sku": "monitor-27", "qty": 1, "unitPrice": 349 }],
+  "payment": { "card": "declined" }
+}

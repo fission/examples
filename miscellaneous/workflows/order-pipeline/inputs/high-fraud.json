@@ -1,0 +1,6 @@
+{
+  "orderId": "ord-1004",
+  "customer": { "email": "burner@example.invalid" },
+  "items": [{ "sku": "giftcard-500", "qty": 12, "unitPrice": 500 }],
+  "payment": { "card": "valid" }
+}

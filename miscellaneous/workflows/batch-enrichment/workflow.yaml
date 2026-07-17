@@ -1,0 +1,31 @@
+apiVersion: fission.io/v1
+kind: Workflow
+metadata:
+  name: batch-enrichment
+spec:
+  startAt: enrich
+  timeout: 30m
+  historyRetention:
+    maxCount: 20
+    maxAge: 24h
+  states:
+
+    # Fan out over $.leads: one branch execution per array element, at most
+    # 3 in flight at a time (be kind to the enrichment API you'd really
+    # call here). The join output is the ordered array of branch results —
+    # element i of the output corresponds to element i of the input.
+    enrich:
+      type: Map
+      itemsPath: $.leads
+      maxConcurrency: 3
+      branches:
+        - startAt: score
+          states:
+            score: { type: Task, function: { name: wf-enrich-lead }, end: true }
+      next: summarize
+
+    # The join array becomes this state's input document.
+    summarize:
+      type: Task
+      function: { name: wf-summarize-leads }
+      end: true

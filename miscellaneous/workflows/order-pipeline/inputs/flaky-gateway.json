@@ -1,0 +1,6 @@
+{
+  "orderId": "ord-1002",
+  "customer": { "email": "sam@example.com" },
+  "items": [{ "sku": "desk-lamp", "qty": 1, "unitPrice": 89 }],
+  "payment": { "card": "flaky-gateway" }
+}
