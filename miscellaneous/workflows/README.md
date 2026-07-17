@@ -44,14 +44,20 @@ done
 # The workflow is one YAML document.
 fission workflow create -f workflow.yaml
 
-# Render the state machine as a Mermaid diagram (paste into mermaid.live).
+# Render the state machine as a Mermaid diagram (stdout), or draw it in a
+# browser with --open (served locally — the graph never leaves your machine).
 fission workflow graph --name order-pipeline
+fission workflow graph --name order-pipeline --open
 
 # Start a run and watch it.
 fission workflow run --name order-pipeline --input @inputs/happy.json
 fission workflow runs list --workflow order-pipeline
 fission workflow runs describe --name <run-name>
 fission workflow runs history --name <run-name>
+
+# "Where did this run stop?" — the same diagram, with every state colored by
+# what THIS run did: succeeded, active, failed, or never reached.
+fission workflow runs graph --name <run-name> --open
 ```
 
 ## Concepts you'll see in the YAML
