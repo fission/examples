@@ -29,7 +29,7 @@ fission workflow create -f workflow.yaml
 
 ```bash
 fission workflow run --name batch-enrichment --input @inputs/leads.json
-fission workflow describe --name <run-name>
+fission workflow runs describe --name <run-name>
 ```
 
 The final output is the campaign summary:
@@ -38,7 +38,7 @@ The final output is the campaign summary:
 {"total": 6, "bySegment": {"hot": 3, "warm": 1, "cold": 2}, "hotLeads": ["cto@acme-robotics.com", ...]}
 ```
 
-`fission workflow history --name <run-name>` shows one `StepScheduled`/`StepSucceeded` pair per lead (branch keys `0`..`5`) and a `BranchesJoined` event carrying the ordered results.
+`fission workflow runs history --name <run-name>` shows one `StepScheduled`/`StepSucceeded` pair per lead (branch keys `0`..`5`) and a `BranchesJoined` event carrying the ordered results.
 
 ## Why a workflow and not a loop in one function?
 

@@ -46,8 +46,8 @@ Each sample input deterministically exercises one route:
 fission workflow run --name order-pipeline --input @inputs/happy.json
 # workflow run 'order-pipeline-xxxxx' started
 
-fission workflow describe --name order-pipeline-xxxxx
-fission workflow history --name order-pipeline-xxxxx --io
+fission workflow runs describe --name order-pipeline-xxxxx
+fission workflow runs history --name order-pipeline-xxxxx --io
 ```
 
 The `--io` flag shows each step's input/output, including the parallel join array landing at `$.screening` and the charge receipt at `$.charge`.

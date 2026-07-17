@@ -37,14 +37,14 @@ fission workflow run --name payment-dunning --input @inputs/valid.json
 
 # Dunning path: declined -> 15s durable wait -> declined again -> CANCELLED.
 fission workflow run --name payment-dunning --input @inputs/past-due.json
-fission workflow runs --workflow payment-dunning     # phase stays Running during the wait
+fission workflow runs list --workflow payment-dunning     # phase stays Running during the wait
 ```
 
-While the past-due run is in the grace period, `fission workflow describe --name <run-name>` shows the run parked in `grace-period`.
+While the past-due run is in the grace period, `fission workflow runs describe --name <run-name>` shows the run parked in `grace-period`.
 The history afterwards shows the `TimerFired` event between the two attempts:
 
 ```bash
-fission workflow history --name <run-name>
+fission workflow runs history --name <run-name>
 ```
 
 To prove the wait is durable, restart the engine mid-wait — the run still completes:

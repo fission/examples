@@ -49,9 +49,9 @@ fission workflow graph --name order-pipeline
 
 # Start a run and watch it.
 fission workflow run --name order-pipeline --input @inputs/happy.json
-fission workflow runs --workflow order-pipeline
-fission workflow describe --name <run-name>
-fission workflow history --name <run-name>
+fission workflow runs list --workflow order-pipeline
+fission workflow runs describe --name <run-name>
+fission workflow runs history --name <run-name>
 ```
 
 ## Concepts you'll see in the YAML
