@@ -54,5 +54,19 @@
       "path": "https://github.com/fission/examples/blob/main/nodejs/echo.js",
       "tag": ["node.js","Websocket"],
       "language": "Javascript"
+    },
+    {
+      "name": "Stateful Counter",
+      "description": "A per-user counter using Fission's built-in function state (durable key/value with compare-and-swap), no external Redis or database",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/stateful-counter.js",
+      "tag": ["node.js","State","Stateful"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Stateful Session Store",
+      "description": "A self-expiring login-session store using Fission's built-in function state with a TTL, no external Redis or database",
+      "path": "https://github.com/fission/examples/blob/main/nodejs/stateful-session.js",
+      "tag": ["node.js","State","Stateful","Session"],
+      "language": "Javascript"
     }
 ]
