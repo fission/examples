@@ -1,0 +1,8 @@
+{
+  "orderId": "ord-9999",
+  "customer": { "email": "ghost@example.com" },
+  "items": [
+    { "sku": "GHOST-001", "qty": 1, "unitPrice": 5 }
+  ],
+  "total": 5
+}
