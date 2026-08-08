@@ -82,5 +82,12 @@
       "path": "https://github.com/fission/examples/tree/main/python/websocket",
       "tag": ["Python","Application","Websocket"],
       "language": "Python"
+    },
+    {
+      "name": "Stateful Counter",
+      "description": "A per-user counter using Fission's built-in function state (durable key/value with compare-and-swap), no external Redis or database",
+      "path": "https://github.com/fission/examples/blob/main/python/stateful_counter.py",
+      "tag": ["Python","State","Stateful"],
+      "language": "Python"
     }
 ]
