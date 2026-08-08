@@ -1,0 +1,9 @@
+{
+  "orderId": "ord-1001",
+  "customer": { "email": "ana@example.com" },
+  "items": [
+    { "sku": "WIDGET-1", "qty": 2, "unitPrice": 9.99 },
+    { "sku": "GIZMO-2", "qty": 1, "unitPrice": 24.5 }
+  ],
+  "total": 44.48
+}

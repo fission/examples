@@ -117,5 +117,19 @@
       "path": "https://github.com/fission/examples/tree/main/miscellaneous/workflows/payment-dunning",
       "tag": ["Workflows","Orchestration","Javascript"],
       "language": "Javascript"
+    },
+    {
+      "name": "Asynchronous Invocation: Webhook Order Booking",
+      "description": "Async invocation through an HTTP trigger, with retries, onSuccess/onFailure destinations, and dead-letter-queue inspect/redrive.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/async-invocation",
+      "tag": ["Async","Retries","Dead-letter Queue","Javascript"],
+      "language": "Javascript"
+    },
+    {
+      "name": "Statestore Eventing: Order Events Fan-out",
+      "description": "Built-in messageQueueType: statestore topics with zero external broker; fission topic publish/peek, ResponseTopic/ErrorTopic, and per-trigger cursor fan-out.",
+      "path": "https://github.com/fission/examples/tree/main/miscellaneous/eventing-topics",
+      "tag": ["Eventing","Statestore","Messaging","Javascript"],
+      "language": "Javascript"
     }
 ]
