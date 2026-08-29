@@ -1,0 +1,27 @@
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: function1
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: my-env
+    namespace: ""
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.main
+    packageref:
+      name: function1-pkg
+      namespace: ""
+  requestsPerPod: 1
+  resources: {}

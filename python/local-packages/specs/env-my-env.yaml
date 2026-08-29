@@ -1,0 +1,22 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: my-env
+spec:
+  builder:
+    command: build
+    container:
+      name: ""
+      resources: {}
+    image: fission/python-builder-3.10:latest
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    container:
+      name: ""
+      resources: {}
+    image: fission/python-env-3.10:latest
+  version: 2
